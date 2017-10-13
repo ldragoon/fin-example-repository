@@ -1,0 +1,23 @@
+<>
+        dct:publisher        <http://id.loc.gov/authorities/names/no2008108707> ;
+        dc:publisher         "University of California, Davis. General Library. Dept. of Special Collections"^^<http://www.w3.org/2001/XMLSchema#string> ;
+        dc:subject           "Streets"^^<http://www.w3.org/2001/XMLSchema#string> ;
+        dc:subject           "Stores & shops"^^<http://www.w3.org/2001/XMLSchema#string> ;
+        dc:subject           "People"^^<http://www.w3.org/2001/XMLSchema#string> ;
+        dc:subject           "Automobiles"^^<http://www.w3.org/2001/XMLSchema#string> ;
+        dct:subject          <http://id.worldcat.org/fast/fst00823232> ;
+        dct:subject          <http://id.worldcat.org/fast/fst01134794> ;
+        ebucore:filename     ""^^<http://www.w3.org/2001/XMLSchema#string> ;
+        dc:rights            "copyrighted"^^<http://www.w3.org/2001/XMLSchema#string> ;
+        dct:rights           <http://rightsstatements.org/vocab/InC-NC/1.0/> ;
+        dct:identifier       "ark:/13030/tf6j49n9js"^^<http://www.w3.org/2001/XMLSchema#string> ;
+        ebucore:hasMimeType  "image/tiff"^^<http://www.w3.org/2001/XMLSchema#string> ;
+        dct:creator          <http://id.loc.gov/authorities/names/no2014099630> ;
+        dc:creator           "Eastman, Jervie Henry"^^<http://www.w3.org/2001/XMLSchema#string> ;
+        dct:created          "1939"^^<http://www.w3.org/2001/XMLSchema#string> ;
+        dct:source           "1 photographic negative : b&w : 5 x 7 in."^^<http://www.w3.org/2001/XMLSchema#string> ;
+        dc:identifier        "http://ark.cdlib.org/ark:/13030/tf6j49n9js"^^<http://www.w3.org/2001/XMLSchema#string> ;
+        dc:identifier        "B-1000"^^<http://www.w3.org/2001/XMLSchema#string> ;
+        dct:title            "In Quincy, Calif"^^<http://www.w3.org/2001/XMLSchema#string> ;
+        dct:type             "image"^^<http://www.w3.org/2001/XMLSchema#string> ;
+        dc:description       "Street with commercial buildings, automobiles, and people. Lower right corner reads \"J.H. Eastman.\""^^<http://www.w3.org/2001/XMLSchema#string> .
