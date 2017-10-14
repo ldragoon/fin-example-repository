@@ -8,6 +8,8 @@ features including:
 - User and Group based Authorizations
 - Collection Examples
 
+Make sure to check out the [FAQ](https://github.com/UCDavisLibrary/dams-example-repository/milestone/1), that documents some of the questions we've investigated about Fedora. Check both the open and closed issues there.
+
 ## Initialization
 
 ## inf4 based initialization
