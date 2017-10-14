@@ -98,6 +98,8 @@ function main.options() {
 	[webac]="http://fedora.info/definitions/v4/webac#"
 	[user]="http://cas.ucdavis.edu/user/"
 	[group]="http://cas.ucdavis.edu/group/"
+	[w]="http://library.ucdavis.edu/wine-ontology#"
+	[wdt]="http://www.wikidata.org/prop/direct/"
     )
 
 
@@ -386,7 +388,7 @@ function ls() {
 function delete() {
     # Get options
     OPTS=`getopt -o f  --long force,tombstone -n 'inf4 delete' -- "$@"` 
-    if [ $? != 0 ] ; then echo "Bad put options." >&2 ; exit 1 ; fi
+    if [ $? != 0 ] ; then echo "Bad delete options." >&2 ; exit 1 ; fi
     eval set -- "$OPTS"
     tombstone=
     while true; do

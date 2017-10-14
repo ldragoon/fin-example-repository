@@ -21,7 +21,7 @@ you need JWT tokens for both an administrator and a user.
 
 
 ```bash
-export INF4=~/dams-example/inf4
+export INF4=~/dams-example-repository/inf4
 export FEDORA_BASE=http://dams-sandbox.library.ucdavis.edu/fcrepo/rest
 
 export ADMIN_JWT=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InF1aW5uIiwiYWRtaW4iOnRydWUsImlhdCI6MTUwNzc2NzQwMywiZXhwIjoxNTA4MjY4OTEzLCJpc3MiOiJsaWJyYXJ5LnVjZGF2aXMuZWR1In0.4jAof7Rr2CWYovLT56ocER88blvZjrtd1j-MsRFjfX4

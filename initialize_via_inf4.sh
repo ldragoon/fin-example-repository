@@ -35,7 +35,7 @@ ${inf4} mkdir $R/user
 # This is for ACL
 ${inf4} mkdir $R/etc/agent
 
-users="quinn jrmerz xiaolili"
+users="quinn jrmerz xiaolili Agent"
 
 for u in ${users}; do
     my_dir=$R/user/$u
@@ -51,7 +51,11 @@ for u in ${users}; do
     ${inf4} -d $my_acl -- put -a webac:Acl <<<'<> rdfs:label "Local ACL".'
 
     # Now setup User  for writing
-    ${inf4} -d $my_acl/$u-w -- put -a acl:Authorization <<< "<> acl:agent \"${u}\"; acl:mode acl:Write, acl:Read; acl:accessTo <$R/user/${u}> ."
+    if [[ $u == "Agent" ]]; then
+	${inf4} -d $my_acl/$u-w -- put -a acl:Authorization <<< "<> acl:agent foaf:Agent; acl:mode acl:Write, acl:Read; acl:accessTo <$R/user/${u}> ."
+    else
+	${inf4} -d $my_acl/$u-w -- put -a acl:Authorization <<< "<> acl:agent \"${u}\"; acl:mode acl:Write, acl:Read; acl:accessTo <$R/user/${u}> ."
+    fi
     # Setup a Agent reading by default
     ${inf4} -d $my_acl/Agent-r -- put -a acl:Authorization <<< "<> acl:agent foaf:Agent; acl:mode acl:Read; acl:accessTo <$R/user/${u}> ."
 
@@ -68,13 +72,14 @@ done
 group=etc/group
 ${inf4} mkdir $R/$group
 ${inf4} -d $R/$group/eastman -- put -a foaf:Group <<< '<> foaf:member "quinn","jrmerz" . '
+${inf4} -d $R/$group/eastman-example -- put -a foaf:Group <<< '<> foaf:member "quinn","jrmerz" . '
 ${inf4} -d $R/$group/catz -- put -a foaf:Group <<< '<> foaf:member "quinn","jrmerz","xiaoli" .'
 
 # Now we will make some collections
 ${inf4} mkdir $R/collections
 
 # Make the Each Collection
-for u in eastman catz; do
+for u in Eastman eastman-example catz; do
     my_dir=$R/collections/$u
     my_acl=$my_dir/.acl;
     sys_acl=$R/$acl
@@ -102,11 +107,11 @@ if (true); then
 # This we want to do as user quinn.
 inf4="${INF4} --session=dams"
 # This adds your bearer token to the httpie so you can now use inf4
-http --session=dams-admin ${FEDORA_BASE} "Authorization:Bearer ${QUINN_JWT}"
+http --session=dams ${FEDORA_BASE} "Authorization:Bearer ${QUINN_JWT}"
 # Now cache that change for inf4
 ${inf4} --base=${FEDORA_BASE} GET
 
-for f in `find collections/eastman -type f -name \*.tif | grep -v '/fcr:metadata/'`; do
+for f in `find collections/eastman-example -type f -name \*.tif | grep -v '/fcr:metadata/'`; do
     d=`dirname $f`; b=`basename $f`;
     i=`basename $f .tif`;
 #    i=`basename $f .* | sed -e 's/\.[^.]*$//'`;
