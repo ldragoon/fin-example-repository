@@ -439,12 +439,12 @@ function touch() {
 
 function mkdir() {
     # Get options
-    OPTS=`getopt -o m:r:cd --long member:,resource:,collection,dir -n 'inf4 [options] -- mkdir' -- "$@"` 
+    OPTS=`getopt -o m:r:cd --long member:,resource:,collection,dir -n 'inf4 [options] -- ' -- "$@"` 
     if [ $? != 0 ] ; then echo "Bad mkdir options." >&2 ; exit 1 ; fi
     eval set -- "$OPTS"
-    a=
-    member_relation=
-    member_resource='..'
+    local a=
+    local member_relation=
+    local member_resource='..'
     while true; do
     	case $1 in
 	    -d | --dir ) member_relation='hasFile'; shift;;
@@ -463,9 +463,9 @@ function mkdir() {
     fi
        
     if (( $noop )) ; then
-	echo "http PUT $(url) Content-Type:$mime <<< '$(prefix; echo $input )'"
+	echo "http PUT $(url) Content-Type:$mime <<< '$(prefix; echo $a )'"
     else
-	(prefix; echo $input ) | _http PUT $(url) Content-Type:$mime
+	(prefix; echo $a ) | _http PUT $(url) Content-Type:$mime
     fi
     popd $1;
 }

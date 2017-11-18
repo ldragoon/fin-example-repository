@@ -1,0 +1,49 @@
+
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+# Wikidata Entries
+@prefix wd: <http://www.wikidata.org/entity/> .
+@prefix p: <http://www.wikidata.org/prop/> .
+@prefix wdt: <http://www.wikidata.org/prop/direct/> .
+@prefix : <#> .
+# UC Davis Wine Ontology
+
+:WineType a rdf:Class .
+
+:Still a :WineType;
+  rdf:label "Still Wine"@en.
+
+:Sparkling a :WineType;
+  rdf:sameAs wdt:Q321263 ;
+  rdf:label "Sparkling Wine"@en.
+
+:Dessert a :WineType;
+  rdf:sameAs wdt:Q321263 ;
+  rdf:label "Dessert Wine"@en; 
+  rdf:description "According to the TTB, Table Wine (if no more than 14% alcohol by volume) or Dessert Wine (if over 14% alcohol by volume)."@en.
+
+:Fortified a :WineType;
+  rdf:sameAs wdt:Q722338;
+  rdf:label "Fortified Wine"@en.
+
+:type a rdf:Property;
+  rdfs:domain :Wine;
+  rdfs:range :WineType.
+
+# We also have three Wine Colors
+:WineColor a rdf:Class.
+
+:Red a :WineColor;
+rdf:label "Red"@en.
+
+:Rosé a :WineColor;
+rdf:label "Rosé".
+
+:White a :WineColor;
+rdf:label "White"@en.
+
+:color a rdf:Property;
+rdfs:domain :Wine;
+rdfs:range :WineColor.
+

@@ -12,39 +12,8 @@ Make sure to check out the [FAQ](https://github.com/UCDavisLibrary/dams-example-
 
 ## Initialization
 
-## inf4 based initialization
-
-The old script for interacting with the fedora repository is a shell
-script included in this directory called inf4.  This script requires
-the [httpie](https://httpie.org/) package to fetch URLs.  In addition,
-you need JWT tokens for both an administrator and a user.
-
-
-```bash
-export INF4=~/dams-example-repository/inf4
-export FEDORA_BASE=http://dams-sandbox.library.ucdavis.edu/fcrepo/rest
-
-export ADMIN_JWT=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InF1aW5uIiwiYWRtaW4iOnRydWUsImlhdCI6MTUwNzc2NzQwMywiZXhwIjoxNTA4MjY4OTEzLCJpc3MiOiJsaWJyYXJ5LnVjZGF2aXMuZWR1In0.4jAof7Rr2CWYovLT56ocER88blvZjrtd1j-MsRFjfX4
-
-export QUINN_JWT=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InF1aW5uIiwiaWF0IjoxNTA3NzY3NDAzLCJleHAiOjE1MDgyNjg5MTMsImlzcyI6ImxpYnJhcnkudWNkYXZpcy5lZHUifQ.wfU1vL-MvXydnwTi0D9hiX5jAGnE05T4g2Se9_zuw-Q
-
-initialize_via_inf4.sh
-```
-
-``` bash
-# This sets up your environment
-alias inf4-admin="${INF4} --session=dams-admin"
-alias inf4="${INF4} --session=dams"
-# This adds your bearer token to the httpie --session=dams-admin
-http --session=dams-admin GET ${FEDORA_BASE} "Authorization:Bearer ${ADMIN_JWT}"
-http --session=dams GET ${FEDORA_BASE} "Authorization:Bearer ${QUINN_JWT}"
-
-```
-
-## node-fedora-cli based initialization
-
-The newer method for interacting with the fedora repository is a node
-application, *node-fedora-cli*.
+There is an initialization script `initialize`.  You probably just need to run `initialize` or maybe `initialize --fin='node /home/quinn/fin-cli/lib'` if you are not using an installed version of `fin`.
+You can use `pod2text initialize` or read the script for more ways to run this command. 
 
 # Using the Web interface.
 

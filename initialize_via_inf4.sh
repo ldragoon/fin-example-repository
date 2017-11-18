@@ -40,7 +40,7 @@ users="quinn jrmerz xiaolili Agent"
 for u in ${users}; do
     my_dir=$R/user/$u
     my_acl=$R/user/$u/.acl
-    sys_acl=$R/$acl
+    sys_acl=$R/etc/acl
 
     ${inf4} mkdir $R/user/$u
 

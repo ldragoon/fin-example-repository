@@ -1,0 +1,25 @@
+@prefix pcdm:  <http://pcdm.org/models#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix fedora:  <http://fedora.info/definitions/v4/repository#> .
+@prefix ebucore:  <http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#> .
+@prefix ldp:  <http://www.w3.org/ns/ldp#> .
+@prefix foaf:  <http://xmlns.com/foaf/0.1/> .
+@prefix authz:  <http://fedora.info/definitions/v4/authorization#> .
+@prefix dc:  <http://purl.org/dc/elements/1.1/> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix fin: <http://fin.library.ucdavis.edu/> .
+@prefix fast: <http://id.worldcat.org/fast/> .
+@prefix lcna: <http://id.loc.gov/authorities/names/> .
+
+<>
+a ldp:DirectContainer, pcdm:Collection, fin:Service;
+dc:title    "Example Collections";
+dct:publisher   lcna:no2008108707 ;
+dc:publisher    "University of California, Davis. General Library. Dept. of Special Collections";
+dct:created          "2017";
+dc:description       "Example Collections demonstrating some best practices, and standard methods for the FIN server and client";
+fin:linkHint
+    [a fin:LinkHint; fin:about fast:1423689; rdf:label "Photographs"],
+    [a fin:LinkHint; fin:about lcna:no2008108707; 
+     rdf:label "University of California, Davis. General Library. Dept. of Special Collections"
+    ] .
