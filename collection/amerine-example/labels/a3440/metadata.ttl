@@ -1,3 +1,5 @@
+
+
 <> a w:WineLabel;
     dct:publisher <http://id.loc.gov/authorities/names/no2008108707>;
     dc:publisher "University of California, Davis. General Library. Dept. of Special Collections";
@@ -5,7 +7,6 @@
     ebucore:hasMimeType "image/jpeg";
     dc:identifier "a3440";
     dct:type "image";
-    dc:subject "Burgundy Red@en", "BOURGOGNE@fra", "APPELLATION@fra", "CONTRO@fra", "BOUCHARD@fra", "PERE@fra", "&@fra", "FILS@fra", "NEGOCIANTS@fra", "A@fra", "BEAUNE@fra", "COTE@fra", "D'OR@fra";
     wdt:P219 "fra";
     w:WineType w:Still;
     wdt:P298 "FRA";

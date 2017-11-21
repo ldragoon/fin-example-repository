@@ -14,9 +14,7 @@
 @prefix w: <http://library.ucdavis.edu/wine/> .
 
 <>
-a ldp:DirectContaier, pcdm:Collection;
-ldp:membershipResource <>;
-ldp:hasMemberRelation pcdm:hasMember ;
+a ldp:BasicContainer, pcdm:Collection;
 dc:title    "Maynard Amerine's Wine Label Collection";
 dct:publisher   <lcna:no2008108707> ;
 dc:publisher    "University of California, Davis. General Library. Dept. of Special Collections"^^<http://www.w3.org/2001/XMLSchema#string> ;
@@ -43,4 +41,3 @@ fin:linkHint
     [a fin:LinkHint; fin:about <w:Red>; rdf:label "Red"  ],
     [a fin:LinkHint; fin:about <w:White>; rdf:label "White"  ],
     [a fin:LinkHint; fin:about <w:Rosé>; rdf:label "Rosé"  ] .
-

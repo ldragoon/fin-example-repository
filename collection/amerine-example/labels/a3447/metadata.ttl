@@ -5,7 +5,6 @@
     ebucore:hasMimeType "image/jpeg";
     dc:identifier "a3447";
     dct:type "image";
-    dc:subject "Burgundy Red@en", "ALBERT@fra", "MOROT@fra", "yehateau@fra", "da@fra", "La@fra", "Creusotte@fra", "APPELLATION@fra", "CONTROLEE@fra", "BEAU@fra", "NE@fra", "Cote@fra", "d'Or)@fra", "FRANCE@fra";
     wdt:P219 "fra";
     w:WineType w:Still;
     wdt:P298 "FRA";

@@ -5,8 +5,7 @@
     ebucore:hasMimeType "image/jpeg";
     dc:identifier "a3441";
     dct:type "image";
-    dc:subject "Burgundy Red@en", "MARQUE@fra", "DEPOsE@fra", "Charlenay@fra", "Reserve@fra", "marque@fra", "déposée@fra", "de@fra", "(cor@fra", "E-D'OR)@fra", "NEGOCIANT@fra", "A@fra", "BEAUNE@fra", "e@fra", "gopartis@fra", "ee@fra", "vire@fra", "d'une@fra", "tereur@fra", "alooolique@fra", "de@fra", "199@fra", "minimu@fra";
-    wdt:P219 "fra";
+     wdt:P219 "fra";
     w:WineType w:Still;
     wdt:P298 "FRA";
     w:WineColor w:Red.

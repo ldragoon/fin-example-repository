@@ -13,9 +13,7 @@
 @prefix rights: <http://rightsstatements.org/vocab/> .
 
 <>
-a ldp:DirectContaier, pcdm:Collection;
-ldp:membershipResource <>;
-ldp:hasMemberRelation pcdm:hasMember ;
+a ldp:BasicContainer, pcdm:Collection;
 dc:title    "EASTMAN'S ORIGINALS COLLECTION";
 dct:publisher   <lcna:no2008108707> ;
 dc:publisher    "University of California, Davis. General Library. Dept. of Special Collections"^^<http://www.w3.org/2001/XMLSchema#string> ;

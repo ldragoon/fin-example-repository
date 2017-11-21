@@ -5,7 +5,6 @@
     ebucore:hasMimeType "image/jpeg";
     dc:identifier "a3445";
     dct:type "image";
-    dc:subject "Burgundy Red@en", "GEISWEILE@fra", "GRAND@fra", "VIN@fra", "MARQUE@fra", "COMMERCIALE@fra", "DEPOS@fra", "UR@fra", "MAISON@fra", "F@fra", "DHE@fra", "EN@fra", "CONTROLEE@fra", "D@fra", "BRE@fra", "GEISWELEER@fra", "&@fra", "FILs@fra", "ERS@fra", "ET@fra", "CAPPELLATIO@fra", "ST.@fra", "GEORGES@fra", "CoTE@fra", "DOR)@fra", "FRANCE)@fra", "CONTENTS@fra", "12@fra", "FLUID@fra", "oUNCEs@fra", "ALCOHOL@fra", "12@fra", "PER@fra", "CENT@fra", "BY@fra", "VOLUME@fra";
     wdt:P219 "fra";
     w:WineType w:Still;
     wdt:P298 "FRA";

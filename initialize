@@ -62,6 +62,7 @@ fin_mkdir() {
     if [ $? != 0 ] ; then echo "Bad mkdir options." >&2 ; exit 1 ; fi
     eval set -- "$OPTS"
     local a="<> a ldp:BasicContainer"
+    local file=
     local relation=
     local resource='..'
     while true; do
@@ -205,28 +206,50 @@ we will just have
 =cut
 
 add_eastman() {
-    local d,b,i,s;
-    for f in `find collections/eastman-example -type f -name \*.tif | grep -v '/fcr:metadata/'`; do
-        d=`dirname $f`; 
+    local d b i s
+    local u='eastman-example'
+    for f in `find collection/eastman-example -type f -name \*.tif`; do
+        echo $f
+        d=`dirname $f`;
         b=`basename $f`;
         i=`basename $f .tif`;
+        n=$d/members/$i
         mime=`file --mime-type -b $f`;
-        $fin put /collection/eastman-example/$i -H "Content-Type:$mime"
-        s=$d/fcr:metadata/$b;
+        $fin http put -H "Content-Type:$mime" -@ $f $n
+        s=$f.ttl;
         if [[ -f $s ]] ; then
-        
-        sidecar="--sidecar=$s"
-        else
-        sidecar=''
+            ttl=$(sed -e "s|<>|<$R/collection/$u/members/$i>|g" < $s | tr -d '\n')
+            $fin http put $opts -H prefer:return=minimal -t "$ttl" /collection/$u/members/$i/fcr:metadata
+            #ins=$(cat $s - <<< "} where {}" | sed -e 's|@prefix\(.*\)\.$|PREFIX \1|' -e 's|<>|insert { <>|g' | tr -d '\n')
+            #$fin http patch -t "$ins" $n/fcr:metadata
         fi
     done
+}
+
+add_amerine() {
+    local d i mime s
+    for f in `find collection/amerine-example -type f -name full.jpg`; do
+        d=`dirname $f`;
+        i=$(basename $d);
+        mime=`file --mime-type -b $f`;
+        s=$d/metadata.ttl
+        $fin http put -@ $f -H "Content-Type:$mime" /collection/amerine-example/members/$i;
+        if [[ -f $s ]] ; then
+            ttl=$(sed -e "s|<>|<$R/collection/amerine-example/members/$i>|g" < $s | tr -d '\n')
+            $fin http put $opts --prefix wdt=http://www.wikidata.org/prop/direct/ --prefix w=http://library.ucdavis.edu/wine/ -H prefer:return=minimal -t "$ttl" /collection/amerine-example/members/$i/fcr:metadata
+            #ins=$(cat $s - <<< "} where {}" | sed -e 's|@prefix\(.*\)\.$|PREFIX \1|' -e 's|<>|insert { <>|g' | tr -d '\n')
+            #$fin http patch -t "$ins" $n/fcr:metadata
+        fi
+
+done
+
 }
 
 #main() {
     OPTS=`getopt -o P: --long do:,delete,fin:,print: -n 'initialize [options]' -- initialize "$@"` 
     if [ $? != 0 ] ; then echo "Bad initialize options." >&2 ; exit 1 ; fi
     eval set -- "$OPTS"
-    do='sys,users,collections'
+    do='sys,users,collections,eastman,amerine'
     delete=
     print='-P Hhb'
     #fin='node /home/quinn/fin-cli/lib -P Hhb'
@@ -281,3 +304,22 @@ add_eastman() {
             add_group `basename $u` $u/index.ttl
         done    
     fi
+
+# Eastman Example
+if [[ `grep eastman <<< $do` ]]; then
+    if [[ -n $delete ]]; then
+        fin_delete --tombstone /collection/eastman-example/members
+        fin_mkdir --relation=pcdm:hasMember --resource="<$R/collection/eastman-example>" /collection/eastman-example/members
+    fi
+    add_eastman;
+fi
+
+# Eastman Example
+if [[ `grep amerine <<< $do` ]]; then
+    if [[ -n $delete ]]; then
+        fin_delete --tombstone /collection/amerine-example/members
+        fin_mkdir --relation=pcdm:hasMember --resource="<$R/collection/amerine-example>" /collection/amerine-example/members
+    fi
+    add_amerine;
+fi
+

@@ -5,7 +5,6 @@
     ebucore:hasMimeType "image/jpeg";
     dc:identifier "a3446";
     dct:type "image";
-    dc:subject "Burgundy Red@en", "SHAVN@fra", "THE@fra", "HIGHEST@fra", "STANDARD@fra", "OF@fra", "QUALITY@fra", "CONTENTS@fra", "73@fra", "CENTILITERS@fra", "ALCOHOL@fra", "BY@fra", "VOLUME@fra", "14@fra", "FON@fra", "DEE@fra", "EN@fra", "849@fra", "BOURGoGNE@fra", "MARGILLY@fra", "RESERVE@fra", "PROPRIETAIRES@fra", "DE@fra", "VIGNOBLES@fra", "ACHASSAGNE@fra", "-MoNTRACHET@fra", "NEGOCIANTS@fra", "EN@fra", "VINS@fra", "A@fra", "BEAU@fra", "NE@fra", "(COTE@fra", "D'OR@fra";
     wdt:P219 "fra";
     w:WineType w:Still;
     wdt:P298 "FRA";
