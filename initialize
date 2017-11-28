@@ -58,17 +58,19 @@ fin_delete() {
 }
 
 fin_mkdir() {
-    OPTS=`getopt -o @: --long file:,relation:,resource: -n 'mkdir [options]' -- mkdir "$@"` 
+    OPTS=`getopt -o @: --long file:,hasMember:,isMemberOf:,resource: -n 'mkdir [options]' -- mkdir "$@"` 
     if [ $? != 0 ] ; then echo "Bad mkdir options." >&2 ; exit 1 ; fi
     eval set -- "$OPTS"
     local a="<> a ldp:BasicContainer"
     local file=
-    local relation=
+    local hasMember=
+    local isMemberOf=
     local resource='..'
     while true; do
     	case $1 in
         -@ | --file ) file=$2; shift 2;;
-		--relation) relation=$2; shift 2;;
+		--hasMember) hasMember=$2; shift 2;;
+		--isMemberOf) isMemberOf=$2; shift 2;;
 	    --resource) resource=$2; shift 2;;
 	    --) shift; break;;
     	*) break;;
@@ -79,12 +81,16 @@ fin_mkdir() {
     if [[ -n $1 ]]; then
         if [[ -n $file ]]; then 
             $fin http put $opts -@ $file $1
-        else
-            if [[ -n $relation ]] ; then
-                a="<> a ldp:DirectContainer; ldp:hasMemberRelation $relation; ldp:membershipResource $resource ."
+        elif [[ -n $hasMember ]] ; then
+	    if [[ -n $isMemberOf ]]; then
+                a="<> a ldp:DirectContainer; ldp:hasMemberRelation $hasMember; ldp:membershipResource $resource; ldp:isMemberOfRelation $isMemberOf ."
+	    else
+                a="<> a ldp:DirectContainer; ldp:hasMemberRelation $hasMember; ldp:membershipResource $resource ."
             fi
-            $fin http put $opts -t "$a" $1
-        fi
+	elif [[ -n $isMemberOf ]]; then
+            a="<> a ldp:DirectContainer; ldp:isMemberOfRelation $isMemberOf; ldp:membershipResource $resource ."
+	fi
+        $fin http put $opts -t "$a" $1
     fi
 }
 
@@ -196,7 +202,7 @@ add_group () {
     auth_add --acl=/collection/$u/.acl --group="<$R/collection/$u/group/admin>" --mode=acl:Read,acl:Write --to="<$R/collection/$u>"
     auth_add --acl=/collection/$u/.acl --agent=foaf:Agent --mode=acl:Read --to="<$R/collection/$u>"
     # members is where the data goes.
-    fin_mkdir --relation=pcdm:hasMember --resource="<$R/collection/$u>" /collection/$u/members
+    fin_mkdir --hasMember=pcdm:hasMember --isMemberOf=pcdm:memberOf --resource="<$R/collection/$u>" /collection/$u/members
 }
 
 : <<=cut
@@ -283,7 +289,7 @@ done
         if [[ -n $delete ]]; then
             fin_delete --tombstone /user
         fi
-        fin_mkdir --relation=fin:hasUser --resource="<$R>" /user
+        fin_mkdir --hasMember=fin:hasUser --isMemberOf=fin:Users --resource="<$R>" /user
         for u in user/*; do 
             add_user `basename $u`
             # Add in a picture if it exists
@@ -299,7 +305,7 @@ done
         if [[ -n $delete ]]; then
             fin_delete --tombstone /collection
         fi
-        fin_mkdir --relation=pcdm:hasMember --resource="<$R>" /collection
+        fin_mkdir --hasMember=pcdm:hasMember --isMemberOf=pcdm:memberOf --resource="<$R>" /collection
         for u in collection/*; do 
             add_group `basename $u` $u/index.ttl
         done    
@@ -309,7 +315,7 @@ done
 if [[ `grep eastman <<< $do` ]]; then
     if [[ -n $delete ]]; then
         fin_delete --tombstone /collection/eastman-example/members
-        fin_mkdir --relation=pcdm:hasMember --resource="<$R/collection/eastman-example>" /collection/eastman-example/members
+        fin_mkdir --hasMember=pcdm:hasMember --isMemberOf=pcdm:memberOf --resource="<$R/collection/eastman-example>" /collection/eastman-example/members
     fi
     add_eastman;
 fi
@@ -318,7 +324,7 @@ fi
 if [[ `grep amerine <<< $do` ]]; then
     if [[ -n $delete ]]; then
         fin_delete --tombstone /collection/amerine-example/members
-        fin_mkdir --relation=pcdm:hasMember --resource="<$R/collection/amerine-example>" /collection/amerine-example/members
+        fin_mkdir --hasMember=pcdm:hasMember --isMemberOf=pcdm:memberOf --resource="<$R/collection/amerine-example>" /collection/amerine-example/members
     fi
     add_amerine;
 fi
