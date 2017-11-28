@@ -10,19 +10,18 @@
 @prefix fin: <http://fin.library.ucdavis.edu/> .
 @prefix fast: <http://id.worldcat.org/fast/> .
 @prefix lcna: <http://id.loc.gov/authorities/names/> .
-@prefix rights: <http://rightsstatements.org/vocab/> .
 
 <>
 a ldp:BasicContainer, pcdm:Collection;
 dc:title    "EASTMAN'S ORIGINALS COLLECTION";
-dct:publisher   <lcna:no2008108707> ;
+dct:publisher   lcna:no2008108707 ;
 dc:publisher    "University of California, Davis. General Library. Dept. of Special Collections"^^<http://www.w3.org/2001/XMLSchema#string> ;
 dc:subject  "Photographs",
 "California, Northern", "Pictorial Works";
-dct:subject <fast:1423689>,<fast:1692637>,<fast:1423874> ;
+dct:subject fast:1423689,fast:1692637,fast:1423874 ;
 dc:rights   "copyrighted"^^<http://www.w3.org/2001/XMLSchema#string> ;
-dct:rights           <rights:/InC-NC/1.0/> ;
-dct:creator          <lcna:no2014099630> ;
+dct:rights           <http://rightsstatements.org/vocab/InC-NC/1.0/> ;
+dct:creator          lcna:no2014099630 ;
 dc:creator           "Eastman, Jervie Henry", "Myers & Loomis","Simmons, Mirl H","Riesen, John D",
 "Eastman, Jervie Henry","Thompson, Peter Julian \"Jack\"","Loomis, Benjamin Franklin";
 dct:created          "1997"^^<http://www.w3.org/2001/XMLSchema#string> ;

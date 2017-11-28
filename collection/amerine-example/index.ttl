@@ -10,34 +10,33 @@
 @prefix fin: <http://fin.library.ucdavis.edu/> .
 @prefix fast: <http://id.worldcat.org/fast/> .
 @prefix lcna: <http://id.loc.gov/authorities/names/> .
-@prefix rights: <http://rightsstatements.org/vocab/> .
 @prefix w: <http://library.ucdavis.edu/wine/> .
 
 <>
 a ldp:BasicContainer, pcdm:Collection;
 dc:title    "Maynard Amerine's Wine Label Collection";
-dct:publisher   <lcna:no2008108707> ;
+dct:publisher   lcna:no2008108707 ;
 dc:publisher    "University of California, Davis. General Library. Dept. of Special Collections"^^<http://www.w3.org/2001/XMLSchema#string> ;
 dc:subject  "Photographs", "Pictorial Works";
-dct:subject <fast:1423689>,<fast:1423874> ;
+dct:subject fast:1423689,fast:1423874 ;
 dc:rights   "copyrighted"^^<http://www.w3.org/2001/XMLSchema#string> ;
-dct:rights           <rights:InC-NC/1.0/> ;
+dct:rights           <http://rightsstatements.org/vocab/InC-NC/1.0/> ;
 dct:created          "1997"^^<http://www.w3.org/2001/XMLSchema#string> ;
-dct:creator <lcna:n79065230> ;
+dct:creator lcna:n79065230 ;
 dc:coverage "1895/1980","California, Northern";
 dc:description "" ;
 fin:linkHint
-    [a fin:LinkHint; fin:about <fast:1423689>; rdf:label "Photographs"],
-    [a fin:LinkHint; fin:about <fast:1423874>; rdf:label "Pictorial Works"],
-    [a fin:LinkHint; fin:about <lcna:n79065230>; 
+    [a fin:LinkHint; fin:about fast:1423689; rdf:label "Photographs"],
+    [a fin:LinkHint; fin:about fast:1423874; rdf:label "Pictorial Works"],
+    [a fin:LinkHint; fin:about lcna:n79065230; 
      rdf:label "Amerine, Maynard A. (Maynard Andrew), 1911-1998"
     ] ,
-    [a fin:LinkHint; fin:about <lcna:no2008108707>; 
+    [a fin:LinkHint; fin:about lcna:no2008108707; 
      rdf:label "University of California, Davis. General Library. Dept. of Special Collections"
     ] ,
-    [a fin:LinkHint; fin:about <w:Still>; rdf:label "Still" ],
-    [a fin:LinkHint; fin:about <w:Sparkling>; rdf:label "Sparkling"  ],
-    [a fin:LinkHint; fin:about <w:Fortified>; rdf:label "Fortified"  ],
-    [a fin:LinkHint; fin:about <w:Red>; rdf:label "Red"  ],
-    [a fin:LinkHint; fin:about <w:White>; rdf:label "White"  ],
-    [a fin:LinkHint; fin:about <w:Rosé>; rdf:label "Rosé"  ] .
+    [a fin:LinkHint; fin:about w:Still; rdf:label "Still" ],
+    [a fin:LinkHint; fin:about w:Sparkling; rdf:label "Sparkling"  ],
+    [a fin:LinkHint; fin:about w:Fortified; rdf:label "Fortified"  ],
+    [a fin:LinkHint; fin:about w:Red; rdf:label "Red"  ],
+    [a fin:LinkHint; fin:about w:White; rdf:label "White"  ],
+    [a fin:LinkHint; fin:about w:Rosé; rdf:label "Rosé"  ] .
