@@ -19,9 +19,8 @@ You probably just need to run ./initialize --fin='node ~/fin-cli/lib' --all
 
 =item B<--fin=> I<cmd>
  Set the fin command line argument.  if not set, will try fin.  Currently you may need something like.
- B<--fin='node /home/quinn/fin-cli/lib'>.  You can also set options here as in
- B<--fin='node /home/quinn/fin-cli/lib -P Hhb'>.  If you want to debug, you can say B<--fin=echo> and see 
- the fin commands used.
+ You can also set options here as in B<--fin='node /home/quinn/fin-cli/lib -P Hhb'>.  If you want to debug, you can say
+ B<--fin=echo> and see the fin commands used.
 
 =item B<--print=> I<HBhb>
     Set the printing parameter for fin.  By default it is I<Hhb>
@@ -197,7 +196,7 @@ add_group () {
     # Create a user definable .acl for this user.
     acl_create --dir=/collection/$u --default
     fin_mkdir /collection/$u/group
-    $fin http put /collection/$u/group/admin -t '<> a foaf:Group ; foaf:member "quinn","jrmerz" .' 
+    $fin http put /collection/$u/group/admin -t '<> a foaf:Group ; foaf:member "quinn","jrmerz" "enebeker" .' 
     # Add to Read/Write for user, Read for users
     auth_add --acl=/collection/$u/.acl --group="<$R/collection/$u/group/admin>" --mode=acl:Read,acl:Write --to="<$R/collection/$u>"
     auth_add --acl=/collection/$u/.acl --agent=foaf:Agent --mode=acl:Read --to="<$R/collection/$u>"
@@ -258,7 +257,6 @@ done
     do='sys,users,collections,eastman,amerine'
     delete=
     print='-P Hhb'
-    #fin='node /home/quinn/fin-cli/lib -P Hhb'
     fin=fin
     # This is the default location for the acl parameters
     R=`jq -r .basePath < ~/.fccli`
