@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-secret='SOME SECRET'
-
 json() {
 	declare input=${1:-$(</dev/stdin)}
 	printf '%s' "${input}" | jq -c .
@@ -16,36 +14,8 @@ base64_encode()
 hmacsha256_sign()
 {
 	declare input=${1:-$(</dev/stdin)}
-	printf '%s' "${input}" | openssl dgst -binary -sha256 -hmac "${secret}"
+	printf '%s' "${input}" | openssl dgst -binary -sha256 -hmac "${SECRET}"
 }
-
-get_header() {
-    # Static header fields.
-    header='{
-	"typ": "JWT",
-	"alg": "HS256",
-	"kid": "0001",
-	"iss": "fin-cli shim"
-}'
-    
-    # Use jq to set the dynamic `iat` and `exp`
-    # fields on the header using the current time.
-    # `iat` is set to now, and `exp` is now + 1 second.
-    header=$(
-	echo "${header}" | jq --arg time_str "$(date +%s)" \
-			      '
-	($time_str | tonumber) as $time_num
-	| .iat=$time_num
-	| .exp=($time_num + 1)
-	'
-	  )
-    return $header;
-}
-
-payload='{
-	"Id": 1,
-	"Name": "Hello, world!"
-}'
 
 
 : <<=cut
@@ -66,13 +36,13 @@ fin_jwt --SECRET=<jwtsecrect> --user=username --admin --agent=agent
 
 =head1 OPTIONS
 
-=over 4	
+=over 4
 
 =item B<--SECRET=>I<serversecret>
- This is B<NOT> part of the real setup.  If passed, this will create a local jwt token with the passed parameters. 
+ This is B<NOT> part of the real setup.  If passed, this will create a local jwt token with the passed parameters.
 
 =item B<--user=>I<username>
- This is the user logging logging into the server.  
+ This is the user logging logging into the server.
 
 =item B<--agent=>I<agent> default I<--user> value
 
@@ -85,32 +55,52 @@ If the user has admin privledges, they can specify a token with admin privledges
 =back
 =cut
 
-function fin_login() {
-    OPTS=`getopt --long SECRET:,user:,agent:,admin -n 'login [options]' -- login "$@"` 
+function fin_jwt() {
+    OPTS=`getopt --long SECRET:,user:,agent:,admin,save -n 'jwt [options]' -- login "$@"`
     if [ $? != 0 ] ; then echo "Bad login options." >&2 ; exit 1 ; fi
     eval set -- "$OPTS"
     local SECRET=
     local user="foaf:Agent"
     local agent=
-    local admin=0
+    local admin='false'
+		local save=
+
+		local header='{ "typ": "JWT", "alg": "HS256" }'
 
     while true; do
     	case $1 in
         --SECRET) SECRET=$2; shift 2;;
-	--user) user=$2; shift 2;;
-	--agent) agent=$2; shift 2;;
-	--admin) admin=1; shift;
-        *) break;;
+				--user) user=$2; shift 2;;
+				--agent) agent=$2; shift 2;;
+				--admin) admin='true'; shift;;
+				--save) save=1; shift;;
+				*) break;;
     	esac
     done
     shift;
 
+		if [[ -z $agent ]]; then agent=$user; fi
+
+
+		iat=$(date +%s)
+		exp=$(date --date='now + 1 day' +%s)
+
+		payload=$(printf '{ "iss":"library.ucdavis.edu","username":"%s","admin":%s,"iat":%s,"exp":%s}' $agent $admin $iat $exp)
+
+
+		header_base64=$(echo $header | base64_encode)
+		payload_base64=$(echo $payload  | base64_encode)
+
+		header_payload=$(echo "${header_base64}.${payload_base64}")
+		signature=$(echo "${header_payload}" | hmacsha256_sign | base64_encode)
+
+		if [[ -n $save ]]; then
+			old=$(cat ~/.fccli)
+			echo $old | jq --arg jwt "${header_payload}.${signature}" '.jwt=$jwt' > ~/.fccli
+		else
+			echo "${header_payload}.${signature}"
+		fi
+
 }
 
-header_base64=$(get_header | json | base64_encode)
-payload_base64=$(get_user | json | base64_encode)
-
-header_payload=$(echo "${header_base64}.${payload_base64}")
-signature=$(echo "${header_payload}" | hmacsha256_sign | base64_encode)
-
-echo "${header_payload}.${signature}"
+fin_jwt $@
