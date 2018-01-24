@@ -22,8 +22,7 @@ jwt.bats is the bash testing framework showing how this works
 - --user=*username* This is the user logging logging into the server.
 
 - --admin If the user has admin privledges, they can specify a token with
-    admin privledges as well. You cannot use the *admin* and *agent* tokens
-    together.
+    admin privledges as well.
 
 - --decode This will decode your token. Note that even if you don't know
     your SECRET, this will show you your payload, as per JWT tokens.
