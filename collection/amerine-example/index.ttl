@@ -14,7 +14,7 @@
 
 <>
 a ldp:BasicContainer, pcdm:Collection;
-dc:title    "Maynard Amerine's Wine Label Collection";
+dc:title    "An Example of Maynard Amerine's Wine Label Collection";
 dct:publisher   lcna:no2008108707 ;
 dc:publisher    "University of California, Davis. General Library. Dept. of Special Collections"^^<http://www.w3.org/2001/XMLSchema#string> ;
 dc:subject  "Photographs", "Pictorial Works";
@@ -28,10 +28,10 @@ dc:description "" ;
 fin:linkHint
     [a fin:LinkHint; fin:about fast:1423689; rdf:label "Photographs"],
     [a fin:LinkHint; fin:about fast:1423874; rdf:label "Pictorial Works"],
-    [a fin:LinkHint; fin:about lcna:n79065230; 
+    [a fin:LinkHint; fin:about lcna:n79065230;
      rdf:label "Amerine, Maynard A. (Maynard Andrew), 1911-1998"
     ] ,
-    [a fin:LinkHint; fin:about lcna:no2008108707; 
+    [a fin:LinkHint; fin:about lcna:no2008108707;
      rdf:label "University of California, Davis. General Library. Dept. of Special Collections"
     ] ,
     [a fin:LinkHint; fin:about w:Still; rdf:label "Still" ],

@@ -13,7 +13,7 @@
 
 <>
 a ldp:BasicContainer, pcdm:Collection;
-dc:title    "Eastman's Originals Collection";
+dc:title    "An Example of Eastman's Originals Collection";
 dct:publisher   lcna:no2008108707 ;
 dc:publisher    "University of California, Davis. General Library. Dept. of Special Collections"^^<http://www.w3.org/2001/XMLSchema#string> ;
 dc:subject  "Photographs",

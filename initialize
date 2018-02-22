@@ -15,7 +15,7 @@
 
 You probably just need to run ./initialize --fin='node ~/fin-cli/lib' --all
 
-=over 4	
+=over 4
 
 =item B<--fin=> I<cmd>
  Set the fin command line argument.  if not set, will try fin.  Currently you may need something like.
@@ -37,7 +37,7 @@ Specify what to inititialize; options include sys,users,collections. Default is 
 
 # This example assumes that you already have your fin-cli setup with a user with administrative permissions.
 fin_delete() {
-     OPTS=`getopt -o f  --long force,tombstone -n 'inf4 delete' -- "$@"` 
+     OPTS=`getopt -o f  --long force,tombstone -n 'inf4 delete' -- "$@"`
     if [ $? != 0 ] ; then echo "Bad delete options." >&2 ; exit 1 ; fi
     eval set -- "$OPTS"
     tombstone=
@@ -49,7 +49,7 @@ fin_delete() {
     	esac
     done
     if [[ -n $1 ]]; then
-        $fin http delete $1;   
+        $fin http delete $1;
         if [[ -n $tombstone ]]; then
             $fin http delete $1/fcr:tombstone
         fi
@@ -57,7 +57,7 @@ fin_delete() {
 }
 
 fin_mkdir() {
-    OPTS=`getopt -o @: --long file:,hasMember:,isMemberOf:,resource: -n 'mkdir [options]' -- mkdir "$@"` 
+    OPTS=`getopt -o @: --long file:,hasMember:,isMemberOf:,resource: -n 'mkdir [options]' -- mkdir "$@"`
     if [ $? != 0 ] ; then echo "Bad mkdir options." >&2 ; exit 1 ; fi
     eval set -- "$OPTS"
     local a="<> a ldp:BasicContainer"
@@ -78,7 +78,7 @@ fin_mkdir() {
     shift;
 
     if [[ -n $1 ]]; then
-        if [[ -n $file ]]; then 
+        if [[ -n $file ]]; then
             $fin http put $opts -@ $file $1
         elif [[ -n $hasMember ]] ; then
 	    if [[ -n $isMemberOf ]]; then
@@ -94,7 +94,7 @@ fin_mkdir() {
 }
 
 auth_add() {
-     OPTS=`getopt --long acl:,mode:,to:,agent:,group: -n 'auth [options]' -- auth "$@"` 
+     OPTS=`getopt --long acl:,mode:,to:,agent:,group: -n 'auth [options]' -- auth "$@"`
     if [ $? != 0 ] ; then echo "Bad auth_add options." >&2 ; exit 1 ; fi
     eval set -- "$OPTS"
     local mode="acl:Read"
@@ -129,7 +129,7 @@ auth_add() {
 }
 
 acl_create() {
-    OPTS=`getopt --long dir:,label:,default -n 'acl [options]' -- acl "$@"` 
+    OPTS=`getopt --long dir:,label:,default -n 'acl [options]' -- acl "$@"`
     if [ $? != 0 ] ; then echo "Bad acl options." >&2 ; exit 1 ; fi
     eval set -- "$OPTS"
     local dir=
@@ -154,7 +154,7 @@ acl_create() {
         fi
         # Reset adir for full path
         adir=`readlink -m $R/$dir/.acl`
-        $fin http patch $opts $dir -t "insert {<> acl:accessControl <${adir}> .} where {}" 
+        $fin http patch $opts $dir -t "insert {<> acl:accessControl <${adir}> .} where {}"
     fi
  }
 
@@ -191,12 +191,12 @@ add_group () {
     local file
     if [[ -n $2 ]]; then
         file="--file=$2"
-    fi 
+    fi
     fin_mkdir $file /collection/$u
     # Create a user definable .acl for this user.
     acl_create --dir=/collection/$u --default
     fin_mkdir /collection/$u/group
-    $fin http put /collection/$u/group/admin -t '<> a foaf:Group ; foaf:member "quinn","jrmerz" "enebeker" .' 
+    $fin http put /collection/$u/group/admin -t '<> a foaf:Group ; foaf:member "quinn","jrmerz" "enebeker" .'
     # Add to Read/Write for user, Read for users
     auth_add --acl=/collection/$u/.acl --group="<$R/collection/$u/group/admin>" --mode=acl:Read,acl:Write --to="<$R/collection/$u>"
     auth_add --acl=/collection/$u/.acl --agent=foaf:Agent --mode=acl:Read --to="<$R/collection/$u>"
@@ -206,7 +206,7 @@ add_group () {
 
 : <<=cut
 =pod
-This is the main initialization program. Eventually, the above functions will be gone, and 
+This is the main initialization program. Eventually, the above functions will be gone, and
 we will just have
 =cut
 
@@ -251,7 +251,7 @@ done
 }
 
 #main() {
-    OPTS=`getopt -o P: --long do:,delete,fin:,print: -n 'initialize [options]' -- initialize "$@"` 
+    OPTS=`getopt -o P: --long do:,delete,fin:,print: -n 'initialize [options]' -- initialize "$@"`
     if [ $? != 0 ] ; then echo "Bad initialize options." >&2 ; exit 1 ; fi
     eval set -- "$OPTS"
     do='sys,users,collections,eastman,amerine'
@@ -274,8 +274,8 @@ done
     # Add print
     opts="$opts $print"
 
-    if [[ `grep sys <<< $do` ]]; then 
-        if [[ -n $delete ]]; then 
+    if [[ `grep sys <<< $do` ]]; then
+        if [[ -n $delete ]]; then
             fin_delete --tombstone /.acl
         fi
         $fin http put $opts -H prefer:return=minimal -@ root.ttl /
@@ -288,7 +288,7 @@ done
             fin_delete --tombstone /user
         fi
         fin_mkdir --hasMember=fin:hasUser --isMemberOf=fin:Users --resource="<$R>" /user
-        for u in user/*; do 
+        for u in user/*; do
             add_user `basename $u`
             # Add in a picture if it exists
             if [[ -f $u/picture.jpg ]]; then
@@ -304,9 +304,9 @@ done
             fin_delete --tombstone /collection
         fi
         fin_mkdir --hasMember=pcdm:hasMember --isMemberOf=pcdm:memberOf --resource="<$R>" /collection
-        for u in collection/*; do 
+        for u in collection/*; do
             add_group `basename $u` $u/index.ttl
-        done    
+        done
     fi
 
 # Eastman Example
@@ -326,4 +326,3 @@ if [[ `grep amerine <<< $do` ]]; then
     fi
     add_amerine;
 fi
-
