@@ -10,7 +10,7 @@
     :creator "Eastman, Jervie Henry";
     :description "Lumber mill with logs in pond in foreground and trees in background.";
     :keywords "Lumber industry", "Lakes & ponds", "Logs", "Mills";
-    :creator "lcna:no2014099630";
+    :creator lcna:no2014099630;
     :name "At Idlewild Camp on Salmon River Road";
     :material "1 photographic negative : b&w : 5 x 7 in.";
     :datePublished "1956";
