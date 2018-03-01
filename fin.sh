@@ -13,7 +13,7 @@ cd $DIR
 ## Create the collection (remove if exists)
 $FIN collection delete -f eastman-example
 $FIN collection create eastman-example ./collection/eastman-example/index.ttl
-$FIN collection relation add eastman-example members -T part
+$FIN collection relation add-container eastman-example members -T part
 
 ## add all files in the eastman-example director using base filename as member id
 for file in ./collection/eastman-example/*
@@ -26,6 +26,8 @@ do
     $FIN collection resource add eastman-example $file members/$id
   fi
 done
+
+$FIN collection relation add-properties eastman-example http://schema.org/workExample http://schema.org/exampleOfWork members/B-10006
 
 $FIN collection acl group add \
   eastman-example admins rw \

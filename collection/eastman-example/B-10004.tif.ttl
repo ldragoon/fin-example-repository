@@ -1,8 +1,10 @@
 @prefix ebucore:  <http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#> .
 @prefix dc:  <http://purl.org/dc/elements/1.1/> .
 @prefix dct: <http://purl.org/dc/terms/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 
 <>
+        rdf:type             <http://schema.org/CreativeWork> ;
         dct:publisher        <http://id.loc.gov/authorities/names/no2008108707> ;
         dc:publisher         "University of California, Davis. General Library. Dept. of Special Collections"^^<http://www.w3.org/2001/XMLSchema#string> ;
         dc:subject           "Roads"^^<http://www.w3.org/2001/XMLSchema#string> ;
