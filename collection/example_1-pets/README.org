@@ -1,0 +1,27 @@
+* Example 1 - Pets
+
+This example collection is something like the most basic type of collection that
+can be added into the system.  This example contains a simple set of digital
+images, with a small amount of data about the pets.  Our goal is to take these
+data and add them into our DAMs.
+
+Let's start with the collection description.  That's stored in the `index.ttl`
+file.  This file describes the collection. `index.ttl` is a pretty easy file to
+understand, you'll see a title, and description and some keywords.
+
+
+#+INCLUDE: "index.ttl" example ttl
+
+Create
+
+#+BEGIN_SRC sh
+fin login
+#+END_SRC
+
+#+RESULTS:
+| chester.jpg      |
+| chester.jpg.ttl  |
+| chester.jpg.ttl~ |
+| index.ttl        |
+| README.md        |
+| README.org       |
