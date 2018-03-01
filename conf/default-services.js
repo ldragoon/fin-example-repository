@@ -31,18 +31,6 @@ module.exports = [
     frame : require('./frames/es-collection.json')
   },
   {
-    id : 'serialization',
-    description : 'Serializes all fedora data to filesystem',
-    type : 'WebhookService',
-    url : 'http://serialization:3333'
-  },
-  {
-    id : 'cas',
-    description : 'UCD CAS authentication service',
-    type : 'AuthenticationService',
-    url : 'http://cas:8000'
-  },
-  {
     id : 'basic',
     title : 'Basic Authentication',
     description : 'Basic username/password authentication service',

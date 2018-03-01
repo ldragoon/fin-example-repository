@@ -89,7 +89,7 @@ We are using docker-compose to startup the services described in our `fin.yml`
 file.
 
 ``` bash
-docker-compose up -f fin-example.yml -d
+docker-compose -f fin-example.yml up -d
 ```
 
 *Docker pros will notice we are avoiding using the standard location for the
@@ -97,12 +97,15 @@ docker-compose up -f fin-example.yml -d
 environment file in our setup. This is just to make it more clear what files are
 being used.*
 
-##
+This will take some time the first time, as multiple docker containers are
+pulled to your computer from docker hub.  The next time you run this, it will go
+much faster.  You can try that now, but turning your setup off and on.
 
-## Initialization
+``` bash
+docker-compose -f fin-example.yml down
+docker-compose -f fin-example.yml up -d
+```
 
-There is an initialization script `initialize`.  You probably just need to run `initialize` or maybe `initialize --fin='node /home/quinn/fin-cli/lib'` if you are not using an installed version of `fin`.
-You can use `pod2text initialize` or read the script for more ways to run this command.
 
 # Using the Web interface.
 
