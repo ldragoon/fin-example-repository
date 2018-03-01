@@ -1,6 +1,7 @@
 #! /bin/bash
 
-FIN='node ../fin-cli/lib'
+# FIN='node ../fin-cli/lib'
+FIN=fin
 
 #####
 # A simple script using the fin-cli to add data to Fedora
@@ -10,8 +11,9 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 cd $DIR
 
 ## Create the collection (remove if exists)
-fin collection delete -f eastman-example
-fin collection create eastman-example ./collection/eastman-example/index.ttl
+$FIN collection delete -f eastman-example
+$FIN collection create eastman-example ./collection/eastman-example/index.ttl
+$FIN collection relation add-container eastman-example members -T part
 
 ## add all files in the eastman-example director using base filename as member id
 for file in ./collection/eastman-example/*
@@ -21,11 +23,13 @@ do
     id=$(basename "$file")
     id="${id%.*}"
 
-    fin collection member add eastman-example $file $id
+    $FIN collection resource add eastman-example $file members/$id
   fi
 done
 
-fin collection acl group add \
+$FIN collection relation add-properties eastman-example http://schema.org/workExample http://schema.org/exampleOfWork members/B-10006
+
+$FIN collection acl group add \
   eastman-example admins rw \
   --agent jrmerz@ucdavis.edu \
   --agent qjhart@ucdavis.edu \
