@@ -1,0 +1,11 @@
+@prefix : <http://schema.org/> .
+@prefix my: <http://example.org/> .
+
+<> a :ImageObject, :CreativeWork;
+ :name "Ashley";
+ :keywords: "Cat";
+ :license <http://rightsstatements.org/vocab/InC-NC/1.0/>;
+ :encodingFormat "image/jpeg";
+ :about <https://en.wikipedia.org/wiki/Cat>;
+ :creator "Quinn Hart";
+ my:owner "Quinn Hart".
