@@ -171,7 +171,7 @@ in the token.  You can even verify the signature if you include the `JWT_SECRET`
 you've set in your configuration.  This should show you how easy it is to create
 tokens if you know that `JWT_SECRET`, keep it hidden keep it safe!*
 
-## Examining the LDP server
+## Accessing the LDP server
 
 Now that we have elevated privileges, let's revisit the root to the LDP services,
 http://localhost:3000/fcrepo/rest .  Now we should have access to this location.
@@ -194,8 +194,34 @@ cli.  If you have more complicated setup, you can use `login --headless` and
 simply add in a jwt token, by cutting and pasting from your browser's
 development environment for example.  Or if you know your JWT_SECRET, you can
 mint a new token directly from the client, for example from this directory
-`source server.env; fin jwt encode -a -s $JWT_SECRET $JWT_ISSUER quinn`.
+`source fin-example.env; fin jwt encode --admin --save=true $JWT_SECRET $JWT_ISSUER quinn`.
 
+Now that our `fin` client is set, we can use it to interrogate and modify our
+server. In other examples, we will have more detail about the fin client, but
+for now, this command will show the metadata related to the root of this
+repository.
+
+``` bash
+fin http get -P b
+```
+
+## Adding data to the repository
+Now that we have our repository and we have administrative access, let's make
+our first entry into the repository.
+
+``` bash
+fin http put -H prefer:return=minimal -H "Content-Type:text/turtle" -@ server.ttl -P h
+```
+This adds the `server.ttl` to the metadata of our root repository.  We can
+verify that in two ways, first using the command-line tool.
+``` bash
+fin http get -P b
+```
+
+We can also verify in the browser, http://localhost:3000/fcrepo/rest open the
+properties bar and verify we've updated the metadata.  The root metadata also
+controls the information on the server.  Revisit, http://localhost:3000/ you can
+see that the description of the repository has changed.
 
 ***Pro tip** The `fin` cli has lots if specialized tools for accessing a fedora
 server, but there is nothing special in the calls that are sent to fedora, they
@@ -210,6 +236,22 @@ the following command `http --print=h --session=admin http://localhost:3000
 "Authorization:Bearer $(jq -r .jwt < ~/.fccli)"`. This saves the Authorization
 token to the `admin` session. Later on, we can access fedora with httpie like
 this `http --session=admin http://localhost:3000/fcrepo/rest`.*
+
+
+# Next Steps
+From here, we can look at some of the example collections in this project and
+see how data can be added and maintained in our repository.
+
+- [Example 1](tree/master/collection/example_1-pets) This is the most
+  simple example of adding data into the repository.  The data is born digital,
+  and the organization of the data and the metadata is pretty simple.
+
+- [Example 2](tree/master/collection/example_2-photos)
+
+
+- [Example 3](tree/master/collection/example_3-catalogs) This is the most
+  simple example of adding data into the repository.  The data is born digital,
+  and the organization of the data and the metadata is pretty simple.
 
 
 # Advanced Configuration
