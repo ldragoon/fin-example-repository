@@ -23,11 +23,13 @@ do
     id=$(basename "$file")
     id="${id%.*}"
 
-    $FIN collection resource add eastman-example $file members/$id
+    $FIN collection resource add eastman-example $file members/$id -t CreativeWork
   fi
 done
 
-$FIN collection relation add-properties eastman-example http://schema.org/workExample http://schema.org/exampleOfWork members/B-10006
+$FIN collection relation add-properties eastman-example \
+  http://schema.org/exampleOfWork members/B-10006 \
+  http://schema.org/workExample
 
 $FIN collection acl group add \
   eastman-example admins rw \
