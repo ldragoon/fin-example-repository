@@ -42,6 +42,10 @@ understand that you will need to learn about this system.  Some of the example
 configuration below, will be unclear, and it will be difficult to modify the
 examples below for your setup unless  you understand this environment.
 
+Finally, we will be running a nodejs based tool `fin-cli` to work with our
+repository. After installing [nodejs](https://nodejs.org/en/download/), you can
+install this tool with `npm install -g @ucd-lib/fin-cli`.
+
 ## Configuration
 
 The first step is to clone the repository, using:
@@ -99,17 +103,114 @@ being used.*
 
 This will take some time the first time, as multiple docker containers are
 pulled to your computer from docker hub.  The next time you run this, it will go
-much faster.  You can try that now, but turning your setup off and on.
+much faster.  You can try that now, but turning your setup off and on.  It
+should startup much faster.
 
 ``` bash
 docker-compose -f fin-example.yml down
 docker-compose -f fin-example.yml up -d
 ```
 
+At this point, you should be able to navigate the where you set `FIN_URL`, eg
+http://localhost:3000/ and you should see an empty repository.
 
-# Using the Web interface.
+Going back to your docker configuration, at this point you should be able to
+examine the process that you are running, the logs, and other standard
+docker-compose commands.  For example, if you look at all the containers you've
+started with `docker-compose -f fin-example.yml ps`, you will see that there are
+a number of services started, including a fedora instance, an IIIF server, and a
+host of others.
 
-Once the Example is initialized, you need to [login via CAS](https://cas.ucdavis.edu/cas/login?service=http%3A%2F%2Fdams-sandbox.library.ucdavis.edu%2Ffcrepo%2Frest&renew=false)
+Throughout these examples, we will also show direct access to the underlying LDP
+as well. The default base for access to the LDP is /fcrepo/rest, so try
+accessing http://localhost:3000/fcrepo/rest . This should fail, since by default
+the public is not granted access to the data.  Since we want to read and write
+data to this repository, let's next create a new user for the system.
+
+## Adding your first User
+
+Our container setup separates the authentication step from the Fedora and
+other services.  The services rely on valid JWT tokens being sent along with
+requests to the system.  The Authentication services are what creates these
+tokens.  In production, you will most certainly want to use a centralized
+authentication mechanism, see **Using CAS Authentication** in the **Advanced
+Configuration** section to see an example of this type of setup.  However, for
+testing, we have included a Basic Authentication service that can be used
+without any external setup.  You should really only use this service for
+testing.
+
+Earlier, we looked at some of the container processes we were running with
+`docker-compose -f fin-example.yml ps`. One process there, is there is the
+basic-auth service.  In addition, by default we allow anyone to [create a new
+user account](http://localhost:3000/auth/basic/create.html). Navigate to that
+location and create a new user.  The email address allows for password resets.
+Once you've created your account, you can login to the server, and then from the
+home page, you can verify that you are logged in via the lower right hand side
+of the page.
+
+Now, we are going to give the user we've just created special administrative
+privileges for our repository.  This cannot be done via the website, but can be
+done with a command in your docker setup.  Assuming the user you've added, and
+who will be your admin is `superman`, run the command below:
+
+``` bash
+docker-compose -f fin-example.yml exec server node app/cli admin add-admin -u superman@local
+```
+
+This command adds the user `superman@local` into the group of administrators for
+the repository.   Every user in our Basic-Auth setup is given the `@local`
+suffix to differentiate them from other authentication systems.  Now in your
+browser, logout and back in (using the links in the lower right), to give
+yourself these new privileges.
+
+***Pro Tip** if you understand the development setup of your browser, you will
+see that this process has added a Cookie `fin-jwt` that encapsulates this
+information.  For example, you could copy that jwt token and decode it, for
+example by visiting [jwt.io](https://jwt.io/). You will see the values encoded
+in the token.  You can even verify the signature if you include the `JWT_SECRET`
+you've set in your configuration.  This should show you how easy it is to create
+tokens if you know that `JWT_SECRET`, keep it hidden keep it safe!*
+
+## Examining the LDP server
+
+Now that we have elevated privileges, let's revisit the root to the LDP services,
+http://localhost:3000/fcrepo/rest .  Now we should have access to this location.
+There isn't anything here, but at least we can see that now.  Users familiar
+with Fedora will note that this is the standard fedora interface when accessed
+via the browser.
+
+In many of the examples following, we will also be using the command-line tool
+`fin`.  If you haven't already, you can install this tool with `npm install -g @ucd-lib/fin-cli`
+
+The first time you use `fin`, you need to point to the server that you want to
+interact with.  Run the command `fin shell`.  This will put you into an
+interactive mode.  It will also prompt for a fedora endpoint.  Use the value to
+match your FIN_URL, in our example http://localhost:3000.
+
+Next, just as for the browser, we need to get a valid token for our command-line
+server.  Within the fin shell try `login`.  This should launch a service to
+verify your login credentials, and use those to add a valid token to your `fin`
+cli.  If you have more complicated setup, you can use `login --headless` and
+simply add in a jwt token, by cutting and pasting from your browser's
+development environment for example.  Or if you know your JWT_SECRET, you can
+mint a new token directly from the client, for example from this directory
+`source server.env; fin jwt encode -a -s $JWT_SECRET $JWT_ISSUER quinn`.
+
+
+***Pro tip** The `fin` cli has lots if specialized tools for accessing a fedora
+server, but there is nothing special in the calls that are sent to fedora, they
+are all standard HTTP requests. You can use other tools to interact with the
+server. For example, you could use the popular [HTTPie](https://httpie.org/)
+command line tool. Let's say you've followed the steps above, and your fin-cli
+has a valid token. This is stored in the ~/.fccli file in your home directory.
+If you wanted to use use httpie to interogate your system, you'd need to pass
+that token along on your httpie requests as well. Httpie has a mechanism for
+saving header information for certain locations, and you could set that up with
+the following command `http --print=h --session=admin http://localhost:3000
+"Authorization:Bearer $(jq -r .jwt < ~/.fccli)"`. This saves the Authorization
+token to the `admin` session. Later on, we can access fedora with httpie like
+this `http --session=admin http://localhost:3000/fcrepo/rest`.*
+
 
 # Advanced Configuration
 
@@ -147,3 +248,46 @@ to this setup when you move to a production setup.
 </VirtualHost>
 </IfModule>
 ```
+
+## CAS Authentication
+
+The examples above includes a Basic Authentication service, but even in
+development, we often don't use this service. Instead, we have an authentication
+service using the CAS service used on our UC Davis campus. When using this
+service, the authentication of the users is sent to the central CAS
+authentication server, and if the user authenticates, the service will mint a
+token for this users.  There aren't too many differences in the overall setup.
+First, we remove the Basic-Authentication Service and add the CAS service.
+
+``` diff
+--- fin-example.yml	2018-03-01 17:05:14.964623572 -0800
++++ fin-example-cas.yml	2018-03-01 17:05:26.192623341 -0800
+@@ -103,10 +103,10 @@
+       - server
+
+   ###
+-  # Basic Username/Password AuthenticationService
++  # CAS AuthenticationService
+   ###
+-  basic-auth:
+-    image: ucdlib/fin-basic-auth:0.0.1
++  cas:
++    image: ucdlib/fin-cas-service:0.0.1
+     env_file:
+       - fin-example.env
+     depends_on:
+```
+
+Then, when we create admins we make sure to use the `@ucdavis.edu` suffix for
+these users, as in:
+
+``` bash
+docker-compose -f fin-example.yml exec server node app/cli admin add-admin -u quinn@ucdavis.edu
+```
+
+More information is available in the fin-server
+[authentication-service](https://github.com/UCDavisLibrary/fin-server/blob/master/docs/authentication-service/README.md).
+Implementors of alternative authentication schemes can look at the [CAS
+Service](https://github.com/UCDavisLibrary/fin-server/tree/master/services/cas)
+for a good example of how this can be implemented for new authentication
+services.
