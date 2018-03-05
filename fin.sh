@@ -13,6 +13,17 @@ cd $DIR
 ## Create the collection (remove if exists)
 $FIN collection delete -f eastman-example
 $FIN collection create eastman-example ./collection/eastman-example/index.ttl
+
+## add acl first or indexers can't get at it
+$FIN collection acl group add \
+  eastman-example admins rw \
+  --agent jrmerz@ucdavis.edu \
+  --agent qjhart@ucdavis.edu \
+  --agent xioalili@ucdavis.edu 
+
+$FIN collection acl user add \
+  eastman-example PUBLIC r 
+
 $FIN collection relation add-container eastman-example members -T part
 
 ## add all files in the eastman-example director using base filename as member id
@@ -31,8 +42,4 @@ $FIN collection relation add-properties eastman-example \
   http://schema.org/exampleOfWork members/B-10006 \
   http://schema.org/workExample
 
-$FIN collection acl group add \
-  eastman-example admins rw \
-  --agent jrmerz@ucdavis.edu \
-  --agent qjhart@ucdavis.edu \
-  --agent xioalili@ucdavis.edu 
+
