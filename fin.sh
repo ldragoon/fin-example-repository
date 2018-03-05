@@ -1,7 +1,7 @@
 #! /bin/bash
 
-# FIN='node ../fin-cli/lib'
-FIN=fin
+FIN='node ../fin-cli/lib'
+# FIN=fin
 
 #####
 # A simple script using the fin-cli to add data to Fedora
@@ -13,16 +13,6 @@ cd $DIR
 ## Create the collection (remove if exists)
 $FIN collection delete -f eastman-example
 $FIN collection create eastman-example ./collection/eastman-example/index.ttl
-
-## add acl first or indexers can't get at it
-$FIN collection acl group add \
-  eastman-example admins rw \
-  --agent jrmerz@ucdavis.edu \
-  --agent qjhart@ucdavis.edu \
-  --agent xioalili@ucdavis.edu 
-
-$FIN collection acl user add \
-  eastman-example PUBLIC r 
 
 $FIN collection relation add-container eastman-example members -T part
 
@@ -42,4 +32,8 @@ $FIN collection relation add-properties eastman-example \
   http://schema.org/exampleOfWork members/B-10006 \
   http://schema.org/workExample
 
-
+$FIN collection acl group add \
+  eastman-example admins rw \
+  --agent jrmerz@ucdavis.edu \
+  --agent qjhart@ucdavis.edu \
+  --agent xioalili@ucdavis.edu 
