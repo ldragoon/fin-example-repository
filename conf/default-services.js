@@ -38,6 +38,12 @@ module.exports = [
     url : 'http://basic-auth:8000'
   },
   {
+    id : 'cas',
+    description : 'UCD CAS authentication service',
+    type : 'AuthenticationService',
+    url : 'http://cas:8000'
+  },
+  {
     id : 'ucd-lib-client',
     description : 'UCD Library DAMS Client UI',
     type : 'ClientService',
