@@ -148,13 +148,17 @@ Once you've created your account, you can login to the server, and then from the
 home page, you can verify that you are logged in via the lower right hand side
 of the page.
 
+``` bash
+docker-compose -f fin-example.yml exec basic-auth node service/cli create-user -u quinn -p laxlax -e quinn@example.org
+```
+
 Now, we are going to give the user we've just created special administrative
 privileges for our repository.  This cannot be done via the website, but can be
 done with a command in your docker setup.  Assuming the user you've added, and
 who will be your admin is `superman`, run the command below:
 
 ``` bash
-docker-compose -f fin-example.yml exec server node app/cli admin add-admin -u superman@local
+docker-compose -f fin-example.yml exec server node app/cli admin add-admin -u quinn@local
 ```
 
 This command adds the user `superman@local` into the group of administrators for
@@ -194,7 +198,10 @@ cli.  If you have more complicated setup, you can use `login --headless` and
 simply add in a jwt token, by cutting and pasting from your browser's
 development environment for example.  Or if you know your JWT_SECRET, you can
 mint a new token directly from the client, for example from this directory
-`source fin-example.env; fin jwt encode --admin --save=true $JWT_SECRET $JWT_ISSUER quinn`.
+
+``` bash
+source fin-example.env; fin jwt encode --admin --save=true $JWT_SECRET $JWT_ISSUER quinn
+```
 
 Now that our `fin` client is set, we can use it to interrogate and modify our
 server. In other examples, we will have more detail about the fin client, but
@@ -202,7 +209,7 @@ for now, this command will show the metadata related to the root of this
 repository.
 
 ``` bash
-fin http get -P b
+fin http get -P b /
 ```
 
 ## Adding data to the repository
@@ -210,18 +217,20 @@ Now that we have our repository and we have administrative access, let's make
 our first entry into the repository.
 
 ``` bash
-fin http put -H prefer:return=minimal -H "Content-Type:text/turtle" -@ server.ttl -P h
+fin http put -H prefer:return=minimal -H "Content-Type:text/turtle" -@ server.ttl -P h /
 ```
 This adds the `server.ttl` to the metadata of our root repository.  We can
 verify that in two ways, first using the command-line tool.
+
 ``` bash
-fin http get -P b
+fin http get -P b /
 ```
 
 We can also verify in the browser, http://localhost:3000/fcrepo/rest open the
 properties bar and verify we've updated the metadata.  The root metadata also
 controls the information on the server.  Revisit, http://localhost:3000/ you can
 see that the description of the repository has changed.
+
 
 ***Pro tip** The `fin` cli has lots if specialized tools for accessing a fedora
 server, but there is nothing special in the calls that are sent to fedora, they
@@ -244,15 +253,15 @@ see how data can be added and maintained in our repository.
 
 - [Example 1](tree/master/collection/example_1-pets) This is the most
   simple example of adding data into the repository.  The data is born digital,
-  and the organization of the data and the metadata is pretty simple.
+  and the organization of the data and the metadata is very basic.
 
-- [Example 2](tree/master/collection/example_2-photos)
+- [Example 2](tree/master/collection/example_2-photos) This example explains how
+  to document physical objects, in this case historical photos, and their
+  associated digital representations.
 
-
-- [Example 3](tree/master/collection/example_3-catalogs) This is the most
-  simple example of adding data into the repository.  The data is born digital,
-  and the organization of the data and the metadata is pretty simple.
-
+- [Example 3](tree/master/collection/example_3-catalogs) Here, we show how you
+might organize objects that have multiple digital encodings, in this case where
+each catalog has a complete PDF file, but we also have each page as an image.
 
 # Advanced Configuration
 

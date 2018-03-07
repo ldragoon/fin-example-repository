@@ -1,7 +1,7 @@
 #! /bin/bash
 
-FIN='node ../fin-cli/lib'
-# FIN=fin
+#FIN='node ../fin-cli/lib'
+FIN=fin
 
 #####
 # A simple script using the fin-cli to add data to Fedora
@@ -36,4 +36,4 @@ $FIN collection acl group add \
   eastman-example admins rw \
   --agent jrmerz@ucdavis.edu \
   --agent qjhart@ucdavis.edu \
-  --agent xioalili@ucdavis.edu 
+  --agent xioalili@ucdavis.edu

@@ -24,6 +24,13 @@ module.exports = [
     frame : require('./frames/es-record.json')
   },
   {
+    id : 's',
+    title : 'Elastic Search - Collection Record Frame',
+    description : 'Used for updating Elastic Search indexes when fedora updates',
+    type : 'FrameService',
+    frame : require('./frames/es-record-schema.json')
+  },
+  {
     id : 'es-collection-frame',
     title : 'Elastic Search - Collection Frame',
     description : 'Used for updating Search indexes when fedora updates',

@@ -3,7 +3,7 @@
 
 <> a :ImageObject, :CreativeWork;
  :name "Chester";
- :keywords: "Cat" "Maine Coon", "Polydactyl cat";
+ :keywords "Cat","Maine Coon", "Polydactyl cat";
  :license <http://rightsstatements.org/vocab/InC-NC/1.0/>;
  :encodingFormat "image/jpeg";
  :about <https://en.wikipedia.org/wiki/Polydactyl_cat>;

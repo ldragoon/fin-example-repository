@@ -53,8 +53,6 @@ services:
   ###
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:5.4.1
-#    env_file:
-#      - fin-example.env
     environment:
       - bootstrap.memory_lock=true
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"

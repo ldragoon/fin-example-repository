@@ -3,7 +3,7 @@
 
 <> a :ImageObject, :CreativeWork;
  :name "Gimli";
- :keywords: "Cat";
+ :keywords "Cat";
  :license <http://rightsstatements.org/vocab/InC-NC/1.0/>;
  :encodingFormat "image/jpeg";
  :about <https://en.wikipedia.org/wiki/Cat>;

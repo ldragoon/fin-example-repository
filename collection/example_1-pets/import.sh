@@ -8,19 +8,22 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 cd $DIR
 
 ## Create the collection (remove if exists)
-fin collection delete -f example_1-cats
-fin collection create example_1-cats index.ttl
-fin collection relation add-container example_1-cats . -T part
+fin collection delete -f example_1-pets
+fin collection create example_1-pets index.ttl
+# Add in public users.
+fin collection acl user add example_1-pets PUBLIC r
 
-## add all files in the eastman-example director using base filename as member id
+fin cd /collection/example_1-pets
+## Add a thumbnail
+fin http put -@ thumbnail.png -P b thumbnail
+fin http patch -@ /dev/stdin <<< 'prefix s: <http://schema.org/> insert {<> s:thumbnail <example_1-pets/thumbnail> } WHERE {}' -P h
+
+fin collection relation add-container example_1-pets pets -T part
+
 for file in *.jpg
 do
-  id=`basename $file`;
-  fin collection resource add example_1-cats $file $id $file.ttl
+  id=`basename $file .jpg`;
+  echo fin collection resource add -t ImageObject -m $file.ttl example_1-pets ./$file pets/$id
 done
 
-fin collection relation add-properties eastman-e http://schema.org/workExample http://schema.org/exampleOfWork ashley
-
-fin collection acl group add \
-  example_1-Cats admins rw \
-  --agent quinn \
+echo fin collection relation add-properties example_1-pets http://schema.org/workExample http://schema.org/exampleOfWork ashley
