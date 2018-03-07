@@ -32,3 +32,5 @@ do
     done
   done
 done
+
+fin collection relation add-properties  http://schema.org/workExample http://schema.org/exampleOfWork B-3/B-3

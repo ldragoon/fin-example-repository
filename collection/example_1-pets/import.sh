@@ -23,7 +23,7 @@ fin collection relation add-container example_1-pets pets -T part
 for file in *.jpg
 do
   id=`basename $file .jpg`;
-  echo fin collection resource add -t ImageObject -m $file.ttl example_1-pets ./$file pets/$id
+  fin collection resource add -t ImageObject -m $file.ttl example_1-pets ./$file pets/$id
 done
 
-echo fin collection relation add-properties example_1-pets http://schema.org/workExample http://schema.org/exampleOfWork ashley
+fin collection relation add-properties example_1-pets http://schema.org/workExample http://schema.org/exampleOfWork ashley

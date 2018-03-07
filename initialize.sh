@@ -2,12 +2,11 @@
 
 user=quinn
 email=quinn@example.org
+dc='docker-compose -f fin-example.yml -p fin'
 
-#docker-compose -f fin-example.yml up -d
+${dc} exec basic-auth node service/cli create-user -u $user -p laxlax -e $email
 
-docker-compose -f fin-example.yml exec basic-auth node service/cli create-user -u $user -p laxlax -e $email
-
-docker-compose -f fin-example.yml exec server node app/cli admin add-admin -u ${user}@local
+${dc} exec server node app/cli admin add-admin -u ${user}@local
 
 # Mint a token
 source fin-example.env; fin jwt encode --admin --save=true $JWT_SECRET $JWT_ISSUER ${user}@local
