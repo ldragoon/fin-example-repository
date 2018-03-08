@@ -1,7 +1,7 @@
 #! /bin/bash
 
-FIN='node ../fin-cli/lib'
-# FIN=fin
+# FIN='node ../fin-cli/lib'
+FIN=fin
 
 #####
 # A simple script using the fin-cli to add data to Fedora
