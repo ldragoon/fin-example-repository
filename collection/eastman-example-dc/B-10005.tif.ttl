@@ -1,0 +1,29 @@
+@prefix ebucore:  <http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#> .
+@prefix dc:  <http://purl.org/dc/elements/1.1/> .
+@prefix dct: <http://purl.org/dc/terms/> .
+
+<>
+        dct:publisher        <http://id.loc.gov/authorities/names/no2008108707> ;
+        dc:publisher         "University of California, Davis. General Library. Dept. of Special Collections"^^<http://www.w3.org/2001/XMLSchema#string> ;
+        dc:subject           "Rivers"^^<http://www.w3.org/2001/XMLSchema#string> ;
+        dc:subject           "Shrubs"^^<http://www.w3.org/2001/XMLSchema#string> ;
+        dc:subject           "Trees"^^<http://www.w3.org/2001/XMLSchema#string> ;
+        dc:subject           "Mountains"^^<http://www.w3.org/2001/XMLSchema#string> ;
+        dct:subject          <http://id.worldcat.org/fast/fst01028366> ;
+        dct:subject          <http://id.worldcat.org/fast/fst01098312> ;
+        dct:subject          <http://id.worldcat.org/fast/fst01117866> ;
+        dct:subject          <http://id.worldcat.org/fast/fst01155984> ;
+        ebucore:filename     ""^^<http://www.w3.org/2001/XMLSchema#string> ;
+        dc:rights            "copyrighted"^^<http://www.w3.org/2001/XMLSchema#string> ;
+        dct:rights           <http://rightsstatements.org/vocab/InC-NC/1.0/> ;
+        dct:identifier       "ark:/13030/tf2r29n887"^^<http://www.w3.org/2001/XMLSchema#string> ;
+        ebucore:hasMimeType  "image/tiff"^^<http://www.w3.org/2001/XMLSchema#string> ;
+        dct:creator          <http://id.loc.gov/authorities/names/no2014099630> ;
+        dc:creator           "Eastman, Jervie Henry"^^<http://www.w3.org/2001/XMLSchema#string> ;
+        dct:created          "1956"^^<http://www.w3.org/2001/XMLSchema#string> ;
+        dct:source           "1 photographic negative : b&w : 5 x 7 in."^^<http://www.w3.org/2001/XMLSchema#string> ;
+        dc:identifier        "http://ark.cdlib.org/ark:/13030/tf2r29n887"^^<http://www.w3.org/2001/XMLSchema#string> ;
+        dc:identifier        "B-10005"^^<http://www.w3.org/2001/XMLSchema#string> ;
+        dct:title            "The Salmon River, Calif"^^<http://www.w3.org/2001/XMLSchema#string> ;
+        dct:type             "image"^^<http://www.w3.org/2001/XMLSchema#string> ;
+        dc:description       "River, bushes and trees in foreground with mountains in background."^^<http://www.w3.org/2001/XMLSchema#string> .
