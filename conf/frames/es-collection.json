@@ -6,6 +6,7 @@
     "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
     "schema": "http://schema.org/",
     "premis" : "http://www.loc.gov/premis/rdf/v1#",
+    "ebucore" : "http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#",
     "name" : {
       "@id": "schema:name"
     },
@@ -18,8 +19,16 @@
     "creator" : {
       "@id": "schema:creator"
     },
+    "creatorLink" : {
+      "@id": "schema:creator",
+      "@type": "@id"
+    },
     "publisher" : {
       "@id": "schema:publisher"
+    },
+    "publisherLink" : {
+      "@id": "schema:publisher",
+      "@type": "@id"
     },
     "createdBy" : {
       "@id": "fedora:createdBy"
@@ -44,8 +53,9 @@
       "@id" : "schema:encodesCreativeWork",
       "@type": "@id"
     },
-    "mimeType" : {
-      "@id" : "ebucore:hasMimeType"
+    "workExample" : {
+      "@id" : "schema:workExample",
+      "@type": "@id"
     },
     "lastModified" : {
       "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
@@ -55,6 +65,9 @@
       "@id" : "fedora:lastModifiedBy"
     },
     "about" : {
+      "@id" : "schema:about"
+    },
+    "aboutLink" : {
       "@id" : "schema:about",
       "@type" : "@id"
     },
@@ -126,6 +139,9 @@
     "@default" : ""
   },
   "hasPart" : {
+    "@default" : ""
+  },
+  "workExample" : {
     "@default" : ""
   }
 }
