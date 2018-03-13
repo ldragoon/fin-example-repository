@@ -33,4 +33,4 @@ do
   done
 done
 
-fin collection relation add-properties  ${collection} http://schema.org/workExample B-1/B-1 http://schema.org/exampleOfWork
+fin collection relation add-properties  ${collection} http://schema.org/workExample B-1/B-1/media/full http://schema.org/exampleOfWork
