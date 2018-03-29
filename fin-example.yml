@@ -29,6 +29,8 @@ services:
       - fin-example.env
     volumes:
       - fedora-data:/var/lib/jetty/fedora-data
+    ports:
+      - 8080:8080
 
   ###
   # Session, admin store
@@ -37,6 +39,8 @@ services:
     image: redis:3.2
     volumes:
       - redis-data:/data
+    depends_on:
+      - fcrepo  
 
   ###
   # UC DAMS Client UI
