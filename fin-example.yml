@@ -31,7 +31,7 @@ services:
       - fin-example.env
     volumes:
       - fedora-data:/var/lib/jetty/fedora-data
-      - ./backups/var/lib/jetty/fcrepo-backups
+      - ./backups:/var/lib/jetty/fcrepo-backups
 
 ###
   # Session, admin store
