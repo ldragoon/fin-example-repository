@@ -14,11 +14,13 @@ services:
       - fin-example.env
     volumes:
       - ./conf:/etc/fin
+      - ./backups:/fcrepo-backups
     ports:
-      - 3000:3001
+      - 4000:3001
     depends_on:
       - fcrepo
       - redis
+      - elasticsearch
 
   ###
   # Fedora Repository
@@ -29,8 +31,9 @@ services:
       - fin-example.env
     volumes:
       - fedora-data:/var/lib/jetty/fedora-data
+      - ./backups/var/lib/jetty/fcrepo-backups
 
-  ###
+###
   # Session, admin store
   ###
   redis:
@@ -66,18 +69,17 @@ services:
       - es-data:/usr/share/elasticsearch/data
       - ./conf/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
     depends_on:
-      - server
+      - fcrepo
 
   ###
   # Trusted Proxy for Services
-  # required for loris service
   ###
   trustedproxy:
     image: ucdlib/fin-trusted-proxy:1.0.0
     env_file:
       - fin-example.env
     depends_on:
-      - elasticsearch
+      - fcrepo
 
   ###
   # IIIF Service
@@ -87,10 +89,12 @@ services:
     env_file:
       - fin-example.env
     depends_on:
-      - server
-      - trustedproxy
+      - fcrepo
     volumes:
       - loris-data:/usr/local/share/images/loris
+      - loris-cache:/var/cache/loris
+      - ./conf/loris/loris2.conf:/opt/loris/etc/loris2.conf
+      - ./conf/loris/start.py:/opt/loris/loris/start.py
 
   ###
   # ES Indexer
@@ -125,4 +129,6 @@ volumes:
   redis-data:
     driver: local
   loris-data:
+    driver: local
+  loris-cache:
     driver: local
