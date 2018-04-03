@@ -114,6 +114,9 @@
   "publisher" : {
     "@default" : ""
   },
+  "datePublished" : {
+    "@default" : ""
+  },
   "createdBy" : {
     "@default" : ""
   },

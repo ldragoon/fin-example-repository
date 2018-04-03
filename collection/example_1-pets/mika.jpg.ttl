@@ -8,4 +8,5 @@
  schema:encodingFormat "image/jpeg";
  schema:about <https://en.wikipedia.org/wiki/Cat>;
  schema:creator "Kimmy Hescock";
+ schema:datePublished "2012"^^<http://www.w3.org/2001/XMLSchema#long> ;
  my:owner "Kimmy Hescock".

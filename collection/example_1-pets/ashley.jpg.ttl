@@ -8,4 +8,5 @@
  schema:encodingFormat "image/jpeg";
  schema:about <http://en.wikipedia.org/wiki/Cat>;
  schema:creator "Quinn Hart";
+ schema:datePublished "2015"^^<http://www.w3.org/2001/XMLSchema#long> ;
  my:owner "Quinn Hart".
