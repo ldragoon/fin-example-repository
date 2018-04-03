@@ -1,0 +1,6 @@
+@prefix : <http://schema.org/>.
+@prefix ldp:  <http://www.w3.org/ns/ldp#> .
+
+<> a ldp:DirectContainer, :MediaObject ;
+:name "Image List";
+:encodingFormat "Image List" .
