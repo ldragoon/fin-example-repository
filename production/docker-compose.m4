@@ -11,12 +11,12 @@ services:
   server:
     image: ucdlib/fin-server:1.0.3
     env_file:
-      - fin-example.env
+      - ENV
     volumes:
       - ./conf:/etc/fin
       - ./backups:/fcrepo-backups
     ports:
-      - 4000:3001
+      - PORT:3001
     depends_on:
       - fcrepo
       - redis
@@ -28,7 +28,7 @@ services:
   fcrepo:
     image: ucdlib/fin-fcrepo:v1.0.0
     env_file:
-      - fin-example.env
+      - ENV
     volumes:
       - fedora-data:/var/lib/jetty/fedora-data
       - ./backups:/var/lib/jetty/fcrepo-backups
@@ -49,7 +49,7 @@ services:
   ucd-lib-client:
     image: ucdlib/fin-ucd-lib-client:0.1.0
     env_file:
-      - fin-example.env
+      - ENV
     depends_on:
       - elasticsearch
 
@@ -77,7 +77,7 @@ services:
   trustedproxy:
     image: ucdlib/fin-trusted-proxy:1.0.0
     env_file:
-      - fin-example.env
+      - ENV
     depends_on:
       - fcrepo
 
@@ -87,7 +87,7 @@ services:
   loris:
     image: ucdlib/fin-loris-service:v0.0.2
     env_file:
-      - fin-example.env
+      - ENV
     depends_on:
       - fcrepo
     volumes:
@@ -102,19 +102,20 @@ services:
   essync:
     image: ucdlib/fin-essync-service:0.1.0
     env_file:
-      - fin-example.env
+      - ENV
     depends_on:
       - server
 
   ###
-  # Basic Username/Password AuthenticationService
+  # CAS AuthenticationService
   ###
-  basic-auth:
-    image: ucdlib/fin-basic-auth:0.0.1
+  cas:
+    image: ucdlib/fin-cas-service:0.0.1
     env_file:
-      - fin-example.env
+      - ENV
     depends_on:
       - server
+
 
 ###
 # Docker data volumes
