@@ -8,6 +8,9 @@ Included are a number of different example repositories that illustrate various
 aspects of the server, and it's associated services.  These include different
 organizations of data, and methods for import.
 
+There are also a number of [FAQS](https://github.com/UCDavisLibrary/fin-example-repository/issues?utf8=%E2%9C%93&q=is%3Aissue+label%3AFAQ) in the Issues.
+You may find help there as well.
+
 Following the steps below, you should be able to get your own server, up and
 running relatively quickly.  From there, you can investigate some of the example
 repository data.
@@ -16,6 +19,9 @@ Currently, we assume some knowledge of what an LDP is, what linked data means,
 and how linked metadata is created and maintained. We also assume you have some
 familiarity with linked data turtle and json-ld formats.  We are looking to
 expand the tutorial material in those areas.
+
+
+
 
 # Installation
 
