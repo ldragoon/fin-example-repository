@@ -13,8 +13,9 @@ services:
     env_file:
       - ENV
     volumes:
-      - ./conf:/etc/fin
-      - ./backups:/fcrepo-backups
+#      - ./conf:/etc/fin # Frames now in image
+      - ./conf/default-services.js:/etc/fin/default-services.js
+#      - ./backups:/fcrepo-backups
     ports:
       - PORT:3001
     depends_on:
@@ -31,7 +32,7 @@ services:
       - ENV
     volumes:
       - fedora-data:/var/lib/jetty/fedora-data
-      - ./backups:/var/lib/jetty/fcrepo-backups
+#      - ./backups:/var/lib/jetty/fcrepo-backups
 
 ###
   # Session, admin store
@@ -41,7 +42,7 @@ services:
     volumes:
       - redis-data:/data
     depends_on:
-      - fcrepo  
+      - fcrepo
 
   ###
   # UC DAMS Client UI
@@ -91,7 +92,6 @@ services:
     depends_on:
       - fcrepo
     volumes:
-      - loris-data:/usr/local/share/images/loris
       - loris-cache:/var/cache/loris
       - ./conf/loris/loris2.conf:/opt/loris/etc/loris2.conf
       - ./conf/loris/start.py:/opt/loris/loris/start.py
@@ -123,13 +123,9 @@ services:
 volumes:
   fedora-data:
     driver: local
-  fedora-serialized-data:
-    driver: local
   es-data:
     driver: local
   redis-data:
-    driver: local
-  loris-data:
     driver: local
   loris-cache:
     driver: local

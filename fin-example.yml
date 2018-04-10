@@ -13,10 +13,10 @@ services:
     env_file:
       - fin-example.env
     volumes:
-      - ./conf:/etc/fin
+      - ./conf/default-services.js:/etc/fin/default-services.js
       - ./backups:/fcrepo-backups
     ports:
-      - 4000:3001
+      - 3000:3001
     depends_on:
       - fcrepo
       - redis
@@ -41,7 +41,7 @@ services:
     volumes:
       - redis-data:/data
     depends_on:
-      - fcrepo  
+      - fcrepo
 
   ###
   # UC DAMS Client UI

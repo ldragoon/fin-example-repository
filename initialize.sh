@@ -1,7 +1,7 @@
 #! /bin/bash
 
-user=quinn
-email=quinn@example.org
+user=admin
+email=admin@example.org
 dc='docker-compose -f fin-example.yml -p fin'
 
 ${dc} exec basic-auth node service/cli create-user -u $user -p laxlax -e $email
