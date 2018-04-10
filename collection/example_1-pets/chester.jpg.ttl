@@ -8,5 +8,5 @@
  schema:encodingFormat "image/jpeg";
  schema:about <https://en.wikipedia.org/wiki/Polydactyl_cat>;
  schema:creator "Quinn Hart";
- schema:datePublished "2016"^^<http://www.w3.org/2001/XMLSchema#long> ;
+ schema:datePublished "2016"^^<http://www.w3.org/2001/XMLSchema#date> ;
  my:owner "Quinn Hart".
