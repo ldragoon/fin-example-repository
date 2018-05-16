@@ -14,5 +14,5 @@
     :about fast:fst01098312, fast:fst01098511, fast:fst01099409, fast:fst01155984;
     :name "Highway Along Salmon River, Calif";
     :material "1 photographic negative : b&w : 5 x 7 in.";
-    :datePublished "1956";
+    :datePublished "1956"^^<http://www.w3.org/2001/XMLSchema#date> ;
     :identifier "ark:/13030/tf2p3003rh".

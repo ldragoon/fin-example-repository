@@ -9,5 +9,5 @@
     :keywords "Wine Catalogs","Manuscripts--Catalogs","Wine--Marketing";
     :about fast:1175887, fast:1008232;
     :name "Great Mid Winter Sale March 1967";
-    :datePublished "1967";
+    :datePublished "1967"^^<http://www.w3.org/2001/XMLSchema#date> ;
     :material "paper".

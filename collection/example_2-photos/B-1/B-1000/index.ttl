@@ -14,5 +14,5 @@
     :about fast:fst00823232, fast:fst01134794;
     :name "In Quincy, Calif";
     :material "1 photographic negative : b&w : 5 x 7 in.";
-    :datePublished "1939";
+    :datePublished "1939"^^<http://www.w3.org/2001/XMLSchema#date> ;
     :identifier "ark:/13030/tf6j49n9js".
