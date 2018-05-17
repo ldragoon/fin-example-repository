@@ -42,6 +42,7 @@ for cat in */index.ttl; do
     fin http patch --data-string "$ins" -P h ${id}/media/images/$b/fcr:metadata ;
   done
 
+  fin collection relation add-properties ${collection} http://schema.org/workExample $id/media/images/$n-0 http://schema.org/exampleOfWork $id
 done
 
-fin collection relation add-properties  ${collection} http://schema.org/workExample catalogs/199 http://schema.org/exampleOfWork
+fin collection relation add-properties  ${collection} http://schema.org/workExample catalogs/199/media/images/199-0 http://schema.org/exampleOfWork
