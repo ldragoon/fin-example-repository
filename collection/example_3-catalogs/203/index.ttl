@@ -9,5 +9,5 @@
     :keywords "Wine Catalogs","Manuscripts--Catalogs","Wine--Marketing";
     :about fast:1175887, fast:1008232;
     :name "Exciting Wine News from Burgundy 1961";
-    :datePublished 1961;
+    :datePublished "1961"^^<http://www.w3.org/2001/XMLSchema#date> ;
     :material "paper".

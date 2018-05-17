@@ -11,5 +11,5 @@
     schema:keywords "Wine Catalogs","Manuscripts--Catalogs","Wine--Marketing";
     schema:about fast:1175887,fast:1008232
     schema:name "<%= title %>";
-    schema:datePublished "<% year %>";
+    schema:datePublished "<% year %>"^^<http://www.w3.org/2001/XMLSchema#date> ;
     schema:material "paper".

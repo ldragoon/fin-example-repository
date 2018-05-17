@@ -13,5 +13,5 @@
     :creator lcna:no2014099630;
     :name "At Idlewild Camp on Salmon River Road";
     :material "1 photographic negative : b&w : 5 x 7 in.";
-    :datePublished "1956";
+    :datePublished "1956"^^<http://www.w3.org/2001/XMLSchema#date> ;
     :identifier "ark:/13030/tf8m3nb4nz".

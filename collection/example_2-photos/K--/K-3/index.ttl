@@ -14,5 +14,5 @@
     :about fast:fst01163505, fast:fst01001885, fast:fst00961767, fast:fst01028366, fast:fst01071809, fast:fst01098511;
     :name "Keddie Inn, Keddie, Calif";
     :material "1 photographic negative : b&w : 5 x 7 in.";
-    :datePublished "1936";
+    :datePublished "1936"^^<http://www.w3.org/2001/XMLSchema#date> ;
     :identifier "ark:/13030/tf4g50063f".

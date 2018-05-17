@@ -14,5 +14,5 @@
     :about fast:fst01028366, fast:fst01157775;
     :name "Paul Bunyan Logging Trucks";
     :material "1 photographic negative : b&w : 8 x 10 in.";
-    :datePublished "1945";
+    :datePublished "1945"^^<http://www.w3.org/2001/XMLSchema#date> ;
     :identifier "ark:/13030/tf4b69n8rg".
