@@ -38,7 +38,7 @@ ${ldp}:%/ldp.ttl:%/metadata.ttl
 	$c relation add-container -T media ${col} labels/$(notdir $*)/media;\
 	$c resource add --type MediaObject ${col} $*/label.jpg labels/$(notdir $*)/media/$(notdir $*);\
 	if [[ -e $*/google-vision.json ]]; then \
-	  fin http put -@ $*/google-vision.json /collection/${col}/labels/$(notdir $*)/media/google-vision; \
+	  fin http put -@ $*/google-vision.json -H Content-Type:application/google-vision+json /collection/${col}/labels/$(notdir $*)/media/google-vision; \
 	  $(call indexable,${col},labels/$(notdir $*)/media/google-vision);\
 		eval "echo -e $(jq '.text[0].desc' < $*/google-vision.json )" > $*/google-vision.txt; \
 	  $c resource add --type MediaObject ${col} $*/google-vision.txt labels/$(notdir $*)/media/google-vision_text; \
