@@ -6,3 +6,8 @@
 # Production Stuff
 production/*.env
 production/*.yml
+
+# test files
+label_this.txt
+ldp.ttl
+google-vision.txt
