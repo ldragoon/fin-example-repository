@@ -1,5 +1,5 @@
 @prefix schema: <http://schema.org/>.
-@prefix w: <http://library.ucdavis.edu/wine-ontology#>.
+@prefix w: <http://digital.ucdavis.edu/schema#>.
 @prefix fast: <http://id.worldcat.org/fast/>.
 @prefix wdt: <http://www.wikidata.org/prop/direct/>.
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
