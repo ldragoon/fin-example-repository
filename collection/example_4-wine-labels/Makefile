@@ -37,18 +37,17 @@ ${ldp}:%/ldp.ttl:%/metadata.ttl
 	$c resource add ${col} $< labels/$(notdir $*);\
 	$c relation add-container -T media ${col} labels/$(notdir $*)/media;\
 	$c resource add --type MediaObject ${col} $*/label.jpg labels/$(notdir $*)/media/$(notdir $*);\
+	rm -f $*/index_terms.txt; \
 	if [[ -e $*/google-vision.json ]]; then \
-	  fin http put -@ $*/google-vision.json -H Content-Type:application/google-vision+json /collection/${col}/labels/$(notdir $*)/media/google-vision; \
-	  $(call indexable,${col},labels/$(notdir $*)/media/google-vision);\
-		eval "echo -e $(jq '.text[0].desc' < $*/google-vision.json )" > $*/google-vision.txt; \
-	  $c resource add --type MediaObject ${col} $*/google-vision.txt labels/$(notdir $*)/media/google-vision_text; \
-	  $(call indexable,${col},labels/$(notdir $*)/media/google-vision_text);\
+	  $c resource add --type MediaObject -H Content-Type:application/google-vision+json ${col} $*/google-vision.json labels/$(notdir $*)/media/google-vision; \
+		jq -r '.text[].desc' < $*/google-vision.json >> $*/index_terms.txt; \
 	fi; \
 	if [[ -e $*/label_this.json ]]; then \
-	  $c resource add --type MediaObject ${col} $*/label_this.json labels/$(notdir $*)/media/label_this; \
-	  $(call indexable,${col},labels/$(notdir $*)/media/label_this);\
-		eval "echo -e $(jq '.text[0].desc' < $*/label_this.json )" > $*/label_this.txt; \
-	  $c resource add --type MediaObject ${col} $*/label_this.txt labels/$(notdir $*)/media/label_this_text; \
-	  $(call indexable,${col},labels/$(notdir $*)/media/label_this_text);\
+	  $c resource add --type MediaObject -H Content-Type:application/google-vision+json ${col} $*/label_this.json labels/$(notdir $*)/media/label_this; \
+		jq '.text[].desc' < $*/label_this.json | grep -v '^null$$' >> $*/index_terms.txt; \
+	fi;\
+	if [[ -e $*/index_terms.txt ]]; then \
+	  $c resource add --type MediaObject ${col} $*/index_terms.txt labels/$(notdir $*)/media/index_terms; \
+	  $(call indexable,${col},labels/$(notdir $*)/media/index_terms);\
 	fi;
 	fin http get -P b /collection/${col}/labels/$(notdir $*) > $@
