@@ -8,6 +8,5 @@ production/*.env
 production/*.yml
 
 # test files
-label_this.txt
+index_terms.txt
 ldp.ttl
-google-vision.txt
