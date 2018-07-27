@@ -24,4 +24,4 @@ do
   fin collection resource add -t ImageObject -m $file.ttl example_1-pets ./$file pets/$id
 done
 
-fin collection relation add-properties example_1-pets http://schema.org/workExample pets/ashley http://schema.org/exampleOfWork
+fin collection relation add-properties example_1-pets http://schema.org/workExample pets/mochi http://schema.org/exampleOfWork
