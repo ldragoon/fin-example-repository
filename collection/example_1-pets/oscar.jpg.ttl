@@ -3,6 +3,7 @@
 
 <> a schema:ImageObject, schema:CreativeWork;
  schema:name "奥斯卡在公园";
+ schema:alternateHeadline "Not a cat";
  schema:keywords "Oscar in the park";
  schema:keywords "Dog";
  schema:license <http://rightsstatements.org/vocab/InC-NC/1.0/>;
