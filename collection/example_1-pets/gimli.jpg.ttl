@@ -3,7 +3,7 @@
 
 <> a schema:ImageObject, schema:CreativeWork;
  schema:name "Gimli";
- schema:alternateHeadline "I bite faces";
+ schema:alternativeHeadline "I bite faces";
  schema:description "## Domestic Shorthair \\n- from LA \\n- now lives in *Sacramento*";
  schema:keywords "Cat";
  schema:license <http://rightsstatements.org/vocab/InC-NC/1.0/>;
