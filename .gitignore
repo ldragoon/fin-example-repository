@@ -13,3 +13,5 @@ ldp.ttl
 
 collection/example_4-wine-labels/**/label_this.txt
 collection/example_4-wine-labels/**/google-vision.txt
+
+**/*.hdt.*
