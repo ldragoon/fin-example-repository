@@ -16,12 +16,18 @@ fin collection create $COLLECTION index.ttl
 fin cd /collection/$COLLECTION
 
 fin collection relation add-container $COLLECTION scenes -T part
+fin collection relation add-container $COLLECTION maps -T part
 
-for file in *.jpg
+for file in scenes/*.jpg
 do
   id=`basename $file .jpg`;
-  fin collection resource add -t ImageObject -m $file.ttl $COLLECTION ./$file scenes/$id
+  fin collection resource add -t ImageObject -m $id.jpg.ttl $COLLECTION ./$file scenes/$id
 done
 
-#fin collection relation add-properties example_1-pets http://schema.org/workExample pets/mochi http://schema.org/exampleOfWork
-#fin collection relation add-properties example_1-pets http://digital.ucdavis.edu/schema#hasGraph wiki-graph http://digital.ucdavis.edu/schema#isGraph
+for file in maps/*.png
+do
+  id=`basename $file .png`;
+  fin collection resource add -t ImageObject -m $id.png.ttl $COLLECTION ./$file maps/$id
+done
+
+fin collection relation add-properties $COLLECTION http://schema.org/workExample scenes/Library360-AmerineRoom http://schema.org/exampleOfWork
