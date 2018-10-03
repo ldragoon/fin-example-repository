@@ -29,7 +29,10 @@ for cat in */index.ttl; do
   # Make Media, add in the pdf files.
   fin collection relation add-container -T media --metadata ${cat} ${collection} $id/media
   fin collection resource add --type MediaObject ${collection} ${n}/media/${n}.pdf ${id}/media/pdf
+  
   fin collection resource add --type MediaObject ${collection} ${n}/ocr.txt ${id}/media/generated_text
+  fin http patch --data-string "INSERT {<> <http://digital.ucdavis.edu/schema#textIndexable> true . } WHERE {} " -P h /collection/${collection}/${id}/media/generated_text/fcr:metadata ;
+
   fin collection resource add ${collection} ${n}/media/images/index.ttl ${id}/media/images
   #  fin collection relation add-container ${collection} $id/media/images/images -T part
   fin http patch --data-string "PREFIX s: <http://schema.org/> PREFIX ldp: <http://www.w3.org/ns/ldp#> INSERT {<> ldp:hasMemberRelation s:hasPart ; ldp:isMemberOfRelation s:partOf; ldp:membershipResource <>. } WHERE {} " -P h ${id}/media/images ;
