@@ -53,6 +53,13 @@ services:
     depends_on:
       - elasticsearch
 
+  tesseract:
+    image: ucdlib/fin-tesseract-service:master
+    env_file:
+      - fin-example.env
+    depends_on:
+      - server
+
   ###
   # Search
   ###
