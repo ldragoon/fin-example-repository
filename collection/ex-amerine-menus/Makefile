@@ -19,10 +19,9 @@ schema:=http://schema.org
 ex:=items/D-060/42/172/d7dk6z
 
 INFO:
-	@echo ex:${ex}
-	echo items: ${items}
-	echo item_images: ${item_images}
-
+	@echo -e "try: make new-collection add-graph ldp ldp.ttl\n\nto make this collection";\
+	echo -e "\n\nVARS:\n  ex:${ex}\n  items: ${items}";
+#	echo item_images: ${item_images}
 
 define patch
   fin http patch --data-string "INSERT {<> $3 } WHERE {}" -P h /collection/$1/$2/fcr:metadata

@@ -4,6 +4,14 @@ This example, from 2018-12, shows some added features of the way that we handle
 text searches.  In particular, it shows how you can provided indexable content
 to an item at the level of the images within the item.
 
+In order to create this from scratch run the following ~make~ command.
+
+#+BEGIN_SRC bash
+make new-collection add-graph ldp ldp.ttl
+#+END_SRC
+
+
+
 **  Organization
 
 The organization, and Makfile are drawn from the complete amerine-wine menu
