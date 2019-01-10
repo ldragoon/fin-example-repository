@@ -1,5 +1,6 @@
 @prefix schema: <http://schema.org/> .
 @prefix digital: <http://example.org/> .
+@prefix my: <http://example.org/> .
 
 <> a schema:ImageObject, schema:CreativeWork;
  schema:name "Amerine Room";
