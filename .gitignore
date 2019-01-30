@@ -15,3 +15,7 @@ collection/example_4-wine-labels/**/label_this.txt
 collection/example_4-wine-labels/**/google-vision.txt
 
 **/*.hdt.*
+
+
+collection/ex-sherry-lehmann/**ldp.ttl
+collection/ex-amerine-menus/**ldp.ttl
