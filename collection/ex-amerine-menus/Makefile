@@ -24,7 +24,8 @@ INFO:
 #	echo item_images: ${item_images}
 
 define patch
-  fin http patch --data-string "INSERT {<> $3 } WHERE {}" -P h /collection/$1/$2/fcr:metadata
+	echo "fin http patch -P hbHBs --data-string \"INSERT {<> $3 } WHERE {}\" /collection/$1/$2/fcr:metadata"; \
+  fin http patch --data-string "INSERT {<> $3 } WHERE {}" /collection/$1/$2/fcr:metadata
 endef
 
 graph.hdt: graph.ttl
@@ -50,10 +51,15 @@ add-graph: graph.hdt
 	$c resource add ${col} -H "Content-Type: application/octet-stream" $< graph
 	$c relation add-properties ${col} ${d}#hasGraph graph ${d}#isGraph
 
-add-workExample: schema:=http://www.schema.org
-add-workExample: ex_ark:=$(lastword $(subst /, ,${ex}))
-add-workExample:
-	$c relation add-properties ${col} ${schema}/workExample items/${ex_ark} ${schema}/exampleOfWork;\
+add-image: schema:=http://schema.org
+add-image: ex_ark:=$(lastword $(subst /, ,${ex}))
+add-image:
+	$(call patch,${col},,<${schema}/image> <${col}/items/${ex_ark}/media/images/${ex_ark}-0>.)
+
+#add-workExample: schema:=http://www.schema.org
+#add-workExample: ex_ark:=$(lastword $(subst /, ,${ex}))
+#add-workExample:
+#	$c relation add-properties ${col} ${schema}/workExample items/${ex_ark} ${schema}/exampleOfWork;\
 
 agents:= quinn enebeker jrmerz
 schema:=http://www.schema.org
@@ -77,7 +83,7 @@ new-collection: graph.hdt
   $c acl group add ${col} admins rw $(patsubst %,--agent %@ucdavis.edu,${agents});\
   $c relation add-container ${col} items -T part;\
 
-ldp.ttl: ldp add-workExample
+ldp.ttl: ldp add-image
 	fin http get -P b /collection/${col} > $@
 
 endif
@@ -111,8 +117,13 @@ $(patsubst %,%/ldp.ttl,$1):$1/index.ttl
 	  i=items/$(call item,$1)/media/images/$$$$b;\
     p=$$$${b#*-};\
     $c resource add --type ImageObject ${col} $$$$f $$$$i;\
-	  patch="<http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#filename> \"$$$${b}.png\"; <http://schema.org/position> $$$$p .";\
+	  patch="a <http://schema.org/MediaObject>; <http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#filename> \"$$$${b}.png\"; <http://schema.org/position> $$$$p .";\
 	  $(call patch,${col},$$$$i,$$$$patch);\
+	  if [[ $$$$p = 0 ]]; then \
+	    echo image: "$$$$i";\
+	    patch="<http://schema.org/image> <$(call item,$1)/media/images/$$$$b> ."; \
+	    $(call patch,${col},items/$(call item,$1),$$$$patch); \
+	  fi; \
 		t=$1/media/text/$$$${b}.txt; \
 	  tt=items/$(call item,$1)/media/text/$$$$b;\
 		if [[ -s $$$$t ]]; then \
