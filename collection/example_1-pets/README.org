@@ -2,14 +2,25 @@
 :header-args:    :exports both :eval no-export :cache yes
 :END:
 
-* Example 1 - Pets
+#+LINK: fin https://github.com/UCDavisLibrary/fin-server
+#+LINK: fin-cli https://github.com/UCDavisLibrary/fin-cli
 
-This example collection is something like the most basic type of collection that
-can be added into the system.  This example contains a simple set of digital
-images, with a small amount of data about the pets.  Our goal is to take these
-data and add them into our DAMs.
+* Example 1 - Collaborator Pets
 
-** Administrative Privledges
+Our collaborator pets collection is the most basic type of collection that can
+be added into the DAMS. This example contains a simple set of digital images
+with a small amount of data about the pets. Each pet, eg. [[./ashley.jpg][ashley.jpg]] is included
+in their own image file, and each image file has some associated metadata in a
+~.ttl~ sidecar, eg. [[./ashley.jpeg.ttl][ashley.jpeg.ttl]]. The metadata is in ~text/turtle~ format.
+The [[./index.ttl][index.ttl]] file includes information about the collection as a whole.
+Finally, we have an additional [[./graph.hdt][graph.hdt]] file is explained in more detail below.
+
+This collection can all be created with the [[./import.sh][import.sh]] script, and we will be
+going through that script line-by-line to describe the general steps for
+creating new collections.
+
+
+** Administrative Privleges
 
 If you have gone through the installation steps, this is good place to come as
 your next step.  The steps below assume that you are currently logged in to your
@@ -72,3 +83,47 @@ fin collection acl user add example_1-pets foaf:Agent r
 ** Add Example Data
 
 Now we want to add some additional
+
+#+BEGIN_SRC plantuml  :file ./docs/diagram.png
+  @startuml
+
+  object "schema:Collection" as sCol
+  object "schema:ImageObject" as sImage
+
+  object "/collections" as Collections {
+			 title = "Example Repository"
+  }
+
+  object Pets {
+    title = "Collaborator Pets"
+    date = 123
+  }
+
+  object Ashley {
+    title = "Ashley"
+    date = 123
+  }
+
+  object Mochi {
+    "schema:name" = "Mochi"
+    date = 123
+  }
+
+  Collections "hasPart" o-- "isPartOf" Pets
+  Pets "a  " <|-- sCol
+  Pets "hasPart" o-- "isPartOf" Ashley
+  Pets "hasPart" o-- "isPartOf" Mochi
+  Mochi "a  " <|-- sImage
+  Ashley "a  " <|-- sImage
+
+    @enduml
+#+END_SRC
+
+#+RESULTS:
+[[file:diagram.png]]
+
+* Graphs
+
+One problem that is currently not completely solved
+
+* Amended metadata representation
