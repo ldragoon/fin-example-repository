@@ -1,18 +1,18 @@
 
 # Table of Contents
 
-1.  [Example 1 - Collaborator Pets](#org3b88d60)
-    1.  [Administrative Privleges](#org60204d2)
-    2.  [Make a new Collection](#org6d36858)
-    3.  [Collection Access Control](#org408206d)
-    4.  [Add Example Data](#org55dd180)
-2.  [Graphs](#orged33566)
-3.  [Amended metadata representation](#orgce071b5)
+1.  [Example 1 - Collaborator Pets](#org83e48ff)
+    1.  [Administrative Privleges](#orgbc54a88)
+    2.  [Make a new Collection](#org6c544fc)
+    3.  [Collection Access Control](#orgc3b64d3)
+    4.  [Add Example Data](#orgb76ef2f)
+2.  [Graphs](#org0cf7b7c)
+3.  [Amended metadata representation](#org78de5b0)
 
 :header-args:    :exports both :eval no-export :cache yes
 
 
-<a id="org3b88d60"></a>
+<a id="org83e48ff"></a>
 
 # Example 1 - Collaborator Pets
 
@@ -29,7 +29,7 @@ going through that script line-by-line to describe the general steps for
 creating new collections.
 
 
-<a id="org60204d2"></a>
+<a id="orgbc54a88"></a>
 
 ## Administrative Privleges
 
@@ -42,7 +42,7 @@ root location, and verifies you can write to this location.
     fin http get -P b / | grep fedora:writable
 
 
-<a id="org6d36858"></a>
+<a id="org6c544fc"></a>
 
 ## Make a new Collection
 
@@ -86,7 +86,7 @@ example<sub>1</sub>-pets collection. You may need to login to your account via
 <http://localhost:3000/auth/basic/login.html> to give your browser access.
 
 
-<a id="org408206d"></a>
+<a id="orgc3b64d3"></a>
 
 ## Collection Access Control
 
@@ -96,22 +96,22 @@ available for anyone.
     fin collection acl user add example_1-pets foaf:Agent r
 
 
-<a id="org55dd180"></a>
+<a id="orgb76ef2f"></a>
 
 ## Add Example Data
 
 Now we want to add some additional
 
-![img](diagram.png)
+![img](./docs/diagram.png)
 
 
-<a id="orged33566"></a>
+<a id="org0cf7b7c"></a>
 
 # Graphs
 
 One problem that is currently not completely solved
 
 
-<a id="orgce071b5"></a>
+<a id="org78de5b0"></a>
 
 # Amended metadata representation
