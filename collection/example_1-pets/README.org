@@ -24,51 +24,48 @@ the object structure in our [[Fedora-LDP]].
 
 ** Object Structure
 
-   Whereever possible, we use [[schema][Schema.org]] to organize our collections and items.
-   To that end, Every collection is defined as a [[schema:Collection]] and every item in a
-   collection is a [[schema:CreativeWork]]. The items of a collection are defined
-   with the property [[schema:hasPart]].  This is fundamental organization of a
-   collection. This [[./docs/generic_diagram.png][Generic Diagram]], describes that relationship.  Since
-   [[schema:Collection]] are themselves [[schema:CreativeWork]] then all properties of
-   those apply.  Some of the properties that are indexed and in some cases
-   faceted in our DAMS include [[schema:name]], [[schema:about]], [[schema:keywords]],
-   [[schema:alternativeHeadline]],[[schema:license]],[[schema:creator]],
-   [[schema::datePublished]]
+Whereever possible, we use [[schema][Schema.org]] to organize our collections and items. To
+that end, Every collection is defined as a [[schema:Collection][schema:Collection]] and every item in a
+collection is a [[schema:CreativeWork][schema:creativework]]. the items of a collection are defined with
+the property [[schema:haspart][schema:haspart]]. this is fundamental organization of a collection.
+this [[./docs/generic_diagram.png][generic diagram]], describes that relationship. since [[schema:collection][schema:collection]] are
+themselves [[schema:creativework][creativework]] then all properties of those apply. some of the
+properties that are indexed and in some cases faceted in our dams include [[schema:name][name]],
+[[schema:about][about]], [[schema:keywords][keywords]], [[schema:alternativeheadline][alternativeheadline]],[[schema:license][license]],[[schema:creator][creator]], [[schema::datepublished][datepublished]]
 
 
-
-#+BEGIN_SRC plantuml  :file ./docs/generic_diagram.png
+#+begin_src plantuml  :file ./docs/generic_diagram.png
     @startuml
 
-    object "schema:Collection" as sCol {
+    object "schema:collection" as scol {
   }
 
-    object "schema:CreativeWork" as sCW {
+    object "schema:creativework" as scw {
  schema:name "text";
- schema:alternativeHeadline "text";
+ schema:alternativeheadline "text";
  schema:keywords "text";
- schema:license <Link>;
- schema:about <Link>;
- schema:creator "text" or <Link>;
- schema:datePublished "text".
+ schema:license <link>;
+ schema:about <link>;
+ schema:creator "text" or <link>;
+ schema:datepublished "text".
   }
 
-    object "/collections" as Collections {
-         name = "Example Repository"
+    object "/collections" as collections {
+         name = "example repository"
     }
 
-    Collections o-- sCol
-    sCol "hasPart" o-- "isPartOf" sCW
+    collections o-- scol
+    scol "haspart" o-- "ispartof" scw
 
       @enduml
-#+END_SRC
+#+end_src
 
-#+RESULTS:
+#+results:
 [[file:./docs/generic_diagram.png]]
 
-Now, for our example, each individual pet is an item within our collection.  The
+now, for our example, each individual pet is an item within our collection.  the
 following diagram replaces the generic objects with some of the actual objects
-in our collection.
+in our collection. The corresponding metadata files are [[index.ttl]], [[ashley.ttl]], and [[mochi.ttl]].
 
 #+BEGIN_SRC plantuml  :file ./docs/diagram.png
   @startuml
@@ -125,10 +122,14 @@ in our collection.
 [[file:./docs/diagram.png]]
 
 
-** Administrative Privleges
+** Data import
 
-If you have gone through the installation steps, this is good place to come as
-your next step.  The steps below assume that you are currently logged in to your
+Ok, let's go through the [[import.sh]] file, and see what's being done in this
+example.
+
+*** Administrative Privleges
+
+The steps below assume that you are currently logged in to your
 fin server, as an admin.  How to do this is explained in the installation
 instructions.  You can verify this with the following command, which access the
 root location, and verifies you can write to this location.
@@ -138,8 +139,7 @@ fin http get -P b / | grep fedora:writable
 #+END_SRC
 
 #+RESULTS[0ba08e1d3cd467885c11abdb76cb91efc0dda7b0]:
-: true
-
+:         fedora:writable                "true"^^<http://www.w3.org/2001/XMLSchema#boolean> ;
 
 ** Make a new Collection
 
