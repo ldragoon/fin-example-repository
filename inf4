@@ -1,0 +1,527 @@
+#! /bin/bash
+
+# program at end of file. search #MAIN
+
+function log() {
+  (>&2 echo LOG: $@)
+}
+
+function err() {
+  local n;
+  if [[ $1 = '--quiet' ]] ; then
+    n=$2;
+  else
+    n=$1
+    shift
+    (>&2 echo err: $@)
+  fi
+  exit $n;
+}
+
+: <<=cut
+=pod
+=head1  NAME
+  inf4 - Communicate with a Fedora 4 server
+=head1 USAGE
+  inf4 [-b|--base=I<base>] [-x|--prefix=I<prefix>] [-r|--no-rc] \
+	[-n|--dry-run] [-d|--dir] [-i|--interactive] [-p|--print] \
+	I<cmd> [cmd-options]
+	where <cmd> = config|patch|put|GET|HEAD|OPTIONS|url
+=cut
+
+: <<=cut
+=pod
+=head1 OPTIONS
+=over 4
+=item B<-b|--base=I<INF4_BASE>>
+ set the Fedora4 URL
+=item B<-x |--prefix=> I<prefix>>
+Add a new prefix for ttl, using prefix:url  format
+=item B<-r|--no-rc>
+Do not read from or write to rc file.
+=item B<-n|--dry-run>
+Show what you would do do not really do it
+=item B<-d|--dir>
+Set URL (wrt. INF4_BASE) for this operation only
+=item B<-i|--interactive>
+Use interactive mode
+=item B<-p|--print>
+Adjust httpie --print= argument
+=back
+=cut
+
+function main.cmd () {
+    cmd=$1
+    shift;
+
+    case $cmd in
+      metadata | is_metadata_file | metadata_file ) # Metadata Commands
+        $cmd $@;
+        ;;
+      add | add_file | add_metadata ) # Update Commands
+        $cmd $@;
+        ;;
+	    cd | pwd | pushd | popd ) # Directory Commands
+        $cmd $@;
+        ;;
+      put | config | patch)
+	      $cmd $@;
+	      ;;
+      GET | HEAD | OPTIONS | url )	# http requests
+	      $cmd $@;
+	      ;;
+
+      *)
+	      echo  "$cmd not found";
+	      ;;
+    esac
+}
+
+: <<=cut
+=pod
+=head1 CMD
+=cut
+function main.options() {
+  local opts=`getopt -o h:np: --long base:,dry-run,print: -n 'inf4' -- "$@"`
+
+  if [ $? != 0 ] ; then echo "Bad Command Options." >&2 ; exit 1 ; fi
+
+  eval set -- "$opts"
+
+  while true; do
+	case $1 in
+	    -n | --dry-run) INF4[noop]=1; shift ;;
+	    -p | --print) INF4[print]=$2; shift 2;;
+	    -- ) shift; break;;
+	    *) break;
+	esac
+  done
+}
+
+: <<=cut
+=pod
+=head2 metadata
+=head3 USAGE
+inf4 [inf4options] metadata --auto --mime-type=[mime-type] file
+=head4
+displays the metadata associated with any file.
+=head4 init
+Writes or overwrites the configuration file <./.inf4rc>. And options passed to the
+inf4 command are included, For example
+inf4 --base=https://foo.com/fcrepo/rest/bar \
+     --prefix=baz:https://baz.org/schema config
+Will write a new configuration file with the base and prefix set.
+=cut
+function metadata() {
+  local opts=`getopt -o m:x: --long mime-type:,extra: -n 'metadata' -- "$@"`
+  if [[ $? != 0 ]] ; then return ; fi
+  eval set -- "$opts"
+
+  local extra;
+  local typestr;
+  local metadata;
+  local mime=;
+  declare -a types=('ldp:NonRDFSource');
+
+  while true; do
+	  case $1 in
+	    -m | --mime-type) mime=$2;  shift 2;;
+      -x | --extra) extra=$2; shift 2;;
+	    -- ) shift; break;;
+	    *) shift; break;
+    esac
+  done
+
+  metadata=$(metadata_file --quiet --exists $1)
+  if [[ -n $metadata ]]; then
+     cat $metadata;
+     exit 0
+  fi
+
+  local basename=$(basename $1);
+
+  if [[ -z $mime ]]; then
+    if [[ $1 =~ .ttl$ ]] ; then
+      mime=text/turtle
+    else
+		  mime=`file --mime-type -b $1`;
+	  fi;
+  fi
+
+  if [[ $mime =~ ^image/.* ]]; then
+    types+=('schema:ImageObject');
+  fi
+
+  local typestr=$(printf "%s," ${types[@]})
+
+  if [[ -z $extra ]]; then
+      read -r -d '' metadata <<AUTO;
+@prefix ldp:    <http://www.w3.org/ns/ldp#> .
+@prefix schema: <http://schema.org/> .
+@prefix ebucare: <http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#> .
+<> a ${typestr%,};
+  ebucore:filename "$basename" .
+AUTO
+    else
+      read -r -d '' metadata <<AUTO;
+@prefix ldp:    <http://www.w3.org/ns/ldp#> .
+@prefix schema: <http://schema.org/> .
+@prefix ebucare: <http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#> .
+<> a ${typestr%,};
+   ${extra}
+  ebucore:filename "$basename" .
+AUTO
+  fi
+  echo "$metadata"
+}
+
+: <<=cut
+=pod
+=head2 is_metadata_file
+=head3 USAGE
+inf4 [inf4options] is_metadata_file file
+=head4
+
+Returns true if the passed file is a metadata file, false if not. The file
+undergoes two tests. First it is validated as a metadata file type, based on the
+FILE and DIR metadata file patterns. If the file matches the pattern, then the
+associated file is checked for existance. If the file exists, then we assume the
+file is a metadata file associated with the appropriate file or directory.
+Can be used like C<if (inf4 is_metadata foo.png.ttl); then echo metadata; fi>.
+
+=cut
+function is_metadata_file() {
+  local file_pattern='^(.*)\.ttl$'
+  local dir_metadata='^index.ttl$'
+  if [[ $(basename $1) =~ ${dir_metadata} && -d $(dirname $1) ]]; then
+    exit 0;
+  elif [[ $1 =~ ${file_pattern} ]]; then
+    if [[ -f ${BASH_REMATCH[1]} ]]; then
+      exit 0;
+    fi
+  else
+    exit 1;
+  fi
+}
+
+function metadata_file() {
+    local opts=`getopt -o qx --long quiet,exists -n 'metadata_file' -- "$@"`
+    if [[ $? != 0 ]] ; then return ; fi
+
+    eval set -- "$opts"
+
+    local file_pattern='FILE.ttl';
+    local dir_pattern='DIR/index.ttl';
+    local ttl;
+    local exists=;
+    local quiet=
+
+    while true; do
+	    case $1 in
+	      -x | --exists) exists=1;  shift;;
+        -q | --quiet ) quiet='--quiet'; shift;;
+	      -- ) shift; break;;
+	      *) shift; break;
+      esac
+    done
+
+    # First check if it's a metadata file then exit 1
+    if [[ ! -d $1 && ! -f $1 ]]; then
+      err $quiet 1 "$1 not found"
+    fi
+
+    if (is_metadata_file $1) ; then
+      err $quiet 1 "$1 is a metadata file"
+    fi
+
+    if [[ -f $1 ]] ; then
+      ttl=${file_pattern//FILE/$1}
+      if [[ -n $exists && ! -f $ttl ]]; then
+        err 1 "$ttl not found"
+      fi
+    elif [[ -d $1 ]] ; then
+      ttl=${dir_pattern//DIR/$1}
+      if [[ -n $exists && ! -f $ttl ]]; then
+        err $quiet 1 "$ttl not found"
+      fi
+    fi;
+    echo $ttl
+    exit 0;
+}
+
+
+function _fin () {
+  local options;
+  for idx in "${!FIN[@]}"; do
+    options+="--${idx}=\"${HTTP[$idx]}\""
+  done
+  log fin ${options} $@
+}
+
+_filename() {
+  local filename
+  filename=${1//.*/}
+  echo $filename
+}
+
+
+: <<=cut
+=pod
+=head2 add_file
+=head3 USAGE
+inf4 [inf4options] add_file --auto --mime-type=[mime-type] file
+=head4
+Adds generic files to the server.
+=cut
+add_file() {
+    OPTS=`getopt -o  am:t: --long auto,mime-type:,type: -n 'fin_add_file' -- "$@"`
+    if [[ $? != 0 ]] ; then return ; fi
+    eval set -- "$OPTS"
+
+    local mime=
+    declare -a types;
+    local typeflag=;
+    local auto=
+
+    while true; do
+	    case $1 in
+        -a | --auto ) auto=1; shift;;
+	      -m | --mime-type) mime=$2;  shift 2;;
+	      -t | --type) types+=($2); shift 2;;
+	      -- ) shift; break;;
+	      *) shift; break;
+      esac
+    done
+
+    if [[ -z $mime ]]; then
+      if [[ $1 =~ .ttl$ ]] ; then
+        mime=text/turtle
+      else
+		    mime=`file --mime-type -b $1`;
+	    fi;
+    fi
+
+    if [[ -n $types ]]; then
+      for i in "${types[@]}"
+      do
+        log TYPE $i;
+        typeflag+=" -T $i ";
+      done
+    fi
+    _fin http put -H "Content-Type:$mime" $typeflag -@ $1 $(_filename $1)
+}
+
+: <<=cut
+=pod
+=head2 add_metadata
+=head3 USAGE
+inf4 [inf4options] add_metadata --auto --mime-type=I<mime> --extra=I<extra> file
+=head4
+Add metadata for an associated file.
+=cut
+add_metadata() {
+  local opts=`getopt -o a --long auto,mime-type:,type: -n 'fin_add_metadata' -- "$@"`
+  if [[ $? != 0 ]] ; then return ; fi
+  eval set -- "$opts"
+
+  while true; do
+	  case $1 in
+      -a | --auto ) auto=1; shift;;
+	    -m | --mime-type) mime=$2;  shift 2;;
+       -x | --extra) extra=$2; shift 2;;
+	    -- ) shift; break;;
+	    *) shift; break;
+    esac
+  done
+
+  local metadata
+  local auto
+  local position
+
+  metadata=$(fin_metadata $1)
+  if [[ -f $metadata ]]; then
+    _fin http put -P h -H prefer:return=minimal -H "Content-Type:text/turtle" -@ $metadata $1
+  elif [[ -n $auto ]]; then
+    auto=$(fin_auto_metadata $1)
+
+    if [[ -n $position ]]; then
+      auto+=<"AUTO";
+      <http://schema.org/position> $position .
+      AUTO
+    fi
+  fi
+}
+
+
+function _add_directory_container() {
+  _fin http put -P h $1
+}
+
+: <<=cut
+=pod
+=head2 add
+=head3 USAGE
+inf4 [inf4options] add --auto directory
+=head4
+Add items to the collection. This will add all files from an item into the system.
+=cut
+function add() {
+  local opts=`getopt -o  am:t: --long auto,mime-type:,type: -n 'fin_add_file' -- "$@"`
+  if [[ $? != 0 ]] ; then return ; fi
+  eval set -- "$opts"
+
+  local metadata;
+  local d;
+  local f;
+  declare -a types;
+  local auto=
+
+    while true; do
+	    case $1 in
+        -a | --auto ) auto=--auto; shift;;
+	      -- ) shift; break;;
+	      *) shift; break;
+      esac
+    done
+
+  # First Add Directories
+  for d in $@; do
+    d=${d%/}
+    if [[ -d $d ]]; then
+      add_directory_container $d
+      add $d/*;
+      add_metadata $auto $d
+    fi
+  done
+  # Now add each file
+  for f in $@; do
+    if [[ -f $f ]]; then
+      if (! fin_is_metadata $f); then
+        add_file $f
+        add_metadata $auto $f
+      fi
+    fi
+  done
+  }
+
+function _home() {
+  local pwd=${PWD}
+  local home=${HOME}
+  while [[ $pwd != $home && $pwd != '/' ]]; do
+    if [[ -f ${pwd}/.inf4attributes || -f ${pwd}/.inf4ignore || -d ${pwd}/.inf4 ]]; then
+      inf4=$pwd;
+      break;
+    fi
+    pwd=$(dirname $pwd);
+  done
+  if [[ -z $inf4 ]]; then
+    echo "fatal: Not a inf4 repository (or any of the parent directories): .inf4" 1>&2
+    exit 128;
+  fi;
+  INF4[home]=$inf4;
+}
+
+function _config_file() {
+  local pwd=${PWD}
+  local home=${INF4[home]}
+  local file;
+  until [[ $pwd < $home ]]; do
+    if [[ -f ${pwd}/$1 ]]; then
+      file=${pwd}/$1;
+      break;
+    fi
+    pwd=$(dirname $pwd);
+  done
+  echo $file
+}
+
+function _read_attributes() {
+  local attr=$(_config_file .inf4attributes)
+  local pat
+  local val
+  if [[ -n $attr ]]; then
+    while read -r pat val; do
+      if [[ -n $pat && $pat != \#* ]]; then
+        ATTR[$pat]="$val"
+      fi
+    done < $attr
+  fi
+}
+
+function _read_ignore() {
+  local attr=$(_config_file .inf4ignore)
+  local pat
+  if [[ -n $attr ]]; then
+    while read -r pat; do
+      if [[ -n $pat && $pat != \#* ]]; then
+        IGNORE[$pat]=1
+      fi
+    done < $attr
+  fi
+}
+
+
+: <<=cut
+=pod
+=head1 AUTHOR
+Quinn Hart <qjhart@ucdavis.edu>
+=cut
+
+
+#MAIN
+declare -A INF4=(
+  [ssl]="tls1.2"
+  [print]="hb"
+);
+declare -A ATTR;
+declare -A IGNORE;
+
+_home
+_read_attributes
+_read_ignore
+
+while true; do
+	case $1 in
+	  -*) OPTS=($1); shift ;;
+	  -- ) shift; break;;
+	  *) break;
+	esac
+done
+
+main.options $OPTS
+
+main.cmd "$@"
+
+declare -p INF4
+#declare -p ATTR
+#declare -p IGNORE
+
+exit 0;
+
+# Not added yet
+function patchin() {
+    OPTS=`getopt -o c:i:d: --long collection:,path:,data: -n 'fin_patchin' -- "$@"`
+    # Exit if
+    if [[ $? != 0 ]] ; then return ; fi
+
+    local col=
+    local path
+    local data
+
+    eval set -- "$OPTS"
+
+    while true; do
+	    case $1 in
+	      -c | --collection) col=$2;  shift 2;;
+	      -p | --path) path=$2;  shift 2;;
+	      -d | --data) data=$2;  shift 2;;
+	      -- ) shift; break;;
+	      *) shift; break;
+      esac
+    done
+
+    if [[ -n $col ]]; then
+      path=/collection/$col/$path;
+    fi
+    echo fin http patch --data-string "$data" -P h "$path/fcr:metadata"
+}

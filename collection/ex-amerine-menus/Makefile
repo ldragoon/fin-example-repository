@@ -1,5 +1,5 @@
 #!/usr/bin/make -f
-SHELL:=/bin/bash
+SHELL:=BASH_ENV=../fin-functions.sh /bin/bash
 
 #ifndef common.mk
 #include common.mk
@@ -7,7 +7,7 @@ SHELL:=/bin/bash
 
 c:=fin collection
 
-col:=ex-amerine-menus
+col:=amerine-menus
 R:=/fcrepo/rest
 
 #This captures all the arks
@@ -16,16 +16,17 @@ items:=$(wildcard items/D-060/*/*/* )
 item_images:=$(wildcard items/D-060/*/*/*/media/images/*.png )
 schema:=http://schema.org
 
-ex:=items/D-060/42/172/d7dk6z
+#ex:=items/D-060/42/172/d7dk6z
+ex:=items/D-060/42/172/d71941
+#ex:=items/d7dk6z
 
 INFO:
-	@echo -e "try: make new-collection add-graph ldp ldp.ttl\n\nto make this collection";\
-	echo -e "\n\nVARS:\n  ex:${ex}\n  items: ${items}";
+	@echo -e "try: make new-collection add-graph ldp ldp.ttl\n\nto make this collection";
+#	echo -e "\n\nVARS:\n  ex:${ex}\n  items: ${items}";
 #	echo item_images: ${item_images}
 
 define patch
-	echo "fin http patch -P hbHBs --data-string \"INSERT {<> $3 } WHERE {}\" /collection/$1/$2/fcr:metadata"; \
-  fin http patch --data-string "INSERT {<> $3 } WHERE {}" /collection/$1/$2/fcr:metadata
+  fin http patch --data-string "INSERT {<> $3 } WHERE {}" -P h /collection/$1/$2/fcr:metadata
 endef
 
 graph.hdt: graph.ttl
@@ -44,6 +45,10 @@ WHERE {\
   OPTIONAL { graph ?t { ?o skos:prefLabel ?l } }\
 }
 
+graph.ttl:jena:=http://localhost:3030/dams/query
+graph.ttl:
+	http --form ${jena} Accept:text/turtle query='${query}' > $@
+
 .PHONY: add-graph
 add-graph: d:=http://digital.ucdavis.edu/schema
 add-graph: graph.hdt
@@ -51,15 +56,12 @@ add-graph: graph.hdt
 	$c resource add ${col} -H "Content-Type: application/octet-stream" $< graph
 	$c relation add-properties ${col} ${d}#hasGraph graph ${d}#isGraph
 
-add-image: schema:=http://schema.org
-add-image: ex_ark:=$(lastword $(subst /, ,${ex}))
-add-image:
-	$(call patch,${col},,<${schema}/image> <${col}/items/${ex_ark}/media/images/${ex_ark}-0>.)
-
-#add-workExample: schema:=http://www.schema.org
-#add-workExample: ex_ark:=$(lastword $(subst /, ,${ex}))
-#add-workExample:
-#	$c relation add-properties ${col} ${schema}/workExample items/${ex_ark} ${schema}/exampleOfWork;\
+add-workExample: schema:=http://schema.org
+add-workExample: ex_ark:=$(lastword $(subst /, ,${ex}))
+#	$c relation add-properties ${col} ${schema}/workExample ${ex} ${schema}/exampleOfWork;
+#	$c relation add-properties ${col} ${schema}/image ${ex_ark}/media/images/${ex_ark}-0 ${schema}/exampleOfWork;
+add-workExample:
+	  $(call patch,${col},,<${schema}/image> <${ex_ark}/media/images/${ex_ark}-0> .);
 
 agents:= quinn enebeker jrmerz
 schema:=http://www.schema.org
@@ -81,19 +83,21 @@ new-collection: graph.hdt
 	$c delete -f ${col};\
 	$c create ${col} index.ttl;\
   $c acl group add ${col} admins rw $(patsubst %,--agent %@ucdavis.edu,${agents});\
-  $c relation add-container ${col} items -T part;\
+  $c relation add-container ${col} items -T part;
 
-ldp.ttl: ldp add-image
+ldp.ttl: add-workExample
 	fin http get -P b /collection/${col} > $@
 
+clean::
+	rm ldp.ttl
 endif
 
 # Handy functions
 item=$(notdir $1)
 #item=$1
 
-#$(warning $1 $(patsubst %,%/ldp.ttl,$1))
 define ldp
+
 ldp::$(patsubst %,%/ldp.ttl,$1)
 clean::
 	rm -f $1/ldp.ttl
@@ -108,7 +112,7 @@ else
 
 $(patsubst %,%/ldp.ttl,$1):$1/index.ttl
 	$c resource delete ${col} items/$(call item,$1);\
-	$c resource add ${col} $$< items/$(call item,$1);\
+	$c resource add ${col} items/$(call item,$1);\
 	$c relation add-container -T media ${col} items/$(call item,$1)/media;\
 	$c resource add ${col} image_list.ttl items/$(call item,$1)/media/images;\
 	$c resource add ${col} text_list.ttl items/$(call item,$1)/media/text;\
@@ -116,14 +120,9 @@ $(patsubst %,%/ldp.ttl,$1):$1/index.ttl
     b=$$$$(basename $$$$f .png);\
 	  i=items/$(call item,$1)/media/images/$$$$b;\
     p=$$$${b#*-};\
-    $c resource add --type ImageObject ${col} $$$$f $$$$i;\
-	  patch="a <http://schema.org/MediaObject>; <http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#filename> \"$$$${b}.png\"; <http://schema.org/position> $$$$p .";\
+    $c resource add --type MediaObject ${col} $$$$f $$$$i;\
+	  patch="<http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#filename> \"$$$${b}.png\"; <http://schema.org/position> $$$$p .";\
 	  $(call patch,${col},$$$$i,$$$$patch);\
-	  if [[ $$$$p = 0 ]]; then \
-	    echo image: "$$$$i";\
-	    patch="<http://schema.org/image> <$(call item,$1)/media/images/$$$$b> ."; \
-	    $(call patch,${col},items/$(call item,$1),$$$$patch); \
-	  fi; \
 		t=$1/media/text/$$$${b}.txt; \
 	  tt=items/$(call item,$1)/media/text/$$$$b;\
 		if [[ -s $$$$t ]]; then \
@@ -132,6 +131,8 @@ $(patsubst %,%/ldp.ttl,$1):$1/index.ttl
 	    $(call patch,${col},$$$$tt,$$$$patch);\
 		fi; \
   done;
+	# Now add the item
+	fin http put -H prefer:return=minimal -H "Content-Type:text/turtle" -@ $1/index.ttl -P h /collection/${col}/items/$(call item,$1);
 	fin http get -P b /collection/${col}/items/$(call item,$1) > $$@
 endif
 
