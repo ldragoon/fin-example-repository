@@ -1,7 +1,8 @@
 @prefix schema: <http://schema.org/> .
 @prefix my: <http://example.org/> .
 
-<> a schema:ImageObject, schema:CreativeWork;
+<>
+  a schema:ImageObject, schema:CreativeWork;
  schema:name "Ashley";
  schema:alternativeHeadline "Why do I need a cat door when I have you to open it for me?";
  schema:keywords "Cat";
@@ -9,5 +10,5 @@
  schema:encodingFormat "image/jpeg";
  schema:about <http://en.wikipedia.org/wiki/Cat>;
  schema:creator "Quinn Hart";
- schema:datePublished "2015"^^<http://www.w3.org/2001/XMLSchema#date> ;
+ schema:datePublished "2015"^^<http://www.w3.org/2001/XMLSchema#gYear> ;
  my:owner "Quinn Hart".

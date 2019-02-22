@@ -1,5 +1,5 @@
 host: https://sandbox.dams.library.ucdavis.edu
-base: /fcrepo/rest
+base: /fcrepo/rest/collection/example_1-pets
 transaction: true
 http:
   session: inf4

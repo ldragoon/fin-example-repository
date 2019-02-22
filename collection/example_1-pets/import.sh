@@ -20,11 +20,10 @@ fin collection relation add-container example_1-pets pets -T part
 
 for file in *.jpg
 do
-  id=`basename $file .jpg`;
-  fin collection resource add -t ImageObject -m $file.ttl example_1-pets ./$file pets/$id
+  fin collection resource add -t ImageObject -m $file.ttl example_1-pets ./$file pets/$file
 done
 
 fin collection resource add example_1-pets -H "Content-Type: application/octet-stream" ./wiki.hdt wiki-graph
 
-fin collection relation add-properties example_1-pets http://schema.org/workExample pets/mochi http://schema.org/exampleOfWork
+fin collection relation add-properties example_1-pets http://schema.org/workExample pets/mochi.jpg http://schema.org/exampleOfWork
 fin collection relation add-properties example_1-pets http://digital.ucdavis.edu/schema#hasGraph wiki-graph http://digital.ucdavis.edu/schema#isGraph

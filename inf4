@@ -6,15 +6,15 @@ function log() {
   local level=0;
   if [[ $1 = -v* ]]; then
     let level=${#1}-1;
+    shift
   fi
-  shift
-  if [[ $level <= $INF4[verbose] ]]; then
-    (>&2 echo LOG: $@)
+  if [[ $level -le ${INF4[verbose]} ]]; then
+    (>&2 echo $@)
   fi
 }
 
 function err() {
-  local n;
+  local n=1;
   if [[ $1 = '--quiet' ]] ; then
     n=$2;
   else
@@ -27,11 +27,16 @@ function err() {
 
 function _http () {
   local stdinp=
-  if [[ ! -t 0 ]]; then
-    IFS='' read -r -d '' stdinp;
-    log "http --print=${INF4[http_print]} $@ <<<'$stdinp'"
+  if [[ $1 == '-n' ]]; then
+    if [[ ! -t 0 ]]; then
+      IFS='' read -r -d '' stdinp;
+      log "http --print=${INF4[http_print]} $@ <<<'$stdinp'"
+    else
+      log "http --print=${INF4[http_print]} $@"
+    fi
   else
-    log "http --print=${INF4[http_print]} $@"
+    log http $@
+    http $@
   fi
 }
 
@@ -73,10 +78,13 @@ function main.cmd () {
     shift;
 
     case $cmd in
-      util.ignore )
+      file.path | file.ignore)
         $cmd $@;
         ;;
-      metadata | is_metadata_file | metadata_file ) # Metadata Commands
+      item.fetch )
+        $cmd $@;
+        ;;
+      metadata | file.is_metadata | metadata_file ) # Metadata Commands
         $cmd $@;
         ;;
       add | put ) # Update Commands
@@ -100,27 +108,6 @@ function main.cmd () {
 
 : <<=cut
 =pod
-=head1 CMD
-=cut
-function main.options() {
-  local opts=`getopt -o h:np: --long base:,dry-run,print: -n 'inf4' -- "$@"`
-
-  if [ $? != 0 ] ; then echo "Bad Command Options." >&2 ; exit 1 ; fi
-
-  eval set -- "$opts"
-
-  while true; do
-	case $1 in
-	    -n | --dry-run) INF4[noop]=1; shift ;;
-	    -p | --print) INF4[print]=$2; shift 2;;
-	    -- ) shift; break;;
-	    *) break;
-	esac
-  done
-}
-
-: <<=cut
-=pod
 =head2 metadata
 =head3 USAGE
 inf4 [inf4options] metadata --auto --mime-type=[mime-type] file
@@ -137,7 +124,10 @@ function metadata() {
   local opts=`getopt -o @:atM:u --long file:,auto:,type:,no-metadata,mime-type:,update -n 'inf4 put' -- "$@"`
   if [ $? != 0 ] ; then err 1 "Bad inf4 metadata options."; fi
   eval set -- "$opts"
+  metadata_opts $@
+}
 
+function metadata_opts() {
   local metadata=
   local no_metadata=
   local mime=
@@ -180,7 +170,7 @@ function metadata() {
     exit 0
   fi
 
-  local basename=$(basename $1);
+  local basename=$(basename $file);
 
   if [[ -z $mime ]]; then
     if [[ $file =~ .ttl$ ]] ; then
@@ -200,7 +190,7 @@ function metadata() {
       read -r -d '' metadata <<AUTO;
 @prefix ldp:    <http://www.w3.org/ns/ldp#> .
 @prefix schema: <http://schema.org/> .
-@prefix ebucare: <http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#> .
+@prefix ebucore: <http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#> .
 <> a ${typestr%,};
   ebucore:filename "$basename" .
 AUTO
@@ -217,22 +207,21 @@ AUTO
   echo "$metadata"
 }
 
-function util.ignore() {
+function file.ignore() {
   local path=$(realpath $1)
   local home=${INF4[home]}
   for i in "${!IGNORE[@]}"; do
     if [[ $path = $home/$i ]]; then
-      log IGNORE "$1='$i'"
+      log -vvv file.ignore "$1=$i"
       exec true
     fi
   done
   # have to check dirs as well
   path=$(dirname $path)
   while [[ $path > $home && $path != '/' ]]; do
-    log $path
     for i in "${!IGNORE[@]}"; do
       if [[ $1 = $i ]]; then
-        log IGNORE "$1='$i'"
+        log -vvv IGNORE "$1='$i'"
         exec true
       fi
     done
@@ -243,9 +232,9 @@ function util.ignore() {
 
 : <<=cut
 =pod
-=head2 is_metadata_file
+=head2 file.is_metadata
 =head3 USAGE
-inf4 [inf4options] is_metadata_file file
+inf4 [inf4options] file.is_metadata file
 =head4
 
 Returns true if the passed file is a metadata file, false if not. The file
@@ -253,10 +242,10 @@ undergoes two tests. First it is validated as a metadata file type, based on the
 FILE and DIR metadata file patterns. If the file matches the pattern, then the
 associated file is checked for existance. If the file exists, then we assume the
 file is a metadata file associated with the appropriate file or directory.
-Can be used like C<if (inf4 is_metadata foo.png.ttl); then echo metadata; fi>.
+Can be used like C<if (inf4 file.is_metadata foo.png.ttl); then echo metadata; fi>.
 
 =cut
-function is_metadata_file() {
+function file.is_metadata() {
   local file_pattern='^(.*)\.ttl$'
   local dir_metadata='^index.ttl$'
   if [[ $(basename $1) =~ ${dir_metadata} && -d $(dirname $1) ]]; then
@@ -296,7 +285,7 @@ function metadata_file() {
       err $quiet 1 "$1 not found"
     fi
 
-    if (is_metadata_file $1) ; then
+    if (file.is_metadata $1) ; then
       err $quiet 1 "$1 is a metadata file"
     fi
 
@@ -315,20 +304,126 @@ function metadata_file() {
     exit 0;
 }
 
-ldp_filename() {
+: <<=cut
+=pod
+=head2 file.path
+=head3 USAGE
+inf4 file.path --full <filepath>
+=head4
+Returns the LDP path location for the file.  The default is to simply remove
+the suffix from the basename of a file.  With full however, the suffix is retained.
+=cut
+function file.path() {
+  local opts=`getopt -o f --long full -n 'file.path' -- "$@"`
+  if [[ $? != 0 ]] ; then return ; fi
+
+  eval set -- "$opts"
+
+  local full=
+
+  while true; do
+	  case $1 in
+	    -f | --full) full=1;  shift;;
+	    -- ) shift; break;;
+	    *) shift; break;
+    esac
+  done
+
+  if (file.ignore $1); then
+    err 1 "$1 file.ignore"
+  elif (file.is_metadata $1); then
+    err 1 "$1 file.is_metadata"
+  fi
+
+  local filename=$(basename $1)
+  if [[ -n $full ]]; then
+    filename=${filename//./_}
+  else
+    filename=${filename//.*/}
+  fi
+  local dirname=$(dirname $(realpath --relative-to=${INF4[home]} $1))
+  echo $dirname/$filename;
+}
+
+ldp_path() {
   local filename
   local dirname
   if [[ $1 = '--full' ]] ; then
-    dirname=$(dirname $2)
-    filename=$(basename $2)
+    shift;
+    filename=$(basename $1)
     filename=${filename//./_}
   else
-    dirname=$(dirname $1)
     filename=$(basename $1)
     filename=${filename//.*/}
   fi
+  dirname=$(dirname $(realpath --relative-to=${INF4[home]} $1))
   echo $dirname/$filename
 }
+
+: <<=cut
+=pod
+=head2 file
+=head3 USAGE
+inf4 item fetch --etag --metadata --binary <item>
+=head4
+Add a file or directory to an LDP.
+=cut
+function item.fetch() {
+  local opts=`getopt -o meb --long metadata,binary,etag -n 'inf4 item.fetch' -- "$@"`
+  if [ $? != 0 ] ; then err 1 "Bad inf4 item.fetch options."; fi
+  eval set -- "$opts"
+
+  local metadata=
+  local etag=
+  local binary=
+  local check=
+
+  while true; do
+    case $1 in
+      -m | --metadata ) # Used for mime-types
+        metadata=1;
+        shift;;
+      -e | --etag)
+        etag=1;
+        shift;
+        ;;
+	    -b | --binary)
+        binary=;
+        shift;
+		    ;;
+	  	--) shift; break;;
+    	*) break;;
+    esac
+  done
+  local head
+  local file=$1
+  local metadata_file=
+
+  local path=$(ldp.path $file)
+  head=$(_http --print=h HEAD $(url $path))
+  eval $(parse_headers "$head")
+
+#  if [[ -n $etag ]]; then
+#    if [[ -n $check ]]; then
+  if [[ -f $file ]]; then
+    echo ${headers[etag]} >> $file.ldp.etag
+    # Now get metadata header
+    head=$(_http --print=h HEAD $(url $path)/fcr:metadata)
+    eval $(parse_headers "$head")
+    echo ${headers[etag]} >> $file.ldp.ttl.etag
+    _http GET $(url $path)/fcr:metadata prefer:return=minimal Accept:text/turtle > $file.ldp.ttl
+  elif [[ -d $file ]]; then
+    echo ${headers[etag]} >> $file/ldp.etag
+    head=$(_http --print=h HEAD $(url $path)/fcr:metadata)
+    eval $(parse_headers "$head")
+    echo ${headers[etag]} >> $file/ldp.ttl.etag
+    _http GET $(url $path)/fcr:metadata prefer:return=minimal Accept:text/turtle > $file/ldp.ttl
+  else
+    err 1 "item.fetch $file not actionable"
+  fi
+
+}
+
 
 
 : <<=cut
@@ -339,8 +434,11 @@ inf4 [inf4options] put --auto --mime-type=I<mime> --extra=I<extra> file
 =head4
 Add a file or directory to an LDP.
 =cut
+function url() {
+  echo ${INF4[host]}/$(realpath -m /${INF4[base]}/$1)
+}
+
 function put() {
-  # Get options
   local opts=`getopt -o @:atM:u --long file:,auto:,type:,no-metadata,mime-type:,update -n 'inf4 put' -- "$@"`
   if [ $? != 0 ] ; then err 1 "Bad inf4 put options."; fi
   eval set -- "$opts"
@@ -387,15 +485,16 @@ function put() {
 		    mime=$(file --mime-type -b $file);
 	    fi;
     fi;
-	  $(_http PUT $1 Content-Type:$mime @$file)
+	  _http -n PUT $(url $1) Content-Type:$mime @$file
   elif [[ -z $update && -d $file ]] ; then
-    $(_http PUT $1)
+    _http -n PUT $(url $1)
   fi
 
   # Now add metadata
   if [[ -z $no_metadata ]]; then
-    metadata=$(metadata $opts )
-    $(_http  PUT prefer:return=minimal Content-Type:text/turtle $1/fcr:metadata <<<$metadata)
+    eval set -- "$opts"
+    metadata=$(metadata_opts $@ )
+    _http -n  PUT prefer:return=minimal Content-Type:text/turtle $(url $file)/fcr:metadata <<<$metadata
   fi
 }
 
@@ -415,6 +514,7 @@ function add() {
   local metadata;
   local d;
   local f;
+  local i;
   declare -a types;
   local auto=
   declare -A file_for  # [file_for] => filename
@@ -428,23 +528,22 @@ function add() {
     done
 
     for i in $@; do
-      if ! (util.ignore $i) ; then
-        # Save files, check ldp_filename
+      if ! (file.ignore $i) ; then
+        # Save files, check ldp.path
         if ! ( is_metadata_file $i) && [[ -f $i ]]; then
-          local fn=$(ldp_filename $i);
+          local fn=$(ldp.path $i);
           #log "F->FN $i->$fn"
           if [[ ${file_for[$fn]} ]] ; then
-            log COLL "file_for[$fn] is ${file_for[$fn]}"
             # we have name collision, redo
             local p=${file_for[$fn]}
-            local p_fn=$(ldp_filename --full $p)
+            local p_fn=$(ldp.path --full $p)
             if [[ ${file_for[$p_fn]} ]]; then
               err 1 "ldp object collision $p_fn: $p and ${file_for[$p_fn]}"
             else
               unset file_for[$fn]
               file_for[$p_fn]=$p;
             fi
-            fn=$(ldp_filename --full $i)
+            fn=$(ldp.path --full $i)
             if [[ ${file_for[$fn]} ]]; then
               err 1 "ldp object collision $fn: $i and ${file_for[$fn]}"
             fi
@@ -453,7 +552,7 @@ function add() {
           fi
         elif [[ -d $i ]]; then
           i=${i%/}
-          fn=$(ldp_filename $i)
+          fn=$(ldp.path $i)
           if [[ ${file_for[$fn]} ]]; then
             err 1 "ldp object collision $fn: $i and ${file_for[$fn]}"
           fi
@@ -469,7 +568,6 @@ function add() {
     done
     # Now add each file
     for fn in ${!file_for[@]}; do
-      log ADDFILE $i
       put $auto --file=${file_for[$fn]} $fn
     done
 }
@@ -594,6 +692,17 @@ function _read_ignore() {
   done
 }
 
+function parse_headers() {
+shopt -s extglob # Required to trim whitespace; see below
+declare -A headers
+while IFS=':' read key value; do
+    # trim whitespace in "value"
+    value=${value##+([[:space:]])}; value=${value%%+([[:space:]])}
+    headers[$key]=$value;
+done <<< "$1"
+declare -p headers
+}
+
 function parse_yaml() {
   local prefix=$2
   local s='[[:space:]]*' w='[a-zA-Z0-9_]*' fs=$(echo @|tr @ '\034')
@@ -620,8 +729,9 @@ Quinn Hart <qjhart@ucdavis.edu>
 declare -A INF4;
 declare -A ATTR;
 declare -A IGNORE;
+declare -A OPTS;
 
-_home
+_home # Verify we are
 
 # Read the configuration file
 config=${INF4[home]}/.inf4/config.yml
@@ -640,8 +750,22 @@ while true; do
 	esac
 done
 
-main.options $OPTS
+function init() {
+local opts=`getopt -o h:np: --long base:,dry-run,print: -n 'inf4' -- "$@"`
 
+if [ $? != 0 ] ; then echo "Bad Command Options." >&2 ; exit 1 ; fi
+
+eval set -- "$opts"
+
+while true; do
+	case $1 in
+	  -n | --dry-run) INF4[noop]=1; shift ;;
+	  -p | --print) INF4[print]=$2; shift 2;;
+	  -- ) shift; break;;
+	  *) break;
+	esac
+done
+}
 main.cmd "$@"
 
 exit 0;

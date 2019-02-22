@@ -1,0 +1,5 @@
+# Skip the docs
+docs
+README.*
+import.*
+wiki.ttl
