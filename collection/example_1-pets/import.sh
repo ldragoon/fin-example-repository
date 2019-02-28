@@ -7,23 +7,30 @@
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 cd $DIR
 
-## Create the collection (remove if exists)
-fin collection delete -f example_1-pets
-fin collection create example_1-pets index.ttl
+col=ex-pets
 
-fin cd /collection/example_1-pets
+## Create the collection (remove if exists)
+fin collection delete -f $col
+fin collection create $col ../example_1-pets.ttl
+
+fin cd /collection/$col
 ## Add a thumbnail
 #fin http put -@ thumbnail.png -P b thumbnail
-#fin http patch -@ /dev/stdin <<< 'prefix s: <http://schema.org/> insert {<> s:thumbnail <example_1-pets/thumbnail> } WHERE {}' -P h
+#fin http patch -@ /dev/stdin <<< 'prefix s: <http://schema.org/> insert {<> s:thumbnail <$col/thumbnail> } WHERE {}' -P h
 
-fin collection relation add-container example_1-pets pets -T part
+fin collection relation add-container $col pets -T part
 
+cd pets
 for file in *.jpg
 do
-  fin collection resource add -t ImageObject -m $file.ttl example_1-pets ./$file pets/$file
-done
+  fin collection resource add -t ImageObject -m $file.ttl $col $file pets/$file
+ done
 
-fin collection resource add example_1-pets -H "Content-Type: application/octet-stream" ./wiki.hdt wiki-graph
+cd ..
+fin cd ..
 
-fin collection relation add-properties example_1-pets http://schema.org/workExample pets/mochi.jpg http://schema.org/exampleOfWork
-fin collection relation add-properties example_1-pets http://digital.ucdavis.edu/schema#hasGraph wiki-graph http://digital.ucdavis.edu/schema#isGraph
+fin collection resource add $col -H "Content-Type: application/octet-stream" ./wiki.hdt wiki-graph
+
+fin collection relation add-properties $col http://schema.org/workExample pets/mochi.jpg http://schema.org/exampleOfWork
+
+fin collection relation add-properties $col http://digital.ucdavis.edu/schema#hasGraph wiki-graph http://digital.ucdavis.edu/schema#isGraph
