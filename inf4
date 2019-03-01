@@ -14,14 +14,9 @@ function log() {
 }
 
 function err() {
-  local n=1;
-  if [[ $1 = '--quiet' ]] ; then
-    n=$2;
-  else
-    n=$1
-    shift
-    (>&2 echo err: $@)
-  fi
+  local n=$1
+  shift
+  [[ -z ${INF4[quiet]} && -n $1 ]] && (>&2 echo err: $@)
   exit $n;
 }
 
@@ -29,7 +24,7 @@ function _http () {
   local stdinp=
   local http="http --ssl=${INF4[http_ssl]} --session=${INF4[http_session]}"
   if [[ $1 == '-n' || -n ${INF4[noop]} ]]; then
-    shift
+    [[ $1 == '-n' ]] && shift
     if [[ ! -t 0 ]]; then
       IFS='' read -r -d '' stdinp;
       log "$http $@ <<<'$stdinp'"
@@ -81,29 +76,26 @@ function main.cmd () {
 
     case $cmd in
       file.path | file.ignore)
-        $cmd $@;
+        $cmd "$@";
         ;;
       item.fetch )
-        $cmd $@;
+        $cmd "$@";
         ;;
       file.metadata | file.is_metadata | file.metadata_file ) # Metadata Commands
-        $cmd $@;
+        $cmd "$@";
         ;;
       collection.create  | collection.delete | collection.upload )
-        $cmd $@;
-        ;;
-      put ) # Update Commands
-        $cmd $@;
+        $cmd "$@";
         ;;
 #	    cd | pwd | pushd | popd ) # Directory Commands
 #        $cmd $@;
 #        ;;
       put | config | login | patch)
-	      $cmd $@;
+	      $cmd "$@";
 	      ;;
-#      GET | HEAD | OPTIONS | url )	# http requests
-#	      $cmd $@;
-#	      ;;
+      http )	# http requests
+	      _http "$@";
+	      ;;
 
       *)
 	      echo  "$cmd not found";
@@ -126,7 +118,7 @@ inf4 --base=https://foo.com/fcrepo/rest/bar \
 Will write a new configuration file with the base and prefix set.
 =cut
 function file.metadata() {
-  local opts=`getopt -o axm --long auto,extra:,mime: -n 'inf4 file.metadata' -- "$@"`
+  local opts=`getopt -o axmn --long auto,extra:,mime:,no-file -n 'inf4 file.metadata' -- "$@"`
   if [ $? != 0 ] ; then err 1 "Bad inf4 file.metadata options."; fi
   eval set -- "$opts"
 
@@ -134,9 +126,14 @@ function file.metadata() {
   local mime
   local extra
   declare -a types;
+  local nofile
 
   while true; do
     case $1 in
+      -n | --no-file)
+        nofile=1;
+        shift;
+        ;;
       -a | --auto)
         auto=1;
         shift;
@@ -154,11 +151,18 @@ function file.metadata() {
     esac
   done
 
-#  declare -a types=('ldp:NonRDFSource');
+  local basename=$(basename $1);
 
-  metadata=$(file.metadata_file --quiet --exists $1)
+  #  declare -a types=('ldp:NonRDFSource');
+  if [[ -z $nofile ]]; then
+     metadata=$(file.metadata_file --exists $1 2>/dev/null)
+  fi
   if [[ -n $metadata ]]; then
-    cat $metadata;
+    if [[ -f $1 ]]; then
+      cat $metadata | sed -e "s|<>|<../$basename>|"
+    else
+      cat $metadata
+    fi
     exit 0
   fi
 
@@ -166,7 +170,17 @@ function file.metadata() {
     exit 0
   fi
 
-  local basename=$(basename $1);
+  if (file.ignore $1); then
+    err 1 "$1 file.ignore"
+  fi
+
+  if (file.is_metadata $1) ; then
+    err 1 "$1 file.is_metadata"
+  fi
+
+  if [[ ! -d $1 && ! -f $1 ]]; then
+    err 1 "$1 not found"
+  fi
 
   if [[ -z $mime ]]; then
     if [[ $1 =~ .ttl$ ]] ; then
@@ -178,11 +192,10 @@ function file.metadata() {
   fi
 
   if [[ $mime =~ ^image/.* ]]; then
-    types+=('schema:ImageObject');
+    types+=('schema:ImageObject','schema:MediaObject');
   fi
 
   local typestr=$(printf "%s," ${types[@]})
-
   if [[ -z $extra && ${#types[@]} > 0 ]]; then
       read -r -d '' metadata <<AUTO;
 @prefix ldp:    <http://www.w3.org/ns/ldp#> .
@@ -195,17 +208,22 @@ AUTO
       read -r -d '' metadata <<AUTO;
 @prefix ldp:    <http://www.w3.org/ns/ldp#> .
 @prefix schema: <http://schema.org/> .
-@prefix ebucare: <http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#> .
+@prefix ebucore: <http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#> .
 <> a ${typestr%,};
    ${extra}
   ebucore:filename "$basename" .
 AUTO
   fi
-  echo "$metadata"
+
+  if [[ -f $1 ]]; then
+    echo $metadata | sed -e "s|<>|<../$basename>|"
+  else
+    echo $metadata
+  fi
 }
 
 function file.ignore() {
-  local path=$(realpath $1)
+  local path=$(realpath -m $1)
   local home=${INF4[home]}
   for i in "${!IGNORE[@]}"; do
     if [[ $path = $home/$i ]]; then
@@ -253,7 +271,7 @@ function file.is_metadata() {
 }
 
 function file.metadata_file() {
-    local opts=`getopt -o qx --long quiet,exists -n 'file.metadata_file' -- "$@"`
+    local opts=`getopt -o x --long exists -n 'file.metadata_file' -- "$@"`
     if [[ $? != 0 ]] ; then return ; fi
 
     eval set -- "$opts"
@@ -261,12 +279,10 @@ function file.metadata_file() {
     local mf=${INF4[metadata_file]};
     local ttl;
     local exists=;
-    local quiet=
 
     while true; do
 	    case $1 in
 	      -x | --exists) exists=1;  shift;;
-        -q | --quiet ) quiet='--quiet'; shift;;
 	      -- ) shift; break;;
 	      *) shift; break;
       esac
@@ -274,20 +290,20 @@ function file.metadata_file() {
 
     # First check if it's a metadata file then exit 1
     if [[ ! -d $1 && ! -f $1 ]]; then
-      err $quiet 1 "$1 not found"
+      err 1 "$1 not found"
     fi
 
     if (file.ignore $1); then
-      err $quiet 1 "$1 file.ignore"
+      err 1 "$1 file.ignore"
     fi
     if (file.is_metadata $1) ; then
-      err $quiet 1 "$1 file.is_metadata"
+      err 1 "$1 file.is_metadata"
     fi
 
     if [[ -f $1 || -d $1 ]] ; then
       ttl=${mf//FILE/$1}
       if [[ -n $exists && ! -f $ttl ]]; then
-        err $quiet 1 "$ttl not found"
+        err 1 "$ttl not found"
       fi
     fi;
     echo $ttl
@@ -421,7 +437,7 @@ inf4 [inf4options] put --auto --mime-type=I<mime> --extra=I<extra> file
 Add a file or directory to an LDP.
 =cut
 function put() {
-  local opts=`getopt -o @:atM:u --long file:,auto:,type:,no-metadata,mime-type:,update -n 'inf4 put' -- "$@"`
+  local opts=`getopt -o atM:u --long auto:,type:,no-metadata,mime-type:,update -n 'inf4 put' -- "$@"`
   if [ $? != 0 ] ; then err 1 "Bad inf4 put options."; fi
   eval set -- "$opts"
 
@@ -430,14 +446,10 @@ function put() {
   local mime=
   local name=
   declare -A types;
-  local file=
   local update=
 
   while true; do
     case $1 in
-      -@ | --file )
-        file=$2;
-        shift 2;;
       -a | --auto )
         auto=--auto;
         shift;
@@ -459,39 +471,59 @@ function put() {
     esac
   done
 
-  if [[ -z $file && -z $update ]]; then
-    _http PUT $1
+  local file=$1
+  local fp=$(file.path $file)
+
+  if [[ -d $file && -z $update ]]; then
+    _http PUT $fp
   fi
 
   if [[ -f $file ]]; then
     if [[ -z $mime ]]; then
       if [[ $file =~ .ttl$ ]] ; then
         mime=text/turtle
-        _http PUT $1 prefer:return=minimal Content-Type:$mime @$file
+        _http PUT $fp prefer:return=minimal Content-Type:$mime @$file
       else
 		    mime=$(file --mime-type -b $file);
-	      _http PUT $1 Content-Type:$mime @$file
+	      _http PUT $fp Content-Type:$mime @$file
 	    fi;
     fi;
   elif [[ -z $update && -d $file ]] ; then
-    _http PUT $1
+    _http PUT $fp
   fi
 
   # Now add metadata
   if [[ -z $no_metadata ]]; then
     metadata=$(file.metadata $auto $file )
     if [[ -n $metadata ]]; then
-      _http PUT $1/fcr:metadata prefer:return=minimal Content-Type:text/turtle <<<$metadata
+      _http PUT $fp/fcr:metadata prefer:return=minimal Content-Type:text/turtle <<<$metadata
     fi
   fi
 }
 
 
 function collection.create() {
-  _http PUT $(file.path)
-  if [[ -d .acl ]]; then
-    collection.upload .acl
+  local opts=`getopt -o d --long delete -n 'inf4 collection.create' -- "$@"`
+  if [[ $? != 0 ]] ; then return ; fi
+  eval set -- "$opts"
+
+  local delete=
+
+  while true; do
+	  case $1 in
+      -d | --delete ) delete=--delete; shift;;
+	    -- ) shift; break;;
+	    *) shift; break;
+    esac
+  done
+
+  if [[ -n $delete ]]; then
+    collection.delete
   fi
+
+  _http PUT $(file.path)
+  collection.upload .inf4
+  _http PUT $(file.path)/fcr:metadata prefer:return=minimal Content-Type:text/turtle @${INF4[home]}/example_2-photos.ttl
 }
 
 function collection.delete() {
@@ -553,16 +585,17 @@ function collection.upload() {
             fn=$(file.path $i)
             put --no-metadata $fn
             collection.upload $i/*;
-            put --update $auto --file=$i $fn
+            put --update $auto $i
           else
             log "file.unknown $i -- skipping"
           fi
         fi
       fi
     done
+    local f
     # Now add each file
-    for fn in ${!file_for[@]}; do
-      put $auto --file=${file_for[$fn]} $fn
+    for f in ${file_for[@]}; do
+      put $auto $f
     done
 }
 
@@ -746,7 +779,7 @@ while true; do
 done
 
 function init() {
-  local opts=`getopt -o h:np: --long base:,dry-run,print: -n 'inf4' -- "$@"`
+  local opts=`getopt -o qh:np: --long quiet,base:,dry-run,print: -n 'inf4' -- "$@"`
   if [ $? != 0 ] ; then echo "Bad Command Options." >&2 ; exit 1 ; fi
 
   eval set -- "$opts"
@@ -754,7 +787,8 @@ function init() {
   while true; do
 	  case $1 in
 	    -n | --dry-run) INF4[noop]=1; shift ;;
-	    -p | --print) INF4[print]=$2; shift 2;;
+	    -p | --print) INF4[print]=$2; shift 2 ;;
+      -q | --quiet) INF4[quiet]=1; shift ;;
 	    -- ) shift; break;;
 	    *) break;
 	  esac
