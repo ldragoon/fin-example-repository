@@ -474,10 +474,6 @@ function put() {
   local file=$1
   local fp=$(file.path $file)
 
-  if [[ -d $file && -z $update ]]; then
-    _http PUT $fp
-  fi
-
   if [[ -f $file ]]; then
     if [[ -z $mime ]]; then
       if [[ $file =~ .ttl$ ]] ; then
@@ -496,7 +492,11 @@ function put() {
   if [[ -z $no_metadata ]]; then
     metadata=$(file.metadata $auto $file )
     if [[ -n $metadata ]]; then
-      _http PUT $fp/fcr:metadata prefer:return=minimal Content-Type:text/turtle <<<$metadata
+      if [[ -f $file ]]; then
+        _http PUT $fp/fcr:metadata prefer:return=minimal Content-Type:text/turtle <<<$metadata
+      elif [[ -d $file ]]; then
+        _http PUT $fp prefer:return=minimal Content-Type:text/turtle <<<$metadata
+      fi
     fi
   fi
 }
@@ -523,7 +523,7 @@ function collection.create() {
 
   _http PUT $(file.path)
   collection.upload .inf4
-  _http PUT $(file.path)/fcr:metadata prefer:return=minimal Content-Type:text/turtle @${INF4[home]}/example_2-photos.ttl
+  _http PUT $(file.path)/fcr:metadata prefer:return=minimal Content-Type:text/turtle @${INF4[home]}/${INF4[collection]}.ttl
 }
 
 function collection.delete() {
@@ -583,7 +583,7 @@ function collection.upload() {
           elif [[ -d $i ]]; then
             i=${i%/}
             fn=$(file.path $i)
-            put --no-metadata $fn
+            put --no-metadata $i
             collection.upload $i/*;
             put --update $auto $i
           else

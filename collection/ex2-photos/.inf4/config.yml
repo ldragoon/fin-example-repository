@@ -1,8 +1,7 @@
 host: https://sandbox.dams.library.ucdavis.edu
 base: /fcrepo/rest/collection
-collection: example_2-photos
+collection: ex2-photos
 transaction: true
-metadata_foo: bar
 metadata:
   is_metadata: ^(.*).ttl$
   file: FILE.ttl

@@ -4,6 +4,4 @@
 @prefix acl:  <http://www.w3.org/ns/auth/acl#> .
 @prefix ldp: <http://www.w3.org/ns/ldp#> .
 <>
-        a    ldp:BasicContainer ;
-        a    webac:Acl ;
-        rdfs:label  "Collection Access Control"^^<http://www.w3.org/2001/XMLSchema#string> .
+        a    ldp:BasicContainer, webac:Acl ;
