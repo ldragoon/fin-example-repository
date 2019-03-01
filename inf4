@@ -87,10 +87,10 @@ function main.cmd () {
       collection.create  | collection.delete | collection.upload )
         $cmd "$@";
         ;;
-#	    cd | pwd | pushd | popd ) # Directory Commands
-#        $cmd $@;
-#        ;;
-      put | config | login | patch)
+      util.home | login  ) # Utilities
+	      $cmd "$@";
+	      ;;
+      put | config | patch)
 	      $cmd "$@";
 	      ;;
       http )	# http requests
@@ -192,7 +192,7 @@ function file.metadata() {
   fi
 
   if [[ $mime =~ ^image/.* ]]; then
-    types+=('schema:ImageObject','schema:MediaObject');
+    types+=('schema:ImageObject','schema:MediaObject','schema:CreativeWork');
   fi
 
   local typestr=$(printf "%s," ${types[@]})
@@ -202,7 +202,8 @@ function file.metadata() {
 @prefix schema: <http://schema.org/> .
 @prefix ebucore: <http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#> .
 <> a ${typestr%,};
-  ebucore:filename "$basename" .
+  ebucore:filename "$basename";
+  ebucore:hasMimeType "$mime" .
 AUTO
     else
       read -r -d '' metadata <<AUTO;
@@ -211,12 +212,13 @@ AUTO
 @prefix ebucore: <http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#> .
 <> a ${typestr%,};
    ${extra}
-  ebucore:filename "$basename" .
+  ebucore:filename "$basename" ;
+  ebucore:hasMimeType "$mime" .
 AUTO
   fi
 
   if [[ -f $1 ]]; then
-    echo $metadata | sed -e "s|<>|<../$basename>|"
+    echo "$metadata"  | sed -e "s|<>|<../$basename>|"
   else
     echo $metadata
   fi
@@ -254,7 +256,7 @@ inf4 [inf4options] file.is_metadata file
 
 Returns true if the passed file is a metadata file, false if not. The file
 undergoes two tests. First it is validated as a metadata file type, based on the
-metadata file patterns (metadata.file in YML file). If the file matches the pattern, then the
+metadata file patterns (file.metadata_file in YML file). If the file matches the pattern, then the
 associated file is checked for existance. If the file exists, then we assume the
 file is a metadata file associated with the appropriate file or directory.
 Can be used like C<if (inf4 file.is_metadata foo.png.ttl); then echo metadata; fi>.
@@ -301,7 +303,12 @@ function file.metadata_file() {
     fi
 
     if [[ -f $1 || -d $1 ]] ; then
-      ttl=${mf//FILE/$1}
+      local fq=$(realpath $1)
+      if [[ $fq == ${INF4[home]} ]]; then  # Home directory is treated different
+        ttl=$fq/${INF4[collection]}.ttl
+      else
+        ttl=${mf//FILE/$1}
+      fi
       if [[ -n $exists && ! -f $ttl ]]; then
         err 1 "$ttl not found"
       fi
@@ -552,7 +559,7 @@ function collection.upload() {
   local auto=
   local delete=
   local create=
-  declare -A file_for  # [file_for] => filename
+  declare -a files
 
     while true; do
 	    case $1 in
@@ -572,20 +579,24 @@ function collection.upload() {
       collection.create
     fi
 
-    local fn
+    local fq
     for i in $@; do
       if ! (file.ignore $i) ; then
         if ! (file.is_metadata $i); then
-          fn=$(file.path $i);
-          # Save files, check file.path
           if [[ -f $i ]]; then
-            file_for[$fn]=$i;
+            files+=($i);
           elif [[ -d $i ]]; then
             i=${i%/}
-            fn=$(file.path $i)
-            put --no-metadata $i
-            collection.upload $i/*;
-            put --update $auto $i
+            fq=$(realpath $i);
+            if [[ $fq == ${INF4[home]} ]]; then  # Home directory is treated different
+              put --no-metadata $i
+              collection.upload .inf4 $i/*;
+              put --update $i
+            else
+              put --no-metadata $i
+              collection.upload $i/*;
+              put --update $auto $i
+            fi
           else
             log "file.unknown $i -- skipping"
           fi
@@ -594,7 +605,7 @@ function collection.upload() {
     done
     local f
     # Now add each file
-    for f in ${file_for[@]}; do
+    for f in ${files[@]}; do
       put $auto $f
     done
 }
@@ -656,7 +667,7 @@ function config() {
   declare -p IGNORE
 }
 
-function _home() {
+function util.home() {
   local pwd=${PWD}
   local home=${HOME}
   while [[ $pwd != $home && $pwd != '/' ]]; do
@@ -670,7 +681,7 @@ function _home() {
     echo "fatal: Not a inf4 repository (or any of the parent directories): .inf4" 1>&2
     exit 128;
   fi;
-  INF4[home]=${inf4};
+  echo $inf4;
 }
 
 function _config_file() {
@@ -758,7 +769,8 @@ declare -A ATTR;
 declare -A IGNORE;
 declare -a OPTS;
 
-_home # Verify we are in a location
+INF4[home]=$(util.home) # Verify we are in a locat ion
+[[ $? != 0 ]] && exit $?
 
 # Read the configuration file
 config=${INF4[home]}/.inf4/config.yml
