@@ -1,6 +1,6 @@
 host: https://sandbox.dams.library.ucdavis.edu
 base: /fcrepo/rest/collection
-collection: example_1-pets
+collection: ex1-pets
 transaction: true
 metadata_foo: bar
 metadata:

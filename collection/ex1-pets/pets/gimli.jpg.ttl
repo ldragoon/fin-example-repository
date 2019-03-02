@@ -1,8 +1,11 @@
 @prefix schema: <http://schema.org/> .
+@prefix ebucore: <http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#> .
 @prefix my: <http://example.org/> .
 
 <> a schema:ImageObject, schema:CreativeWork;
  schema:name "Gimli";
+ ebucore:hasMimeType "image/jpeg";
+ ebucore:filename "gimli.jpg";
  schema:alternativeHeadline "I bite faces";
  schema:description "## Domestic Shorthair \\n- from LA \\n- now lives in *Sacramento*";
  schema:keywords "Cat";
@@ -10,5 +13,5 @@
  schema:encodingFormat "image/jpeg";
  schema:about <http://en.wikipedia.org/wiki/Cat>;
  schema:creator "Justin Merz";
- schema:datePublished "2017"^^<http://www.w3.org/2001/XMLSchema#date> ;
+ schema:datePublished "2017"^^<http://www.w3.org/2001/XMLSchema#gYear> ;
  my:owner "Justin Merz".

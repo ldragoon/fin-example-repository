@@ -2,8 +2,11 @@
 @prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix webac:  <http://fedora.info/definitions/v4/webac#> .
 @prefix acl:  <http://www.w3.org/ns/auth/acl#> .
-@prefix ldp: <http://www.w3.org/ns/ldp#> .
-<.acl>
-        a    ldp:BasicContainer ;
-        a    webac:Acl ;
-        rdfs:label  "Collection Access Control"^^<http://www.w3.org/2001/XMLSchema#string> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+
+<>
+  a      acl:Authorization ;
+  rdfs:label    "Everyone can Read";
+  acl:mode      acl:Read ;
+  acl:accessTo  <../..> ;
+  acl:agent     foaf:Agent .

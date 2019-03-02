@@ -1,8 +1,11 @@
 @prefix schema: <http://schema.org/> .
+@prefix ebucore: <http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#> .
 @prefix my: <http://example.org/> .
 
 <> a schema:ImageObject, schema:CreativeWork;
  schema:name "奥斯卡在公园";
+ ebucore:hasMimeType "image/jpeg";
+ ebucore:filename "oscar.jpg";
  schema:alternativeHeadline "Not a cat";
  schema:keywords "Oscar in the park";
  schema:keywords "Dog";

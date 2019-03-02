@@ -547,7 +547,7 @@ inf4 [inf4options] collection.upload --auto <files and directories>
 Add items to the collection. This will add all files from an item into the system.
 =cut
 function collection.upload() {
-  local opts=`getopt -o acd --long auto,create,delete -n 'inf4 collection.upload' -- "$@"`
+  local opts=`getopt -o acd --long auto,delete -n 'inf4 collection.upload' -- "$@"`
   if [[ $? != 0 ]] ; then return ; fi
   eval set -- "$opts"
 
@@ -558,14 +558,12 @@ function collection.upload() {
   declare -a types;
   local auto=
   local delete=
-  local create=
   declare -a files
 
     while true; do
 	    case $1 in
         -a | --auto ) auto=--auto; shift;;
         -d | --delete ) delete=--delete; shift;;
-        -c | --create ) create=--create; shift;;
 	      -- ) shift; break;;
 	      *) shift; break;
       esac
@@ -573,10 +571,6 @@ function collection.upload() {
 
     if [[ -n $delete ]]; then
       collection.delete
-    fi
-
-    if [[ -n $delete || -n $create ]]; then
-      collection.create
     fi
 
     local fq
