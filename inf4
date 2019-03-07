@@ -110,12 +110,6 @@ function main.cmd () {
 inf4 [inf4options] metadata --auto --mime-type=[mime-type] file
 =head4
 displays the metadata associated with any file.
-=head4 init
-Writes or overwrites the configuration file <./.inf4rc>. And options passed to the
-inf4 command are included, For example
-inf4 --base=https://foo.com/fcrepo/rest/bar \
-     --prefix=baz:https://baz.org/schema config
-Will write a new configuration file with the base and prefix set.
 =cut
 function file.metadata() {
   local opts=`getopt -o axmn --long auto,extra:,mime:,no-file -n 'inf4 file.metadata' -- "$@"`
@@ -529,7 +523,7 @@ function collection.create() {
   fi
 
   _http PUT $(file.path)
-  collection.upload .inf4
+  collection.upload .fin
   _http PUT $(file.path)/fcr:metadata prefer:return=minimal Content-Type:text/turtle @${INF4[home]}/${INF4[collection]}.ttl
 }
 
@@ -584,7 +578,7 @@ function collection.upload() {
             fq=$(realpath $i);
             if [[ $fq == ${INF4[home]} ]]; then  # Home directory is treated different
               put --no-metadata $i
-              collection.upload .inf4 $i/*;
+              collection.upload .fin $i/*;
               put --update $i
             else
               put --no-metadata $i
@@ -665,14 +659,14 @@ function util.home() {
   local pwd=${PWD}
   local home=${HOME}
   while [[ $pwd != $home && $pwd != '/' ]]; do
-    if [[ -d ${pwd}/.inf4 ]]; then
+    if [[ -d ${pwd}/.fin ]]; then
       inf4=$pwd;
       break;
     fi
     pwd=$(dirname $pwd);
   done
   if [[ -z $inf4 ]]; then
-    echo "fatal: Not a inf4 repository (or any of the parent directories): .inf4" 1>&2
+    echo "fatal: Not a inf4 repository (or any of the parent directories): .fin" 1>&2
     exit 128;
   fi;
   echo $inf4;
@@ -693,7 +687,7 @@ function _config_file() {
 }
 
 function _read_attributes() {
-  local attr=$(_config_file .inf4attributes)
+  local attr=$(_config_file .finattributes)
   local pat
   local val
   if [[ -n $attr ]]; then
@@ -709,7 +703,7 @@ function _read_ignore() {
   local attr
   local pat
   local dir
-  for attr in $(_config_file .inf4ignore); do
+  for attr in $(_config_file .finignore); do
     dir=$(dirname $attr);
     local a=${attr#${INF4[home]}/}
     if [[ -n $attr ]]; then
@@ -767,7 +761,7 @@ INF4[home]=$(util.home) # Verify we are in a locat ion
 [[ $? != 0 ]] && exit $?
 
 # Read the configuration file
-config=${INF4[home]}/.inf4/config.yml
+config=${INF4[home]}/.fin/config.yml
 if [[ -f $config ]]; then
   eval $(parse_yaml $config)
 fi
