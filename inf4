@@ -87,7 +87,7 @@ function main.cmd () {
       collection.create  | collection.delete | collection.upload )
         $cmd "$@";
         ;;
-      util.home | login  ) # Utilities
+      util.base | login  ) # Utilities
 	      $cmd "$@";
 	      ;;
       put | config | patch)
@@ -655,7 +655,7 @@ function config() {
   declare -p IGNORE
 }
 
-function util.home() {
+function util.base() {
   local pwd=${PWD}
   local home=${HOME}
   while [[ $pwd != $home && $pwd != '/' ]]; do
@@ -757,18 +757,19 @@ declare -A ATTR;
 declare -A IGNORE;
 declare -a OPTS;
 
-INF4[home]=$(util.home) # Verify we are in a locat ion
+
+INF4[base]=$(util.base) # Verify we are in a location
 [[ $? != 0 ]] && exit $?
 
 # Read the configuration file
-config=${INF4[home]}/.fin/config.yml
+config=${INF4[base]}/.fin/config.yml
 if [[ -f $config ]]; then
   eval $(parse_yaml $config)
+  INF4[home]=${INF4[base]}/${INF4[collection]}
 fi
 
 _read_attributes
 _read_ignore
-
 
 while true; do
 	case $1 in
