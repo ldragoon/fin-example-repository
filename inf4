@@ -32,8 +32,7 @@ function _http () {
       log "$http $@"
     fi
   else
-    log $http $@
-    $http $@
+    $http "$@"
   fi
 }
 
@@ -87,10 +86,10 @@ function main.cmd () {
       collection.create  | collection.delete | collection.upload )
         $cmd "$@";
         ;;
-      util.home | login  ) # Utilities
+      util.home | util.config | login  ) # Utilities
 	      $cmd "$@";
 	      ;;
-      put | config | patch)
+      put | patch)
 	      $cmd "$@";
 	      ;;
       http )	# http requests
@@ -339,9 +338,9 @@ function file.path() {
 
   if [[ -z $1 ]]; then
     if [[ -n $full ]]; then
-      path=${INF4[host]}${INF4[base]}/${INF4[collection]}
+      path=${INF4[host]}${INF4[base]}/
     else
-      path=${INF4[collection]}
+      path=.
     fi
   else
     if (file.ignore $1); then
@@ -350,12 +349,7 @@ function file.path() {
       err 1 "$1 file.is_metadata"
     fi
 
-    # Special test for collection.ttl
-    if [[ $1 == ${INF4[collection]}.ttl ]]; then
-      path=$(realpath -m --relative-to=${INF4[home]} $1)
-    else
-      path=$(realpath -m --relative-to=${INF4[home]} ${INF4[collection]}/$1)
-    fi
+    path=$(realpath -m --relative-to=${INF4[home]} $1)
 
     if [[ -n $full ]]; then
       path=${INF4[host]}${INF4[base]}/$path
@@ -578,7 +572,8 @@ function collection.upload() {
             fq=$(realpath $i);
             if [[ $fq == ${INF4[home]} ]]; then  # Home directory is treated different
               put --no-metadata $i
-              collection.upload .fin $i/*;
+              #collection.upload .fin $i/*;
+              collection.upload $i/*;
               put --update $i
             else
               put --no-metadata $i
@@ -639,20 +634,20 @@ PROMPT
 
   read -p "$prompt" -r token;
 
-  _http ${INF4[host]}/${INF4[base]} Authorization:"Bearer $token"
+  _http ${INF4[host]}${INF4[base]} "Authorization:Bearer $token"
 }
 
 : <<=cut
 =pod
-=head2 config
+=head2 util.config
 =head3 USAGE
-inf4 [inf4options] config
+inf4 [inf4options] util.config
 =head4
-displays the configuration
+displays the configuration as an associative array
 =cut
-function config() {
+function util.config() {
   declare -p INF4
-  declare -p IGNORE
+#  declare -p IGNORE
 }
 
 function util.home() {
@@ -757,7 +752,8 @@ declare -A ATTR;
 declare -A IGNORE;
 declare -a OPTS;
 
-INF4[home]=$(util.home) # Verify we are in a locat ion
+
+INF4[home]=$(util.home) # Verify we are in a location
 [[ $? != 0 ]] && exit $?
 
 # Read the configuration file
@@ -768,7 +764,6 @@ fi
 
 _read_attributes
 _read_ignore
-
 
 while true; do
 	case $1 in
@@ -802,7 +797,7 @@ exit 0;
 
 # Not added yet
 function patchin() {
-    OPTS=`getopt -o c:i:d: --long collection:,path:,data: -n 'fin_patchin' -- "$@"`
+    OPTS=`getopt -o c:i:d: --long collection:,path:,data: -n 'inf4 patchin' -- "$@"`
     # Exit if
     if [[ $? != 0 ]] ; then return ; fi
 
