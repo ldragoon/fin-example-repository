@@ -5,13 +5,14 @@
 @prefix fedora: <http://fedora.info/definitions/v4/webac#> .
 
 <>
-  a ldp:BasicContainer, schema:Dataset ;
+  a ldp:BasicContainer, schema:CreativeWork, schema:Dataset ;
   schema:name "Collaborator Pets Metadata" ;
   schema:creator "Quinn Metadata Hart" ;
   schema:publisher "UCDavis" ;
-  schema:keywords "Metadata about Cats" "Dogs" ;
+  schema:keywords "Metadata about Cats", "Dogs" ;
   schema:image <ex1-pets/thumbnail.png> ;
   schema:material "Archival Information Package" ;
   schema:datePublished "2019"^^<http://www.w3.org/2001/XMLSchema#gYear>  ;
   schema:description "This is more metadata in description format" ;
-  schema:dataset <ex-pets/bagit-pets-d0d45ff0-7883-42eb-9454-e7cfa758d568.7z> .
+  schema:dataset <ex1-pets/bagit-pets-d0d45ff0-7883-42eb-9454-e7cfa758d568.7z> ;
+  schema:associatedMedia <ex1-pets/bagit-pets-d0d45ff0-7883-42eb-9454-e7cfa758d568.7z> .
