@@ -67,10 +67,11 @@ In the photo example, each photo is an item in the collection. Each photo has a
 digital file that represents the photograph. There is metadata associated with
 both the photograph, and the digital representation. The next diagram replaces
 the generic objects with some of the actual items. The
-corresponding metadata files are [[ex2-photos.ttl]], [[photos.ttl]],
-[[photos/tf0199n5zx.ttl]].  The binary files located in locations like
-[[photos/tf0199n5zx/full.tif]], with it's metadata in
-[[photos/tf0199n5zx/full.tif.ttl]].
+corresponding metadata files are [[file:ex2-photos.ttl]],
+[[file:ex2-photos/photos.ttl]],
+[[file:ex2-photos/photos/tf0199n5zx.ttl]].  The binary files located in locations like
+[[file:ex2-photos/photos/tf0199n5zx/full.tif]], with it's metadata in
+[[file:ex2-photos/photos/tf0199n5zx/full.tif.ttl]].
 
 #+BEGIN_SRC plantuml  :file ./docs/diagram.png
   @startuml
