@@ -22,7 +22,7 @@ function err() {
 
 function _http () {
   local stdinp=
-  local http="http --ssl=${INF4[http_ssl]} --session=${INF4[http_session]}"
+  local http="http --ssl=${INF4[http_ssl]} --session-read-only=${INF4[http_session]}"
   if [[ $1 == '-n' || -n ${INF4[noop]} ]]; then
     [[ $1 == '-n' ]] && shift
     if [[ ! -t 0 ]]; then
@@ -111,7 +111,7 @@ inf4 [inf4options] metadata --auto --mime-type=[mime-type] file
 displays the metadata associated with any file.
 =cut
 function file.metadata() {
-  local opts=`getopt -o axmn --long auto,extra:,mime:,no-file -n 'inf4 file.metadata' -- "$@"`
+  local opts=`getopt -o axmn --long auto,extra:,mime:,no-file,position_regex:,fcr -n 'inf4 file.metadata' -- "$@"`
   if [ $? != 0 ] ; then err 1 "Bad inf4 file.metadata options."; fi
   eval set -- "$opts"
 
@@ -120,9 +120,15 @@ function file.metadata() {
   local extra
   declare -a types;
   local nofile
+  local position_regex
+  local fcr
 
   while true; do
     case $1 in
+      --fcr)
+        fcr=1;
+        shift;
+        ;;
       -n | --no-file)
         nofile=1;
         shift;
@@ -135,6 +141,10 @@ function file.metadata() {
         mime=$2;
         shift 2;
         ;;
+      --position_regex)
+        position_regex=$2
+        shift 2;
+        ;;
       -x | --extra)
         extra=$2;
         shift 2;
@@ -144,15 +154,15 @@ function file.metadata() {
     esac
   done
 
-  local basename=$(basename $1);
+  local basename=$(basename "$1");
 
   #  declare -a types=('ldp:NonRDFSource');
   if [[ -z $nofile ]]; then
-     metadata=$(file.metadata_file --exists $1 2>/dev/null)
+    metadata=$(file.metadata_file --exists "$1" 2>/dev/null)
   fi
   if [[ -n $metadata ]]; then
-    if [[ -f $1 ]]; then
-      cat $metadata | sed -e "s|<>|<../$basename>|"
+    if [[ -f $1 && -n $fcr ]]; then
+      cat $metadata | sed -e "s|<>|<../$(urlencode "$basename")>|"
     else
       cat $metadata
     fi
@@ -163,24 +173,28 @@ function file.metadata() {
     exit 0
   fi
 
-  if (file.ignore $1); then
+  if (file.ignore "$1"); then
     err 1 "$1 file.ignore"
   fi
 
-  if (file.is_metadata $1) ; then
+  if (file.is_metadata "$1") ; then
     err 1 "$1 file.is_metadata"
   fi
 
-  if [[ ! -d $1 && ! -f $1 ]]; then
+  if [[ ! -d "$1" && ! -f "$1" ]]; then
     err 1 "$1 not found"
   fi
+
+  if [[ -n $position_regex && $basename =~ $position_regex ]]; then
+   extra+="schema:position ${BASH_REMATCH[1]};"
+  fi;
 
   if [[ -z $mime ]]; then
     if [[ $1 =~ .ttl$ ]] ; then
       mime='text/turtle'
       delcare -p $types
     elif [[ -n $1 ]]; then
-		  mime=$(file --mime-type -b $1);
+		  mime=$(file --mime-type -b "$1");
 	  fi;
   fi
 
@@ -204,21 +218,21 @@ AUTO
 @prefix schema: <http://schema.org/> .
 @prefix ebucore: <http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#> .
 <> a ${typestr%,};
-   ${extra}
+  ${extra}
   ebucore:filename "$basename" ;
   ebucore:hasMimeType "$mime" .
 AUTO
   fi
 
-  if [[ -f $1 ]]; then
-    echo "$metadata"  | sed -e "s|<>|<../$basename>|"
+  if [[ -f $1 && -n $fcr ]]; then
+    echo "$metadata"  | sed -e "s|<>|<../$(urlencode "$basename")>|"
   else
     echo $metadata
   fi
 }
 
 function file.ignore() {
-  local path=$(realpath -m $1)
+  local path=$(realpath -m "$1")
   local home=${INF4[home]}
   for i in "${!IGNORE[@]}"; do
     if [[ $path = $home/$i ]]; then
@@ -227,7 +241,7 @@ function file.ignore() {
     fi
   done
   # have to check dirs as well
-  path=$(dirname $path)
+  path=$(dirname "$path")
   while [[ $path > $home && $path != '/' ]]; do
     for i in "${!IGNORE[@]}"; do
       if [[ $1 = $i ]]; then
@@ -235,7 +249,7 @@ function file.ignore() {
         exec true
       fi
     done
-    path=$(dirname $path)
+    path=$(dirname "$path")
   done
   exec false
 }
@@ -271,7 +285,7 @@ function file.metadata_file() {
 
     eval set -- "$opts"
 
-    local mf=${INF4[metadata_file]};
+    local mf=FILE.ttl;
     local ttl;
     local exists=;
 
@@ -288,15 +302,15 @@ function file.metadata_file() {
       err 1 "$1 not found"
     fi
 
-    if (file.ignore $1); then
+    if (file.ignore "$1"); then
       err 1 "$1 file.ignore"
     fi
-    if (file.is_metadata $1) ; then
+    if (file.is_metadata "$1") ; then
       err 1 "$1 file.is_metadata"
     fi
 
     if [[ -f $1 || -d $1 ]] ; then
-      local fq=$(realpath $1)
+      local fq=$(realpath "$1")
       if [[ $fq == ${INF4[home]} ]]; then  # Home directory is treated different
         ttl=$fq/${INF4[collection]}.ttl
       else
@@ -338,21 +352,20 @@ function file.path() {
 
   if [[ -z $1 ]]; then
     if [[ -n $full ]]; then
-      path=${INF4[host]}${INF4[base]}/
+      path=${INF4[source_host]}${INF4[source_base]}/collection/${INF4[source_collection]}
     else
       path=.
     fi
   else
-    if (file.ignore $1); then
+    if (file.ignore "$1"); then
       err 1 "$1 file.ignore"
-    elif (file.is_metadata $1); then
+    elif (file.is_metadata "$1"); then
       err 1 "$1 file.is_metadata"
     fi
 
-    path=$(realpath -m --relative-to=${INF4[home]} $1)
-
+    path=$(realpath -m --relative-to="${INF4[home]}" "$1")
     if [[ -n $full ]]; then
-      path=${INF4[host]}${INF4[base]}/$path
+      path=${INF4[source_host]}${INF4[source_base]}/collection/$path
     fi
   fi
   echo $path
@@ -398,8 +411,8 @@ function item.fetch() {
   local file=$1
   local metadata_file=
 
-  local path=$(file.path $file)
-  head=$(_http --print=h HEAD $(file.path $path))
+  local path=$(file.path "$file")
+  head=$(_http --print=h HEAD $(file.path "$path"))
   eval $(parse_headers "$head")
 
 #  if [[ -n $etag ]]; then
@@ -407,16 +420,16 @@ function item.fetch() {
   if [[ -f $file ]]; then
     echo ${headers[etag]} >> $file.ldp.etag
     # Now get metadata header
-    head=$(_http --print=h HEAD $(file.path $path)/fcr:metadata)
+    head=$(_http --print=h HEAD "$(file.path $path)/fcr:metadata")
     eval $(parse_headers "$head")
     echo ${headers[etag]} >> $file.ldp.ttl.etag
-    _http GET $(file.path $path)/fcr:metadata prefer:return=minimal Accept:text/turtle > $file.ldp.ttl
+    _http GET "$(file.path "$path")/fcr:metadata" prefer:return=minimal Accept:text/turtle > $file.ldp.ttl
   elif [[ -d $file ]]; then
     echo ${headers[etag]} >> $file/ldp.etag
-    head=$(_http --print=h HEAD $(file.path $path)/fcr:metadata)
+    head=$(_http --print=h HEAD "$(file.path "$path")/fcr:metadata")
     eval $(parse_headers "$head")
     echo ${headers[etag]} >> $file/ldp.ttl.etag
-    _http GET $(file.path $path)/fcr:metadata prefer:return=minimal Accept:text/turtle > $file/ldp.ttl
+    _http GET "$(file.path "$path")/fcr:metadata" prefer:return=minimal Accept:text/turtle > $file/ldp.ttl
   else
     err 1 "item.fetch $file not actionable"
   fi
@@ -467,15 +480,15 @@ function put() {
   done
 
   local file=$1
-  local fp=$(file.path $file)
+  local fp=$(file.path "$file")
 
-  if [[ -f $file ]]; then
+  if [[ -z $update && -f $file ]]; then
     if [[ -z $mime ]]; then
       if [[ $file =~ .ttl$ ]] ; then
         mime=text/turtle
         _http PUT $fp prefer:return=minimal Content-Type:$mime @$file
       else
-		    mime=$(file --mime-type -b $file);
+		    mime=$(file --mime-type -b "$file");
 	      _http PUT $fp Content-Type:$mime @$file
 	    fi;
     fi;
@@ -485,14 +498,17 @@ function put() {
 
   # Now add metadata
   if [[ -z $no_metadata ]]; then
-    metadata=$(file.metadata $auto $file )
-    if [[ -n $metadata ]]; then
       if [[ -f $file ]]; then
-        _http PUT $fp/fcr:metadata prefer:return=minimal Content-Type:text/turtle <<<$metadata
+        metadata=$(file.metadata --fcr $auto "$file" )
+        if [[ -n $metadata ]]; then
+          _http PUT $fp/fcr:metadata prefer:return=minimal Content-Type:text/turtle <<<$metadata
+        fi
       elif [[ -d $file ]]; then
-        _http PUT $fp prefer:return=minimal Content-Type:text/turtle <<<$metadata
+        metadata=$(file.metadata $auto "$file" )
+        if [[ -n $metadata ]]; then
+          _http PUT $fp prefer:return=minimal Content-Type:text/turtle <<<$metadata
+        fi
       fi
-    fi
   fi
 }
 
@@ -516,14 +532,14 @@ function collection.create() {
     collection.delete
   fi
 
-  _http PUT $(file.path)
+  _http PUT "$(file.path)"
   collection.upload .fin
-  _http PUT $(file.path)/fcr:metadata prefer:return=minimal Content-Type:text/turtle @${INF4[home]}/${INF4[collection]}.ttl
+  _http PUT "$(file.path)/fcr:metadata" prefer:return=minimal Content-Type:text/turtle @${INF4[home]}/${INF4[collection]}.ttl
 }
 
 function collection.delete() {
-  _http DELETE $(file.path)
-  _http DELETE $(file.path)/fcr:tombstone
+  _http DELETE "$(file.path)"
+  _http DELETE "$(file.path)/fcr:tombstone"
 }
 
 : <<=cut
@@ -563,13 +579,13 @@ function collection.upload() {
 
     local fq
     for i in $@; do
-      if ! (file.ignore $i) ; then
-        if ! (file.is_metadata $i); then
+      if ! (file.ignore "$i") ; then
+        if ! (file.is_metadata "$i"); then
           if [[ -f $i ]]; then
             files+=($i);
           elif [[ -d $i ]]; then
             i=${i%/}
-            fq=$(realpath $i);
+            fq=$(realpath "$i");
             if [[ $fq == ${INF4[home]} ]]; then  # Home directory is treated different
               put --no-metadata $i
               #collection.upload .fin $i/*;
@@ -627,14 +643,14 @@ function login() {
 
   read -r -d '' prompt <<PROMPT;
 Visit this URL on any device to log in, then paste token below.
-${INF4[host]}/auth/cas/login?cliRedirectUrl=$(urlencode ${INF4[host]}/auth/login-shell)&provideJwt=true&force=true
+${INF4[source_host]}/auth/cas/login?cliRedirectUrl=$(urlencode ${INF4[host]}/auth/login-shell)&provideJwt=true&force=true
 
 Token:
 PROMPT
 
   read -p "$prompt" -r token;
 
-  _http ${INF4[host]}${INF4[base]} "Authorization:Bearer $token"
+   http --ssl=${INF4[http_ssl]} --session=${INF4[http_session]} ${INF4[source_host]}${INF4[source_base]} "Authorization:Bearer $token"
 }
 
 : <<=cut
@@ -658,7 +674,7 @@ function util.home() {
       inf4=$pwd;
       break;
     fi
-    pwd=$(dirname $pwd);
+    pwd=$(dirname "$pwd");
   done
   if [[ -z $inf4 ]]; then
     echo "fatal: Not a inf4 repository (or any of the parent directories): .fin" 1>&2
@@ -676,7 +692,7 @@ function _config_file() {
       file=${pwd}$1;
       break;
     fi
-    pwd=$(dirname $pwd);
+    pwd=$(dirname "$pwd");
   done
   echo $file
 }
@@ -699,12 +715,12 @@ function _read_ignore() {
   local pat
   local dir
   for attr in $(_config_file .finignore); do
-    dir=$(dirname $attr);
+    dir=$(dirname "$attr");
     local a=${attr#${INF4[home]}/}
     if [[ -n $attr ]]; then
       while IFS='' read  pat; do
         if [[ -n $pat && $pat != \#* ]]; then
-          pat=$(realpath $dir/./"$pat")
+          pat=$(realpath "$dir/./$pat")
           pat=${pat#${INF4[home]}/}
           IGNORE[$pat]=$a
         fi
@@ -747,7 +763,9 @@ Quinn Hart <qjhart@ucdavis.edu>
 =cut
 
 #MAIN
-declare -A INF4;
+declare -A INF4=([http_session]='inf4'
+                 [http_ssl]='tls1.2');
+
 declare -A ATTR;
 declare -A IGNORE;
 declare -a OPTS;
@@ -759,7 +777,7 @@ INF4[home]=$(util.home) # Verify we are in a location
 # Read the configuration file
 config=${INF4[home]}/.fin/config.yml
 if [[ -f $config ]]; then
-  eval $(parse_yaml $config)
+  eval $(parse_yaml "$config")
 fi
 
 _read_attributes
