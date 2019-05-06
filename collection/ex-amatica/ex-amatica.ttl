@@ -13,7 +13,7 @@
 <>
   a ldp:BasicContainer, schema:Collection;
   acl:accessControl <ex-amatica/.fin/acl>;
-  schema:name "An Example of a collection of archive files.";
+  schema:name "An Example of a collection of archives.";
   schema:publisher lcna:no2008108707 ;
   schema:keywords "Digital Archives" ;
   schema:subject fast:972696 ;

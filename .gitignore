@@ -22,3 +22,16 @@ collection/example_4-wine-labels/**/google-vision.txt
 collection/ex-sherry-lehmann/**ldp.ttl
 collection/ex-amerine-menus/**ldp.ttl
 new-collection.ttl
+
+
+# Archive files
+*.7z
+
+# ex1-pets
+bagit-pets-d0d45ff0-7883-42eb-9454-e7cfa758d568
+bagit-pets-d0d45ff0-7883-42eb-9454-e7cfa758d568.7z
+
+#snep
+qjh_diskimage-a106288c-dcc4-484b-bedb-fd34c2a66357
+qjh_diskimage-a106288c-dcc4-484b-bedb-fd34c2a66357.7z
+dds_43.iso

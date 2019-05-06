@@ -1,9 +1,10 @@
-@prefix schema: <http://schema.org/> .
+@prefix : <http://schema.org/> .
 @prefix ldp:  <http://www.w3.org/ns/ldp#> .
 
-<archives>
-        a ldp:DirectContainer ;
-        schema:name "Archive Directory" ;
-        ldp:membershipResource  <.> ;
-        ldp:hasMemberRelation   schema:hasPart, schema:dataset ;
-        ldp:isMemberOfRelation  schema:isPartOf, schema:includedInDataCatalog .
+<>
+    a ldp:DirectContainer ;
+    :name "Archive Directory" ;
+    ldp:membershipResource  <.> ;
+    ldp:hasMemberRelation   :hasPart ;
+    ldp:isMemberOfRelation  :isPartOf ;
+    .
