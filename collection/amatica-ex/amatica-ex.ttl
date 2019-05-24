@@ -12,12 +12,12 @@
 
 <>
   a ldp:BasicContainer, schema:Collection;
-  acl:accessControl <ex-amatica/.fin/acl>;
+  acl:accessControl <amatica-ex/.fin/acl>;
   schema:name "An Example of a collection of archives.";
   schema:publisher lcna:no2008108707 ;
   schema:keywords "Digital Archives" ;
   schema:subject fast:972696 ;
   schema:license <http://rightsstatements.org/vocab/InC-NC/1.0/> ;
   schema:datePublished "2019"^^<http://www.w3.org/2001/XMLSchema#gYear> ;
-  schema:image <ex-amatica/ex-amatica.jpg> ;
+  schema:image <amatica-ex/amatica-ex.jpg> ;
   schema:description "This is an example of what a collection for archives might look like. The data for the individual archive is pulled from the METS file from the AIP." .
