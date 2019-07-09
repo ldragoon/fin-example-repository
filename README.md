@@ -268,15 +268,15 @@ this `http --session=admin http://localhost:3000/fcrepo/rest`.*
 From here, we can look at some of the example collections in this project and
 see how data can be added and maintained in our repository.
 
-- [Example 1](tree/master/collection/ex1-pets) This is the most
+- [Example 1](tree/master/collection/example_1-pets) This is the most
   simple example of adding data into the repository.  The data is born digital,
   and the organization of the data and the metadata is very basic.
 
-- [Example 2](tree/master/collection/ex2-photos) This example explains how
+- [Example 2](tree/master/collection/example_2-photos) This example explains how
   to document physical objects, in this case historical photos, and their
   associated digital representations.
 
-- [Example 3](tree/master/collection/ex_sherry_lehmann) Here, we show how you
+- [Example 3](tree/master/collection/example_3-catalogs) Here, we show how you
 might organize objects that have multiple digital encodings, in this case where
 each catalog has a complete PDF file, but we also have each page as an image.
 
