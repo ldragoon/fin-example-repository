@@ -1,0 +1,22 @@
+{
+  "name": "fin-example-repository",
+  "version": "1.0.0",
+  "description": "This project contains a set of example repositories for the UC Davis digital\r archive management system [DAMS](https://digital.ucdavis.edu).  These examples\r are often, but not always found on the [DAMS\r Sandbox](https://sandbox.dams.library.ucdavis.edu), a test DAMS for UC Davis.",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/UCDavisLibrary/fin-example-repository.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/UCDavisLibrary/fin-example-repository/issues"
+  },
+  "homepage": "https://github.com/UCDavisLibrary/fin-example-repository#readme"
+}
