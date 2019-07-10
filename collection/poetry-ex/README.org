@@ -10,28 +10,18 @@ UCDavis.
 
 ** Comparison of Alma SEO and DAMS SEO
 
-*** UCD Davis
-
-The first order of business would be to make sure that an ARK was minted for
-this item.  This is an example ARK, in the temporary space, but it will do.
-#+BEGIN_SRC bash
-ezid mint erc.who:"Jeffers, Robinson" erc.what:"Granite and cypress" erc.when:1975
-#+END_SRC
-
-#+RESULTS:
-ark:/99999/fk4w390w24
-
-
-
-
-We can make a comparison of our current implementations of schema.org, using
-Cypress and Granite as an example.
-
 *** Primo Record
 
 This item currently is available via the [[http://primo-pmtna03.hosted.exlibrisgroup.com:80/primo-explore/fulldisplay?vid=01UCD_V1&amp;docid=01UCD_ALMA21162345690003126&amp;fromSitemap=1][SiteMap]] reference. From that reference,
 we can get two entry types from Primo. One is the schema.org, but we can also
 get the more detailed product specific JSON file used for their UI.
+
+**** Schema.org
+
+Below, is the primo javascript example.  There is very little data, and no use
+of linked data.  It's interesting to note that Alma actually describes a WebPage
+which describes the Book (via MainEntity).  This is not how our digital
+collections work.
 
 #+BEGIN_SRC javascript
   {
@@ -67,6 +57,11 @@ get the more detailed product specific JSON file used for their UI.
       }
   }
 #+END_SRC
+
+**** Primo Display data
+
+The second javscript file that drives the HTML generation is considerably more
+information.  Not all of it is super useful, but a lot of it is.
 
 #+BEGIN_SRC javascript
 {
@@ -530,3 +525,148 @@ get the more detailed product specific JSON file used for their UI.
   "lang3": "null"
 }
 #+END_SRC
+
+*** UCD Davis
+
+The first order of business would be to make sure that an ARK was minted for
+this item.  This is an example ARK, in the temporary space, but it will do.
+#+BEGIN_SRC bash
+ezid mint erc.who:"Jeffers, Robinson" erc.what:"Granite and cypress" erc.when:1975
+#+END_SRC
+
+#+RESULTS:
+ark:/99999/fk4w390w24
+
+We can make a comparison of our current implementations of schema.org, using
+Cypress and Granite as an example.
+
+The schema.org record minted for this record can be found at:
+https://sandbox.dams.libary.ucdavis.edu/ark:/99999/
+
+#+BEGIN_EXAMPLE
+<https://sandbox.dams.library.ucdavis.edu/fcrepo/rest/collection/poetry-ex/books/granite-and-cypress>
+        schema:isPartOf         <https://sandbox.dams.library.ucdavis.edu/fcrepo/rest/collection/poetry-ex> ;
+        rdf:type                fedora:Container ;
+        rdf:type                ldp:RDFSource ;
+        rdf:type                schema:CreativeWork ;
+        rdf:type                ldp:Container ;
+        rdf:type                schema:Book ;
+        fedora:writable         "false"^^<http://www.w3.org/2001/XMLSchema#boolean> ;
+        rdf:type                fedora:Resource ;
+        fedora:hasParent        <https://sandbox.dams.library.ucdavis.edu/fcrepo/rest/collection/poetry-ex/books> ;
+        fedora:lastModifiedBy   "quinn@ucdavis.edu"^^<http://www.w3.org/2001/XMLSchema#string> ;
+        schema:creator          <http://id.loc.gov/authorities/names/n80015557> ;
+        schema:creator          <http://id.loc.gov/authorities/names/n80035864> ;
+        schema:publisher        <http://id.loc.gov/authorities/names/n93121862> ;
+        schema:name             "Granite and cypress"^^<http://www.w3.org/2001/XMLSchema#string> ;
+        fedora:createdBy        "quinn@ucdavis.edu"^^<http://www.w3.org/2001/XMLSchema#string> ;
+        fedora:created          "2019-07-10T01:50:12.022Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        fedora:lastModified     "2019-07-10T01:50:13.411Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        schema:bookFormat       "[29] leaves ; 33 x 54 cm.."^^<http://www.w3.org/2001/XMLSchema#string> ;
+        schema:sdLicense        <http://rightsstatements.org/vocab/InC-NC/1.0/> ;
+        schema:description      "In cypress slipcase with a window of granite from Jeffers' stoneyard."^^<http://www.w3.org/2001/XMLSchema#string> ;
+        schema:description      "Includes index of poems."^^<http://www.w3.org/2001/XMLSchema#string> ;
+        schema:sdPublisher      <http://id.loc.gov/authorities/names/no2008108707> ;
+        schema:identifier       "ark:/99999/fk4w390w24"^^<http://www.w3.org/2001/XMLSchema#string> ;
+        schema:identifier       "PS3519.E27 G7"^^<http://www.w3.org/2001/XMLSchema#string> ;
+        schema:sdDatePublished  "2019"^^<http://www.w3.org/2001/XMLSchema#gYear> ;
+        schema:inLanguage       "eng"^^<http://www.w3.org/2001/XMLSchema#string> ;
+        schema:datePublished    "1975"^^<http://www.w3.org/2001/XMLSchema#string> ;
+        ldp:contains            <https://sandbox.dams.library.ucdavis.edu/fcrepo/rest/collection/poetry-ex/books/granite-and-cypress/media> ;
+        schema:associatedMedia  <https://sandbox.dams.library.ucdavis.edu/fcrepo/rest/collection/poetry-ex/books/granite-and-cypress/media/images> .
+#+END_EXAMPLE
+
+This shows the type of record that we would like to import into the ExLibris
+System.  It's also closer to what we'd expect to see from the Primo version of
+the sitemap.  Most of the information in this record is taken from the
+information from the Alma entry.
+
+There are a few things to note here: Items like the creator and publisher are
+linked data; identifiers include call numbers and arks.  Other identifiers could
+be helpful.  The record also points to associatedMedia.
+
+**** Extended record
+
+The record that we would use for our sitemap, and for SEO, would have some
+additional information.  This might not be useful for ingestion into a
+sophisticated system like Alma, but it is useful for more general purpose
+indexing systems.
+
+This example can be found at:
+https://sandbox.dams.library.ucdavis.edu/ark:/99999/fk4w390w24/svc:es-record-transform
+
+Or equivalantly, from the Digital Collections sitemap.
+
+#+BEGIN_EXAMPLE
+{
+    "@id": "/collection/poetry-ex/books/granite-and-cypress",
+    "@type": [
+        "http://fedora.info/definitions/v4/repository#Container",
+        "http://schema.org/CreativeWork",
+        "http://schema.org/Book",
+        "http://www.w3.org/ns/ldp#RDFSource",
+        "http://www.w3.org/ns/ldp#Container",
+        "http://fedora.info/definitions/v4/repository#Resource"
+    ],
+    "associatedMedia": {
+        "@id": "/collection/poetry-ex/books/granite-and-cypress/media/images"
+    },
+    "collectionId": "/collection/poetry-ex",
+    "createdBy": "quinn@ucdavis.edu",
+    "creator": [
+        {
+            "@id": "http://id.loc.gov/authorities/names/n80015557"
+        },
+        {
+            "#type": "http://schema.org/Person",
+            "@id": "http://id.loc.gov/authorities/names/n80035864",
+            "name": "Jeffers, Robinson, 1887-1962"
+        }
+    ],
+    "datePublished": "1975",
+    "description": [
+        "Includes index of poems.",
+        "In cypress slipcase with a window of granite from Jeffers' stoneyard."
+    ],
+    "identifier": [
+        "ark:/99999/fk4w390w24",
+        "PS3519.E27 G7"
+    ],
+    "image": {
+        "colorPalette": "data:image/jpg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAMCAgMCAgMDAwMEAwMEBQgFBQQEBQoHBwYIDAoMDAsKCwsNDhIQDQ4RDgsLEBYQERMUFRUVDA8XGBYUGBIUFRT/2wBDAQMEBAUEBQkFBQkUDQsNFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBT/wAARCAAFAAgDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD9A/8AhAIbjxBJrv2+4WeNTEIeDHwNucfjRRRXPTpwoJ+zVuZ3fm3uy6k5VGud3srL0R//2Q==",
+        "contentSize": "1075028",
+        "encodingFormat": "image/jpeg",
+        "height": 5220,
+        "iiif": {
+            "format": "jpg",
+            "quality": "default",
+            "region": "full",
+            "rotation": 0,
+            "size": "full"
+        },
+        "name": "GraniteandCypress-3.jpg",
+        "url": "/fcrepo/rest/collection/poetry-ex/books/granite-and-cypress/media/images/GraniteandCypress-3.jpg",
+        "width": 7830
+    },
+    "isPartOf": {
+        "@id": "/collection/poetry-ex"
+    },
+    "isRootRecord": true,
+    "lastModified": "2019-07-10T01:50:13.411Z",
+    "lastModifiedBy": "quinn@ucdavis.edu",
+    "name": "Granite and cypress",
+    "parent": {
+        "@id": "/collection/poetry-ex/books"
+    },
+    "publisher": {
+        "@id": "http://id.loc.gov/authorities/names/n93121862"
+    },
+    "thumbnailUrl": "/fcrepo/rest/collection/poetry-ex/books/granite-and-cypress/media/images/GraniteandCypress-3.jpg/svc:iiif/full/500,333/0/default.jpg",
+    "yearPublished": 1975
+}
+#+END_EXAMPLE
+
+This is quite similar to the previous linked data entry, but some of the linked
+data have been expanded with some default labels.  In addition, we've addded a
+standard thumbnail, that can be used for display, both a thumbnailUrl and as an
+associated Image tag.
