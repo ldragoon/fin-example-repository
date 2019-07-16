@@ -21,10 +21,22 @@ There are also a number of
 [FAQS](https://github.com/UCDavisLibrary/fin-example-repository/issues?utf8=%E2%9C%93&q=is%3Aissue+label%3AFAQ)
 in the Issues. You may find help there as well.
 
+- [Installation](#Installation)
+- [Prerequisites](#Prerequisites)
+- [Configuration](#Configuration)
+- [Adding Your First User](#Adding-Your-First-User)
+  - [Basic-Auth](#Basic-Auth)
+  - [CAS Authentication](#CAS-Authentication)
+- [Accessing the LDP Server](#Accessing-the-LDP-Server)
+- [Adding Data to the Repository](#Adding-Data-to-the-Repository)
+- [Next Steps](#Next-Steps)
+- [Advanced Configuration](#Advanced-Configuration)
+  - [Running the server on default ports](#Running-the-Server-on-Default-Ports)
+  - [CAS Authentication](#CAS-Authentication)
 
-# Installation
+#  Installation
 
-Following the steps below, you should be able to get your own server, up and
+Follow the steps below you should be able to get your own server up and
 running relatively quickly.  From there, you can investigate some of the example
 repository data.
 
@@ -144,14 +156,15 @@ accessing http://localhost:3000/fcrepo/rest . This should fail, since by default
 the public is not granted access to the data.  Since we want to read and write
 data to this repository, let's next create a new user for the system.
 
-## Adding your first User
+## Adding Your First User
+
+### Basic-Auth
 
 Our container setup separates the authentication step from the Fedora and
 other services.  The services rely on valid JWT tokens being sent along with
 requests to the system.  The Authentication services are what creates these
 tokens.  In production, you will most certainly want to use a centralized
-authentication mechanism, see **Using CAS Authentication** in the **Advanced
-Configuration** section to see an example of this type of setup.  However, for
+authentication mechanism, see [CAS Authentication](#CAS-Authentication) in the [Advanced Configuration](#Advanced-Configuration) section to see an example of this type of setup.  However, for
 testing, we have included a Basic Authentication service that can be used
 without any external setup.  You should really only use this service for
 testing.
@@ -192,7 +205,7 @@ in the token.  You can even verify the signature if you include the `JWT_SECRET`
 you've set in your configuration.  This should show you how easy it is to create
 tokens if you know that `JWT_SECRET`, keep it hidden keep it safe!*
 
-## Accessing the LDP server
+## Accessing the LDP Server
 
 Now that we have elevated privileges, let's revisit the root to the LDP services,
 http://localhost:3000/fcrepo/rest .  Now we should have access to this location.
@@ -229,7 +242,7 @@ repository.
 fin http get -P b /
 ```
 
-## Adding data to the repository
+## Adding Data to the Repository
 Now that we have our repository and we have administrative access, let's make
 our first entry into the repository.
 
@@ -282,7 +295,7 @@ each catalog has a complete PDF file, but we also have each page as an image.
 
 # Advanced Configuration
 
-## Running the server on default ports
+## Running the Server on Default Ports
 
 If you want to run this on the default port, the user running this example will
 need permission to connect to that protected port. In our setup, we often have
