@@ -6,6 +6,7 @@
     2.  [Administrative Privleges](#org09009e1)
     3.  [Make a new Collection](#org376d22c)
     4.  [Collection Access Control](#org15e1dc4)
+    5.  [Check the .fin/config.yml File]
     5.  [Add Example Data](#orgadfd184)
 2.  [Graphs](#orgfd006fc)
 3.  [Amended metadata representation](#org642851f)
@@ -21,7 +22,7 @@ Our collaborator pets collection is the most basic type of collection that can
 be added into the DAMS. This example contains a simple set of digital images
 with a small amount of data about the pets. Each pet, eg. [ashley.jpg](./ashley.jpg) is included
 in their own image file, and each image file has some associated metadata in a
-`.ttl` sidecar, eg. [ashley.jpeg.ttl](./ashley.jpeg.ttl). The metadata is in `text/turtle` format.
+`.ttl` sidecar, eg. [ashley.jpeg.ttl](./ashley.jpeg.ttl). The metadata is in `text/turtle` format [text/turtle documentation](https://www.w3.org/TeamSubmission/turtle/).
 The [index.ttl](./index.ttl) file includes information about the collection as a whole.
 Finally, we have an additional [graph.hdt](./graph.hdt) file is explained in more detail below.
 
@@ -57,7 +58,7 @@ in our collection.
 
 <a id="org09009e1"></a>
 
-## Administrative Privleges
+## Administrative Privileges
 
 If you have gone through the installation steps, this is good place to come as
 your next step.  The steps below assume that you are currently logged in to your
@@ -108,7 +109,7 @@ with the addition of the metadata in our index.ttl file, it also describes the
 contents of this collection, which is then used in the default Interface for the
 repository. After this step, you should be able to navigate to
 <http://localhost:3000/fcrepo/rest/collection>, and see your newly created
-example<sub>1</sub>-pets collection. You may need to login to your account via
+example1-pets collection. You may need to login to your account via
 <http://localhost:3000/auth/basic/login.html> to give your browser access.
 
 
@@ -124,9 +125,43 @@ available for anyone.
 
 <a id="orgadfd184"></a>
 
+## Check the .fin/config.yml File
+
+Navigate to `fin-example-repository/collection/ex1-pets/.fin`. You should see a file named `config.yml`. Open it. Make sure that the listed host is pointing to the correct location. If you're working locally, you'd probably like to set it for your local work environment.
+
+Example
+  
+  source:
+    host: http://192.168.99.100:3000/
+    base: /fcrepo/rest
+    collection: ex1-pets
+  
+
 ## Add Example Data
 
-Now we want to add some additional
+Now we want to add an additional image with its associated `.ttl` sidecar.
+
+  1. Select an appropriately adorable jpg of one of your pets. In the event you don't have a pet, any cute animal picture will suffice.
+  2. Navigate to `fin-example-repository/collection/ex1-pets/ex1-pets/pets`.
+  3. Copy your selected jpg into this directory.
+  4. Create a copy of one of the existing `name.jpg.ttl` files and update the file name to match the image you've chosen.
+      
+      Example
+      
+        adorable_dog.jpg > adorable_dog.jpg.ttl
+        
+  5. Update the information in your new `.ttl` sidecar file to personalize it and make it accurately reflect your chosen image.
+  
+You're ready to update your local copy of the DAMS Collaborator Pets Collection.
+Open a Terminal and cd to `fin-example-repository/collection/ex1-pets`. Then run the following command:
+    
+    fin io import [name of directory to upload] [root directory location]
+
+   Example
+
+     fin io import ex1-pets .
+     
+After the command runs, you should be able to refresh your local UC Davis Library Digital Collections instance and click on the Collaborator Pets image block.  You should now see your cute animal picture.
 
 
 <a id="orgfd006fc"></a>

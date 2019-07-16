@@ -14,8 +14,7 @@ services:
       - fin-example.env
     volumes:
       - ./conf/default-services.js:/etc/fin/default-services.js
-      - ./conf/default-transforms/es-collection.js:/etc/fin/transforms/es-collection.js
-      - ./conf/default-transforms/es-record.js:/etc/fin/transforms/es-record.js
+      - ./conf/default-transforms:/etc/fin/transforms
       - ./backups:/fcrepo-backups
     ports:
       - 3000:3001
@@ -118,15 +117,8 @@ services:
   ###
   # Basic Username/Password AuthenticationService
   ###
-  # basic-auth:
-    # image: ucdlib/fin-basic-auth-service:master
-    # env_file:
-    #   - fin-example.env
-    # depends_on:
-    #   - server
-
-  cas:
-    image: ucdlib/fin-cas-service:master
+  basic-auth:
+    image: ucdlib/fin-basic-auth-service:master
     env_file:
       - fin-example.env
     depends_on:
