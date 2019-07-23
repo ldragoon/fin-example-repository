@@ -130,11 +130,12 @@ available for anyone.
 Navigate to `fin-example-repository/collection/ex1-pets/.fin`. You should see a file named `config.yml`. Open it. Make sure that the listed host is pointing to the correct location. If you're working locally, you'd probably like to set it for your local work environment.
 
 Example
-  
+```  
   source:  
     host: http://192.168.99.100:3000/    
     base: /fcrepo/rest    
     collection: ex1-pets
+```
  
 <a id="orgadfd185"></a>
 
