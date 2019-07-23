@@ -131,11 +131,10 @@ Navigate to `fin-example-repository/collection/ex1-pets/.fin`. You should see a 
 
 Example
   
-  `source:
-    host: http://192.168.99.100:3000/
-    base: /fcrepo/rest
-    collection: ex1-pets`
- 
+  source:  
+    host: http://192.168.99.100:3000/    
+    base: /fcrepo/rest    
+    collection: ex1-pets
  
 <a id="orgadfd185"></a>
 
