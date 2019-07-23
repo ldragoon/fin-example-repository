@@ -150,7 +150,7 @@ Now we want to add an additional image with its associated `.ttl` sidecar.
       
       Example
       
-        adorable_dog.jpg > adorable_dog.jpg.ttl
+        `adorable_dog.jpg > adorable_dog.jpg.ttl`
         
   5. Update the information in your new `.ttl` sidecar file to personalize it and make it accurately reflect your chosen image.
   
