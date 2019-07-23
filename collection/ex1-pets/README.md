@@ -6,8 +6,8 @@
     2.  [Administrative Privleges](#org09009e1)
     3.  [Make a new Collection](#org376d22c)
     4.  [Collection Access Control](#org15e1dc4)
-    5.  [Check the .fin/config.yml File]
-    5.  [Add Example Data](#orgadfd184)
+    5.  [Check the .fin/config.yml File](#orgadfd184)
+    5.  [Add Example Data](#orgadfd185)
 2.  [Graphs](#orgfd006fc)
 3.  [Amended metadata representation](#org642851f)
 
@@ -131,11 +131,13 @@ Navigate to `fin-example-repository/collection/ex1-pets/.fin`. You should see a 
 
 Example
   
-  source:
+  `source:
     host: http://192.168.99.100:3000/
     base: /fcrepo/rest
-    collection: ex1-pets
-  
+    collection: ex1-pets`
+ 
+ 
+<a id="orgadfd185"></a>
 
 ## Add Example Data
 
