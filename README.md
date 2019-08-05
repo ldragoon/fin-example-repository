@@ -338,7 +338,7 @@ service using the CAS service used on our UC Davis campus. When using this
 service, the authentication of the users is sent to the central CAS
 authentication server, and if the user authenticates, the service will mint a
 token for this users.  There aren't too many differences in the overall setup.
-First, we remove the Basic-Authentication Service and add the CAS service.
+First, open the fin-example.yml file, remove the Basic-Authentication Service, and add the CAS service.
 
 ``` diff
 --- fin-example.yml	2018-03-01 17:05:14.964623572 -0800
@@ -351,9 +351,9 @@ First, we remove the Basic-Authentication Service and add the CAS service.
 +  # CAS AuthenticationService
    ###
 -  basic-auth:
--    image: ucdlib/fin-basic-auth:0.0.1
+-    image: ucdlib/fin-basic-auth:master
 +  cas:
-+    image: ucdlib/fin-cas-service:0.0.1
++    image: ucdlib/fin-cas-service:master
      env_file:
        - fin-example.env
      depends_on:
