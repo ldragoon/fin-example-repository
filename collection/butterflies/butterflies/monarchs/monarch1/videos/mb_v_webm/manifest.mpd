@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MPD
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="urn:mpeg:DASH:schema:MPD:2011"
+  xsi:schemaLocation="urn:mpeg:DASH:schema:MPD:2011"
+  type="static"
+  mediaPresentationDuration="PT9.197S"
+  minBufferTime="PT1S"
+  profiles="urn:webm:dash:profile:webm-on-demand:2012">
+<Period id="0" start="PT0S" duration="PT9.197S" >
+<AdaptationSet id="0" mimeType="video/webm" codecs="vp8" lang="eng" width="426" height="240" bitstreamSwitching="true" subsegmentAlignment="true" subsegmentStartsWithSAP="1">
+<Representation id="0" bandwidth="321849">
+<BaseURL>monarch_butterfly.webm</BaseURL>
+<SegmentBase
+  indexRange="419405-419471">
+<Initialization
+  range="0-4982" />
+</SegmentBase>
+</Representation>
+</AdaptationSet>
+<AdaptationSet id="1" mimeType="video/webm" codecs="vp8" lang="eng" width="426" height="240" bitstreamSwitching="true" subsegmentAlignment="true" subsegmentStartsWithSAP="1">
+<Representation id="1" bandwidth="321849">
+<BaseURL>monarch_butterfly.webm</BaseURL>
+<SegmentBase
+  indexRange="419405-419471">
+<Initialization
+  range="0-4982" />
+</SegmentBase>
+</Representation>
+</AdaptationSet>
+</Period>
+</MPD>

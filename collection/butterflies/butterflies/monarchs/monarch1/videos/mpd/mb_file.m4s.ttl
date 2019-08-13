@@ -1,0 +1,22 @@
+@prefix schema: <http://schema.org/>.
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix ldp:  <http://www.w3.org/ns/ldp#> .
+@prefix acl: <http://www.w3.org/ns/auth/acl#> .
+@prefix fedora: <http://fedora.info/definitions/v4/webac#> .
+@prefix lcna: <http://id.loc.gov/authorities/names/>.
+
+<> 
+    a ldp:BasicContainer, schema:CreativeWork, schema:Video;
+    schema:name "Monarch Butterfly" ;
+    schema:creator "USFWS" ;
+    schema:publisher "USFWS" ;
+    schema:keywords "Butterflies", "Video", "Monarch" ;
+    schema:datePublished "2019"^^<http://www.w3.org/2001/XMLSchema#gYear> ;
+    schema:description "Monarch videos" ;
+    schema:alternativeHeadline "Monarch Butterfly on a Flower" ;
+    schema:video <mpd/mb_file.m4s> ;
+    schema:encodingFormat "video/mp4" ;
+    schema:videoFrameSize "1920x1080" ;
+    schema:videoQuality "1080" ;
+    schema:duration "00:09" ;
+    schema:contentSize "28 MB" .
