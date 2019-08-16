@@ -4,7 +4,6 @@
 <>
         a ldp:DirectContainer ;
         schema:name "Video Directory" ;
-	      schema:description "Ocean Videos" ;
         ldp:membershipResource  <.> ;
-        ldp:hasMemberRelation   schema:associatedMedia ;
-        ldp:isMemberOfRelation  schema:encodesCreativeWork .
+        ldp:hasMemberRelation   schema:hasPart ;
+        ldp:isMemberOfRelation  schema:isPartOf .

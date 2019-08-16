@@ -14,7 +14,7 @@
   a ldp:BasicContainer, schema:Collection ;
   acl:accessControl <ocean/.fin/acl> ;
   schema:name "Ocean Images and Videos" ;
-  schema:keywords "Ocean", "Pacificf", "California, Northern" ;
+  schema:keywords "Ocean", "Pacific", "California, Northern" ;
   schema:license <http://rightsstatements.org/vocab/InC-NC/1.0/> ;
   schema:image <ocean/ocean-thumbnail.jpg> ;
   schema:datePublished "2019"^^<http://www.w3.org/2001/XMLSchema#gYear> ;

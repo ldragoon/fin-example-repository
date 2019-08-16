@@ -1,4 +1,4 @@
 source:
   host: https://localhost:3000
   base: /fcrepo/rest
-  collection: butterflies
+  collection: ocean
