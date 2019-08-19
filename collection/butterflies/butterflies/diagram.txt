@@ -1,0 +1,25 @@
+butterflies (root)
+  BasicContainer; Collection =>
+
+    california-pipevine-swallowtail
+      DirectContainer
+      hasPart / isPartOf =>
+
+        swallowtail1
+          CreativeWork =>
+
+            videos
+              DirectContainer
+              associatedMedia
+              encodesCreativeWork =>
+
+                cps_v_mpd
+                  DirectContainer
+                  hasPart / isPartOf =>
+
+                    swallowtail.mpd
+                      ImageObject
+                      VideoObject
+                      MediaObject
+                      CreativeWork
+

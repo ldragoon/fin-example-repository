@@ -1,0 +1,24 @@
+@prefix schema: <http://schema.org/> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix ldp:  <http://www.w3.org/ns/ldp#> .
+@prefix acl: <http://www.w3.org/ns/auth/acl#> .
+@prefix fedora: <http://fedora.info/definitions/v4/webac#> .
+@prefix lcna: <http://id.loc.gov/authorities/names/>.
+
+<>
+    a ldp:BasicContainer, schema:CreativeWork, schema:Video;
+    schema:name "California Pipevine Swallowtail Butterfly" ;
+    schema:creator "Wikimedia Commons" ;
+    schema:publisher "Wikimedia Commons" ;
+    schema:keywords "Butterflies", "Video", "California", "Pipevine Swallowtail" ;
+    schema:image <cps_v_mp4/thumbnail.jpg> ;
+    schema:datePublished "2019"^^<http://www.w3.org/2001/XMLSchema#gYear> ;
+    schema:description "California Pipevine Swallowtail videos" ;
+    schema:alternativeHeadline "DESCRIPTION" ;
+    schema:video <cps_v_mp4/Butterfly_Swallowtail.ogv.240p.vp9.mp4> ;
+    schema:encodingFormat "video/mp4" ;
+    schema:videoFrameSize "320x240" ;
+    schema:videoQuality "240" ;
+    schema:duration "00:36" ;
+    schema:fileSize "1461237" ;
+    schema:contentSize "1.5 MB" .

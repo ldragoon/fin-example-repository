@@ -5,18 +5,19 @@
 @prefix fedora: <http://fedora.info/definitions/v4/webac#> .
 @prefix lcna: <http://id.loc.gov/authorities/names/>.
 
-<>
-    a ldp:BasicContainer, schema:CreativeWork, schema:Video;
+<../swallowtail.mpd> a schema:ImageObject, schema:VideoObject, schema:MediaObject, schema:CreativeWork;
+    schema:encodesCreativeWork <..>;
     schema:name "California Pipevine Swallowtail Butterfly" ;
     schema:creator "Wikimedia Commons" ;
     schema:publisher "Wikimedia Commons" ;
     schema:keywords "Butterflies", "Video", "California", "Pipevine Swallowtail" ;
-    schema:image <cps_v_mp4/thumbnail.jpg> ;
+    schema:image <../thumbnail.png> ;
+    schema:embedUrl "swallowtail.mpd";
+    schema:video "swallowtail.mpd";
     schema:datePublished "2019"^^<http://www.w3.org/2001/XMLSchema#gYear> ;
     schema:description "California Pipevine Swallowtail videos" ;
     schema:alternativeHeadline "DESCRIPTION" ;
-    schema:video <cps_v_mp4/Butterfly_Swallowtail.ogv.240p.vp9.webm> ;
-    schema:encodingFormat "video/webm" ;
+    schema:encodingFormat "application/dash+xml" ;
     schema:videoFrameSize "320x240" ;
     schema:videoQuality "240" ;
     schema:duration "00:36" ;
