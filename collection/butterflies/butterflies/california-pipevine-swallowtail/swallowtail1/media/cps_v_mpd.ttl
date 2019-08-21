@@ -7,5 +7,5 @@
     ldp:membershipResource  <cps_v_mpd> ;
     ldp:hasMemberRelation   schema:hasPart ;
     ldp:isMemberOfRelation  schema:isPartOf ;
-    schema:name "cps_v_mpd" ;
+    schema:name "California Pipevine Swallowtail Butterfly" ;
     .
