@@ -4,8 +4,9 @@
 @prefix acl: <http://www.w3.org/ns/auth/acl#> .
 @prefix fedora: <http://fedora.info/definitions/v4/webac#> .
 @prefix lcna: <http://id.loc.gov/authorities/names/>.
+@prefix ucdlib: <http://digital.ucdavis.edu/schema#> .
 
-<../swallowtail.mpd> a schema:ImageObject, schema:VideoObject, schema:MediaObject, schema:CreativeWork;
+<../swallowtail.mpd> a ucdlib:StreamingVideo, schema:VideoObject, schema:MediaObject;
     schema:encodesCreativeWork <..>;
     schema:name "California Pipevine Swallowtail Butterfly" ;
     schema:creator "Wikimedia Commons" ;

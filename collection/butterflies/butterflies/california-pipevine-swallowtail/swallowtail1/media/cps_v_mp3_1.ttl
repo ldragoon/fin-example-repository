@@ -1,0 +1,13 @@
+@prefix schema: <http://schema.org/> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix ldp:  <http://www.w3.org/ns/ldp#> .
+@prefix acl: <http://www.w3.org/ns/auth/acl#> .
+@prefix fedora: <http://fedora.info/definitions/v4/webac#> .
+@prefix lcna: <http://id.loc.gov/authorities/names/>.
+
+<>
+    a ldp:BasicContainer, schema:CreativeWork, schema:AudioObject, schema:Audio;
+    schema:name "Gran ventura" ;
+    schema:image <cps_v_mp3_1/puccini_madama_bu_sce_29_or_vie.mp3> ;
+    schema:description "Madame Buttefly: Gran ventura" ;
+    schema:encodingFormat "audio/mpeg" ;
