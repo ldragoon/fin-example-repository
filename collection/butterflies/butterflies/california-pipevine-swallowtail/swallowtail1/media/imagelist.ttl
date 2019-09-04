@@ -1,0 +1,7 @@
+@prefix schema:  <http://schema.org/> .
+@prefix ucdlib:  <http://digital.ucdavis.edu/schema#> .
+@prefix ldp:  <http://www.w3.org/ns/ldp#> .
+
+<> a schema:DirectContainer, ldp:MediaObject, ucdlib:ImageList;
+    schema:name "Image List" ;
+    schema:encodingFormat "ImageList" .

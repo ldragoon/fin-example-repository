@@ -21,6 +21,6 @@
     schema:videoFrameSize "1920x1080" ;
     schema:videoQuality "1080" ;
     schema:duration "00:09" ;
-    schema:fileSize "1180139" ;
+    schema:contentSize "1180139" ;
     schema:url "https://www.videvo.net/video/monarch-butterfly-on-flower/457088/" ;
     schema:contentSize "28 MB" .
