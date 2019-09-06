@@ -6,21 +6,10 @@
 @prefix lcna: <http://id.loc.gov/authorities/names/>.
 
 <>
-    a ldp:BasicContainer, schema:CreativeWork, schema:Video;
+    a ldp:DirectContainer, schema:MediaObject, schema:VideoObject;
+    ldp:membershipResource  <mb_v_mp4> ;
+    ldp:hasMemberRelation   schema:hasPart ;
+    ldp:isMemberOfRelation  schema:isPartOf ;
     schema:name "Monarch Butterfly" ;
-    schema:creator "USFWS" ;
-    schema:publisher "USFWS" ;
-    schema:keywords "Butterflies", "Video", "Monarch" ;
     schema:image <mb_v_mp4/thumbnail.jpg> ;
-    schema:datePublished "2019"^^<http://www.w3.org/2001/XMLSchema#gYear> ;
-    schema:license <http://rightsstatements.org/vocab/InC-NC/1.0/> ;
-    schema:description "Monarch videos" ;
-    schema:alternativeHeadline "Monarch Butterfly on a Flower" ;
-    schema:transcript <mb_v_mp4/sample_transcript.pdf>, <mb_v_mp4/sample_transcript.docx> ;
-    schema:video <mb_v_mp4/monarch_butterfly.mp4> ;
-    schema:encodingFormat "video/mp4" ;
-    schema:videoFrameSize "1920x1080" ;
-    schema:videoQuality "1080" ;
-    schema:duration "00:09" ;
-    schema:contentSize "1180139" ;
-    schema:url "https://www.videvo.net/video/monarch-butterfly-on-flower/457088/" .
+    .

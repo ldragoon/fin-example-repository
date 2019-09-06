@@ -2,9 +2,9 @@
 @prefix ldp:  <http://www.w3.org/ns/ldp#> .
 
 <>
-        a ldp:DirectContainer ;
-        schema:name "Video Directory" ;
-	      schema:description "Monarch Butterfly Videos" ;
-        ldp:membershipResource  <.> ;
-        ldp:hasMemberRelation   schema:associatedMedia ;
-        ldp:isMemberOfRelation  schema:encodesCreativeWork .
+  a ldp:DirectContainer ;
+  schema:name "Video Directory" ;
+  schema:description "Monarch Butterfly Videos" ;
+  ldp:membershipResource  <.> ;
+  ldp:hasMemberRelation   schema:associatedMedia ;
+  ldp:isMemberOfRelation  schema:encodesCreativeWork .

@@ -1,7 +1,7 @@
 
 @prefix schema: <http://schema.org/> .
 
-<../monarch_butterfly.mp4> a schema:ImageObject, schema:VideoObject, schema:MediaObject, schema:CreativeWork;
+<../monarch_butterfly.mp4> a schema:VideoObject, schema:MediaObject, schema:CreativeWork;
  schema:encodesCreativeWork <..>;
  schema:name "Monarch Butterfly";
  schema:caption "A monarch butterfly collecting necter from a yellow flower. Please credit: U.S. Fish & Wildlife Service, National Conservation Training Center, Creative Imagery.";
@@ -14,6 +14,7 @@
  schema:alternativeHeadline "Monarch Butterfly on a Flower";
  schema:keywords "Butterfly","Monarch", "Danaus plexippus";
  schema:license <http://rightsstatements.org/vocab/InC-NC/1.0/>;
+ schema:transcript "sample_transcript.pdf";
  schema:productionCompany "USFWS";
  schema:encodingFormat "video/mp4";
  schema:url "https://www.videvo.net/video/monarch-butterfly-on-flower/457088/";
