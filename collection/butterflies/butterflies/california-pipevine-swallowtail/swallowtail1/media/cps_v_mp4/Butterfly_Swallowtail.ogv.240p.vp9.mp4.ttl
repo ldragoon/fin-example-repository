@@ -10,7 +10,7 @@
  schema:videoFrameSize "320x240";
  schema:videoQuality "240";
  schema:duration "00:36";
- schema:contentSize "1.5 MB";
+ schema:contentSize "1461237";
  schema:alternativeHeadline "Swallowtail Butterfly";
  schema:keywords "Butterfly", "Swallowtail", "Papilio rutulus";
  schema:license <http://rightsstatements.org/vocab/InC-NC/1.0/>;

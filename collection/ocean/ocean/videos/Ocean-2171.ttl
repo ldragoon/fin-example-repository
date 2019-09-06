@@ -20,5 +20,4 @@
     schema:videoFrameSize "1280x720" ;
     schema:videoQuality "720" ;
     schema:duration "00:20" ;
-    schema:fileSize "8452896" ;
-    schema:contentSize "8.5 MB" .
+    schema:contentSize "8452896" .

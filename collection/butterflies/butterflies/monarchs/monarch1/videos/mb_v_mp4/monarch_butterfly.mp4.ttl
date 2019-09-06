@@ -10,7 +10,7 @@
  schema:videoFrameSize "1920x1080";
  schema:videoQuality "1080";
  schema:duration "00:09";
- schema:contentSize "28 MB";
+ schema:contentSize "28944475";
  schema:alternativeHeadline "Monarch Butterfly on a Flower";
  schema:keywords "Butterfly","Monarch", "Danaus plexippus";
  schema:license <http://rightsstatements.org/vocab/InC-NC/1.0/>;
