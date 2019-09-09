@@ -6,6 +6,7 @@
  schema:name "Monarch Butterfly";
  schema:caption "A monarch butterfly collecting necter from a yellow flower. Please credit: U.S. Fish & Wildlife Service, National Conservation Training Center, Creative Imagery.";
  schema:embedUrl "monarch_butterfly.mp4";
+ schema:image <../thumbnail.jpg> ;
  schema:video "monarch_butterfly.mp4";
  schema:videoFrameSize "1920x1080";
  schema:videoQuality "1080";
@@ -15,6 +16,7 @@
  schema:keywords "Butterfly","Monarch", "Danaus plexippus";
  schema:license <http://rightsstatements.org/vocab/InC-NC/1.0/>;
  schema:transcript "sample_transcript.pdf";
+ schema:transcript "sample_transcript.docx";
  schema:productionCompany "USFWS";
  schema:encodingFormat "video/mp4";
  schema:url "https://www.videvo.net/video/monarch-butterfly-on-flower/457088/";

@@ -11,5 +11,4 @@
     ldp:hasMemberRelation   schema:hasPart ;
     ldp:isMemberOfRelation  schema:isPartOf ;
     schema:name "Monarch Butterfly" ;
-    schema:image <mb_v_mp4/thumbnail.jpg> ;
     .
