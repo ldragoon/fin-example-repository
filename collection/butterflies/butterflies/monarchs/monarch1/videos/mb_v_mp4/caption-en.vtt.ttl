@@ -4,5 +4,5 @@
   schema:encodesCreativeWork <..> ;
   schema:embedUrl "caption-en.vtt" ;
   schema:encodingFormat "text/vtt";
-  schema:inLanguage "eng";
+  schema:inLanguage "en";
   .

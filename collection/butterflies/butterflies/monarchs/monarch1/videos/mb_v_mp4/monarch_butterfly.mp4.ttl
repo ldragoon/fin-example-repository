@@ -5,7 +5,7 @@
  schema:encodesCreativeWork <..>;
  schema:name "Monarch Butterfly";
  schema:description "A monarch butterfly collecting necter from a yellow flower. Please credit: U.S. Fish & Wildlife Service, National Conservation Training Center, Creative Imagery.";
- schema:caption <../caption-en.vtt>;
+ schema:caption <../caption-en.vtt>, <../caption-fr.vtt>;
  schema:embedUrl "monarch_butterfly.mp4";
  schema:image <../thumbnail.jpg> ;
  schema:video "monarch_butterfly.mp4";
