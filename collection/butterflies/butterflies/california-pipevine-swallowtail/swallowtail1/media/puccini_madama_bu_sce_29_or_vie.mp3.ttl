@@ -5,10 +5,12 @@
  schema:encodesCreativeWork <..>;
  schema:name "Gran ventura";
  schema:caption "Madame Butterfly: Gran ventura";
+ schema:audio "puccini_madama_bu_sce_29_or_vie.mp3";
  schema:embedUrl "puccini_madama_bu_sce_29_or_vie.mp3";
  schema:contentUrl "puccini_madama_bu_sce_29_or_vie.mp3";
  schema:duration "03:40";
  schema:contentSize "4798055";
+ schema:image <../thumbnail.jpg> ;
  schema:alternativeHeadline "Madame Butterfly: Gran ventura";
  schema:keywords "Butterfly", "Madame", "Opera", "Gran ventura";
  schema:license <https://creativecommons.org/licenses/by-nc-sa/4.0/>;
