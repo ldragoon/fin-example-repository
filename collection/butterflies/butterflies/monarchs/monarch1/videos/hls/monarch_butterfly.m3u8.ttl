@@ -1,0 +1,27 @@
+@prefix schema: <http://schema.org/> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix ldp:  <http://www.w3.org/ns/ldp#> .
+@prefix acl: <http://www.w3.org/ns/auth/acl#> .
+@prefix fedora: <http://fedora.info/definitions/v4/webac#> .
+@prefix lcna: <http://id.loc.gov/authorities/names/>.
+@prefix ucdlib: <http://digital.ucdavis.edu/schema#> .
+
+<../monarch_butterfly.m3u8> a ucdlib:StreamingVideo, schema:VideoObject, schema:MediaObject;
+    schema:encodesCreativeWork <..>;
+    schema:name "Monarch Butterfly" ;
+    schema:creator "Wikimedia Commons" ;
+    schema:publisher "Wikimedia Commons" ;
+    schema:keywords "Butterflies", "Video", "Monarch" ;
+    schema:image <../thumbnail.jpg> ;
+    schema:embedUrl "monarch_butterfly.m3u8";
+    schema:video "monarch_butterfly.m3u8";
+    schema:datePublished "2019"^^<http://www.w3.org/2001/XMLSchema#gYear> ;
+    schema:description "Monarch butterfly m3u8 video" ;
+    schema:alternativeHeadline "DESCRIPTION" ;
+    schema:encodingFormat "application/vnd.apple.mpegurl" ;
+    schema:videoFrameSize "320x240", "360x640", "480x800" ;
+    schema:videoQuality "240", "640", "800" ;
+    schema:duration "00:09" ;
+    schema:fileSize "258", "405", "583" ;
+    schema:contentSize "258", "405", "583";
+    .
