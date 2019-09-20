@@ -19,9 +19,9 @@
     schema:description "Monarch butterfly m3u8 video" ;
     schema:alternativeHeadline "DESCRIPTION" ;
     schema:encodingFormat "application/vnd.apple.mpegurl" ;
-    schema:videoFrameSize "320x240", "360x640", "480x800" ;
-    schema:videoQuality "240", "640", "800" ;
+    schema:videoFrameSize "480x800" ;
+    schema:videoQuality "800" ;
     schema:duration "00:09" ;
-    schema:fileSize "258", "405", "583" ;
-    schema:contentSize "258", "405", "583";
+    schema:fileSize "28944475" ;
+    schema:contentSize "28944475";
     .

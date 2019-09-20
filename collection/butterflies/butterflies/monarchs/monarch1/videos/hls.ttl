@@ -5,6 +5,7 @@
 <>
     a ldp:DirectContainer, schema:MediaObject, ucdlib:StreamingVideo;
     ldp:membershipResource  <hls> ;
+    ldp:hasMemberRelation   schema:hasPart ;
+    ldp:isMemberOfRelation  schema:isPartOf ;
     schema:name "Monarch Butterfly Streaming Video" ;
-    schema:encodingFormat "video/m3u8" ;
     .
