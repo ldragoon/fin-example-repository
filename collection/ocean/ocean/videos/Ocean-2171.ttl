@@ -4,11 +4,14 @@
 @prefix acl: <http://www.w3.org/ns/auth/acl#> .
 @prefix fedora: <http://fedora.info/definitions/v4/webac#> .
 @prefix lcna: <http://id.loc.gov/authorities/names/>.
+@prefix ucdlib:  <http://digital.ucdavis.edu/schema#> .
 
 <>
     a ldp:BasicContainer, schema:CreativeWork, schema:Video;
+    ucdlib:clientMedia <Ocean-2171/Ocean-2171.mp4> ;
     schema:name "Ocean Waves 2171" ;
     schema:creator "janeb13" ;
+    schema:caption <Ocean-2171/caption-en.vtt>;
     schema:publisher "Pixabay" ;
     schema:keywords "Ocean", "Waves", "Heavy Wind" ;
     schema:image <Ocean-2171/Ocean-2171-thumbnail.png> ;
@@ -20,4 +23,6 @@
     schema:videoFrameSize "1280x720" ;
     schema:videoQuality "720" ;
     schema:duration "00:20" ;
-    schema:contentSize "8452896" .
+    schema:contentSize "8452896" ;
+    schema:fileSize "8452896" ;
+    .

@@ -1,10 +1,12 @@
 
 @prefix schema: <http://schema.org/> .
+@prefix ebucore: <http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#> .
 
 <../Butterfly_Swallowtail.ogv.240p.vp9.webm> a schema:ImageObject, schema:VideoObject, schema:MediaObject, schema:CreativeWork;
  schema:encodesCreativeWork <..>;
  schema:name "Swallowtail Butterfly";
  schema:caption "A swallowtail butterfly.";
+ ebucore:filename "Butterfly_Swallowtail.ogv.240p.vp9.webm" ;
  schema:embedUrl "Butterfly_Swallowtail.ogv.240p.vp9.webm";
  schema:video "Butterfly_Swallowtail.ogv.240p.vp9.webm";
  schema:videoFrameSize "320x240";

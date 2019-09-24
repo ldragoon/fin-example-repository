@@ -2,8 +2,8 @@
 @prefix ldp:  <http://www.w3.org/ns/ldp#> .
 
 <>
-        a ldp:DirectContainer ;
-        schema:name "California pipevine swallowtail" ;
-        ldp:membershipResource  <.> ;
-        ldp:hasMemberRelation   schema:hasPart ;
-        ldp:isMemberOfRelation  schema:isPartOf .
+  a ldp:DirectContainer ;
+  schema:name "California pipevine swallowtail" ;
+  ldp:membershipResource  <.> ;
+  ldp:hasMemberRelation   schema:hasPart ;
+  ldp:isMemberOfRelation  schema:isPartOf .

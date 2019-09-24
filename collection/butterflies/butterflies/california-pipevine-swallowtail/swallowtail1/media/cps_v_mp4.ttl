@@ -4,6 +4,7 @@
 @prefix acl: <http://www.w3.org/ns/auth/acl#> .
 @prefix fedora: <http://fedora.info/definitions/v4/webac#> .
 @prefix lcna: <http://id.loc.gov/authorities/names/>.
+@prefix ebucore: <http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#> .
 
 <>
     a ldp:BasicContainer, schema:CreativeWork, schema:Video;
@@ -16,6 +17,7 @@
     schema:datePublished "2019"^^<http://www.w3.org/2001/XMLSchema#gYear> ;
     schema:description "California Pipevine Swallowtail videos" ;
     schema:alternativeHeadline "DESCRIPTION" ;
+    ebucore:filename "Butterfly_Swallowtail.ogv.240p.vp9.mp4" ;
     schema:video <cps_v_mp4/Butterfly_Swallowtail.ogv.240p.vp9.mp4> ;
     schema:encodingFormat "video/mp4" ;
     schema:videoFrameSize "320x240" ;

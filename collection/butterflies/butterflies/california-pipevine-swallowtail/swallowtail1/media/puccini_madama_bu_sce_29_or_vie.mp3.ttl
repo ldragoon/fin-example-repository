@@ -1,10 +1,12 @@
 
 @prefix schema: <http://schema.org/> .
+@prefix ebucore: <http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#> .
 
 <../puccini_madama_bu_sce_29_or_vie.mp3> a schema:AudioObject, schema:MediaObject, schema:CreativeWork;
  schema:encodesCreativeWork <..>;
  schema:name "Gran ventura";
  schema:caption "Madame Butterfly: Gran ventura";
+ ebucore:filename "puccini_madama_bu_sce_29_or_vie.mp3";
  schema:audio "puccini_madama_bu_sce_29_or_vie.mp3";
  schema:embedUrl "puccini_madama_bu_sce_29_or_vie.mp3";
  schema:contentUrl "puccini_madama_bu_sce_29_or_vie.mp3";

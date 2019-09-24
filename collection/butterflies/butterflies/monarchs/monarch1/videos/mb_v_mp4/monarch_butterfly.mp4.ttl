@@ -1,5 +1,6 @@
 
 @prefix schema: <http://schema.org/> .
+@prefix ebucore: <http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#> .
 
 <../monarch_butterfly.mp4> a schema:VideoObject, schema:MediaObject, schema:CreativeWork;
  schema:encodesCreativeWork <..>;
@@ -8,6 +9,7 @@
  schema:caption <../caption-en.vtt>, <../caption-fr.vtt>;
  schema:embedUrl "monarch_butterfly.mp4";
  schema:image <../thumbnail.jpg> ;
+ ebucore:filename "monarch_butterfly.mp4" ;
  schema:video "monarch_butterfly.mp4";
  schema:videoFrameSize "1920x1080";
  schema:videoQuality "1080";
