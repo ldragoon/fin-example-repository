@@ -1,6 +1,7 @@
 @prefix ldp:    <http://www.w3.org/ns/ldp#> .
 @prefix schema: <http://schema.org/> .
 @prefix ebucore: <http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#> .
+
 <../full.jpg> a schema:ImageObject,schema:MediaObject,schema:CreativeWork;
   schema:encodesCreativeWork <..>;
   schema:creator <http://id.loc.gov/authorities/names/no2008108707>;
