@@ -2,10 +2,8 @@
 @prefix fast: <http://id.worldcat.org/fast/>.
 @prefix lcna: <http://id.loc.gov/authorities/names/>.
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
-@prefix ucdlib:  <http://digital.ucdavis.edu/schema#> .
 
-<> a :Photograph, :CreativeWork;
-    ucdlib:clientMedia <tf1f59n6qq/full.tif> ;
+<> a :Photograph, :ImageObject, :CreativeWork;
     :publisher lcna:no2008108707, "University of California, Davis. General Library. Dept. of Special Collections";
     :license <http://rightsstatements.org/vocab/InC-NC/1.0/>;
     :identifier "http://ark.cdlib.org/ark:/13030/tf1f59n6qq", "B-10008";
