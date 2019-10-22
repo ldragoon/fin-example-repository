@@ -19,4 +19,5 @@
  schema:about <https://en.wikipedia.org/wiki/Monarch_butterfly>;
  schema:datePublished "2019"^^<http://www.w3.org/2001/XMLSchema#gYear>;
  schema:caption <../caption-en.vtt>, <../caption-fr.vtt> ;
+ schema:transcript <../sample_transcript.txt>, <../sample_transcript.pdf> ;
  .
