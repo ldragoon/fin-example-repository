@@ -1,0 +1,20 @@
+@prefix schema: <http://schema.org/> .
+@prefix fast:  <http://id.worldcat.org/fast/> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix ucdlib: <http://digital.ucdavis.edu/schema#> .
+@prefix wdt:   <http://www.wikidata.org/prop/direct/> .
+@prefix w:     <http://library.ucdavis.edu/wine-ontology#> .
+@prefix lcna:  <http://id.loc.gov/authorities/names/> .
+@prefix ldp:   <http://www.w3.org/ns/ldp#> .
+@prefix acl:   <http://www.w3.org/ns/auth/acl#> .
+
+<OIX6pWBy>
+        a                   schema:WebPage , ucdlib:Object ;
+        schema:license      <http://rightsstatements.org/vocab/CNE/1.0/> ;
+        schema:name         "Heitz Cellar Chardonnay" ;
+        schema:publisher    lcna:no2008108707 ;
+        schema:relatedLink  "#Image Credit" ;
+        schema:relatedLink  <https://robbreport.com/food-drink/wine/page-turns-heitz-cellar-eg18-2815094/> , <https://digitalassets.lib.berkeley.edu/roho/ucb/text/heitz_joseph__w.pdf> ;
+        schema:spatial      "38.490770, -122.450793" , "St. Helena, California" ;
+        schema:temporal     "1963" ;
+        schema:thumbnail    <OIX6pWBy/10260472.jpg> .

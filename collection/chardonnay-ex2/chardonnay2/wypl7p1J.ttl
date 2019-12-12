@@ -1,0 +1,32 @@
+@prefix schema: <http://schema.org/> .
+@prefix fast:  <http://id.worldcat.org/fast/> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix ucdlib: <http://digital.ucdavis.edu/schema#> .
+@prefix wdt:   <http://www.wikidata.org/prop/direct/> .
+@prefix w:     <http://library.ucdavis.edu/wine-ontology#> .
+@prefix lcna:  <http://id.loc.gov/authorities/names/> .
+@prefix ldp:   <http://www.w3.org/ns/ldp#> .
+@prefix acl:   <http://www.w3.org/ns/auth/acl#> .
+
+<wypl7p1J>
+        a                 schema:WebPage , ucdlib:Place ;
+        <9U1n81i1_2>
+                <9U1n81i1> ;
+        <FMtQve3S_1>
+                <FMtQve3S> ;
+        <puQadTTo_4>
+                <puQadTTo> ;
+        <wypl7p1J_1>
+                <FMtQve3S> ;
+        <wypl7p1J_3>
+                <Fc9HLLaf> ;
+        <wypl7p1J_5>
+                <puQadTTo> ;
+        <wypl7p1J_6>
+                <9U1n81i1> ;
+        schema:license    <http://rightsstatements.org/vocab/CNE/1.0/> ;
+        schema:name       "Wente Vineyards" ;
+        schema:publisher  lcna:no2008108707 ;
+        schema:spatial    "37.664235, -121.725368" , "Livermore, California" ;
+        schema:temporal   "1883/Present" ;
+        schema:thumbnail  <wypl7p1J/6PrInlsQ.jpg> .

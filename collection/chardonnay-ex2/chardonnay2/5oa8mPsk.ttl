@@ -1,0 +1,28 @@
+@prefix schema: <http://schema.org/> .
+@prefix fast:  <http://id.worldcat.org/fast/> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix ucdlib: <http://digital.ucdavis.edu/schema#> .
+@prefix wdt:   <http://www.wikidata.org/prop/direct/> .
+@prefix w:     <http://library.ucdavis.edu/wine-ontology#> .
+@prefix lcna:  <http://id.loc.gov/authorities/names/> .
+@prefix ldp:   <http://www.w3.org/ns/ldp#> .
+@prefix acl:   <http://www.w3.org/ns/auth/acl#> .
+
+<5oa8mPsk>
+        a                   schema:WebPage , ucdlib:Person ;
+        <5oa8mPsk_1>
+                <9HL67beb> ;
+        <5oa8mPsk_3>
+                <puQadTTo> ;
+        <5oa8mPsk_4>
+                <iuZ2tigv> ;
+        <puQadTTo_5>
+                <puQadTTo> ;
+        schema:license      <http://rightsstatements.org/vocab/CNE/1.0/> ;
+        schema:name         "Harold Olmo" ;
+        schema:publisher    lcna:no2008108707 ;
+        schema:relatedLink  "#Image Credit" ;
+        schema:relatedLink  <https://www.ucdavis.edu/news/harold-olmo-pioneering-wine-grape-scientist-and-other-obituaries/> , <https://www.nytimes.com/2006/07/12/us/12olmo.html> , <https://search.library.ucdavis.edu/permalink/f/f5oast/01UCD_ALMA21238926140003126> , <http://iv.ucdavis.edu/files/24489.pdf> , <https://ohc-search.lib.berkeley.edu/catalog/MASTER_292> ;
+        schema:spatial      "37.760000, -122.420000" , "San Francisco, California" ;
+        schema:temporal     "1906/2006" ;
+        schema:thumbnail    <5oa8mPsk/image.png> .

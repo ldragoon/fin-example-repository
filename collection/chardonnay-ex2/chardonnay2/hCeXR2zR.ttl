@@ -1,0 +1,31 @@
+@prefix schema: <http://schema.org/> .
+@prefix fast:  <http://id.worldcat.org/fast/> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix ucdlib: <http://digital.ucdavis.edu/schema#> .
+@prefix wdt:   <http://www.wikidata.org/prop/direct/> .
+@prefix w:     <http://library.ucdavis.edu/wine-ontology#> .
+@prefix lcna:  <http://id.loc.gov/authorities/names/> .
+@prefix ldp:   <http://www.w3.org/ns/ldp#> .
+@prefix acl:   <http://www.w3.org/ns/auth/acl#> .
+
+<hCeXR2zR>
+        a                   ucdlib:Person , schema:WebPage ;
+        <I3IabGsw_1>
+                <I3IabGsw> ;
+        <PidlX1mJ_1>
+                <PidlX1mJ> ;
+        <hCeXR2zR_1>
+                <Ib1NpQvT> ;
+        <hCeXR2zR_2>
+                <cquwBxNn> ;
+        <hCeXR2zR_3>
+                <PidlX1mJ> ;
+        <hCeXR2zR_4>
+                <I3IabGsw> ;
+        schema:license      <http://rightsstatements.org/vocab/CNE/1.0/> ;
+        schema:name         "Charles Wetmore" ;
+        schema:publisher    lcna:no2008108707 ;
+        schema:relatedLink  <https://en.wikipedia.org/wiki/Charles_Wetmore_(winemaker)> ;
+        schema:spatial      "43.673479, -70.310400" , "Portland, Maine" ;
+        schema:temporal     "1847/1894" ;
+        schema:thumbnail    <hCeXR2zR/image.png> .

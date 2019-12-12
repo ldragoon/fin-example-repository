@@ -1,0 +1,27 @@
+@prefix schema: <http://schema.org/> .
+@prefix fast:  <http://id.worldcat.org/fast/> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix ucdlib: <http://digital.ucdavis.edu/schema#> .
+@prefix wdt:   <http://www.wikidata.org/prop/direct/> .
+@prefix w:     <http://library.ucdavis.edu/wine-ontology#> .
+@prefix lcna:  <http://id.loc.gov/authorities/names/> .
+@prefix ldp:   <http://www.w3.org/ns/ldp#> .
+@prefix acl:   <http://www.w3.org/ns/auth/acl#> .
+
+<BJqHUXnH>
+        a                   schema:WebPage , ucdlib:Person ;
+        <BJqHUXnH_1>
+                <bViy4XbX> ;
+        <BJqHUXnH_2>
+                <ZZV840iO> ;
+        <ZZV840iO_2>
+                <ZZV840iO> ;
+        <bViy4XbX_1>
+                <bViy4XbX> ;
+        schema:license      <http://rightsstatements.org/vocab/CNE/1.0/> ;
+        schema:name         "James D. Zellerbach" ;
+        schema:publisher    lcna:no2008108707 ;
+        schema:relatedLink  <https://en.wikipedia.org/wiki/Hanzell_Vineyards> ;
+        schema:spatial      "37.783333, -122.416667" , "San Francisco, California" ;
+        schema:temporal     "1892/1963" ;
+        schema:thumbnail    <BJqHUXnH/image.png> .

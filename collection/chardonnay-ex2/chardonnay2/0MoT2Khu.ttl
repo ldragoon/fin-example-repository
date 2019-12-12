@@ -1,0 +1,22 @@
+@prefix schema: <http://schema.org/> .
+@prefix fast:  <http://id.worldcat.org/fast/> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix ucdlib: <http://digital.ucdavis.edu/schema#> .
+@prefix wdt:   <http://www.wikidata.org/prop/direct/> .
+@prefix w:     <http://library.ucdavis.edu/wine-ontology#> .
+@prefix lcna:  <http://id.loc.gov/authorities/names/> .
+@prefix ldp:   <http://www.w3.org/ns/ldp#> .
+@prefix acl:   <http://www.w3.org/ns/auth/acl#> .
+
+<0MoT2Khu>
+        a                   schema:WebPage , ucdlib:Person ;
+        <0MoT2Khu_1>
+                <RdTzzVHN> ;
+        <0MoT2Khu_2>
+                <8w89Z72S> ;
+        schema:license      <http://rightsstatements.org/vocab/CNE/1.0/> ;
+        schema:name         "Patricia Gastaud-Gallagher" ;
+        schema:publisher    lcna:no2008108707 ;
+        schema:relatedLink  <https://en.wikipedia.org/wiki/Patricia_Gallagher> , <https://www.sfchronicle.com/wine/article/The-hidden-figures-benind-the-Judgment-of-Paris-13333299.php> , <https://americanhistory.si.edu/blog/40th-anniversary-paris-tasting> ;
+        schema:temporal     "1951/Present" ;
+        schema:thumbnail    <0MoT2Khu/DqXaKE7WwAAfaWH.jpg> .

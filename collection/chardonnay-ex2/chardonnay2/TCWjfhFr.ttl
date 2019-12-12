@@ -1,0 +1,29 @@
+@prefix schema: <http://schema.org/> .
+@prefix fast:  <http://id.worldcat.org/fast/> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix ucdlib: <http://digital.ucdavis.edu/schema#> .
+@prefix wdt:   <http://www.wikidata.org/prop/direct/> .
+@prefix w:     <http://library.ucdavis.edu/wine-ontology#> .
+@prefix lcna:  <http://id.loc.gov/authorities/names/> .
+@prefix ldp:   <http://www.w3.org/ns/ldp#> .
+@prefix acl:   <http://www.w3.org/ns/auth/acl#> .
+
+<TCWjfhFr>
+        a                   schema:WebPage , ucdlib:Person ;
+        <9U1n81i1_1>
+                <9U1n81i1> ;
+        <TCWjfhFr_1>
+                <7qZDSE5E> ;
+        <TCWjfhFr_2>
+                <wypl7p1J> ;
+        <TCWjfhFr_3>
+                <9U1n81i1> ;
+        <wypl7p1J_4>
+                <wypl7p1J> ;
+        schema:license      <http://rightsstatements.org/vocab/CNE/1.0/> ;
+        schema:name         "Carl H. Wente" ;
+        schema:publisher    lcna:no2008108707 ;
+        schema:relatedLink  "#Image Credit" ;
+        schema:relatedLink  <https://americanhistory.si.edu/collections/search/object/nmah_1464815> , <https://en.wikipedia.org/wiki/Wente_Vineyards> ;
+        schema:spatial      "Hanover, Germany" , "52.376384, 9.802665" ;
+        schema:temporal     "1851/1934" .

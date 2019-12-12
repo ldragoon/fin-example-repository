@@ -1,0 +1,17 @@
+@prefix schema: <http://schema.org/> .
+@prefix fast:  <http://id.worldcat.org/fast/> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix ucdlib: <http://digital.ucdavis.edu/schema#> .
+@prefix wdt:   <http://www.wikidata.org/prop/direct/> .
+@prefix w:     <http://library.ucdavis.edu/wine-ontology#> .
+@prefix lcna:  <http://id.loc.gov/authorities/names/> .
+@prefix ldp:   <http://www.w3.org/ns/ldp#> .
+@prefix acl:   <http://www.w3.org/ns/auth/acl#> .
+
+<cquwBxNn>
+        a                   ucdlib:Object , schema:WebPage ;
+        schema:description  "Like other early members of the State Board of Viticulture Commissioners, Charles Wetmore looked to foreign markets and growing areas to inform his decisions about which wine grape varieties to plant in California. He imported budwood from Meursault, a small AVA on the southern coast of Burgundy, known for producing buttery, oaked, chardonnay. This line was passed among new vineyards, to become an integral component of the well-known Wente Clone.   #Connections#Link to Learn More#Image Credit" ;
+        schema:license      <http://rightsstatements.org/vocab/CNE/1.0/> ;
+        schema:name         "Meursault Budwood" ;
+        schema:publisher    lcna:no2008108707 ;
+        schema:thumbnail    <cquwBxNn/Meursault_-_002.jpg> .

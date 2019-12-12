@@ -1,0 +1,21 @@
+@prefix : <http://schema.org/> .
+@prefix schema: <http://schema.org/> .
+@prefix col:   <https://next.dams.library.ucdavis.edu/fcrepo/rest/collection/sherry-lehmann> .
+@prefix skos:  <http://www.w3.org/2004/02/skos/core#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xmlns: <http://www.w3.org/2000/xmlns/> .
+@prefix xml:   <http://www.w3.org/XML/1998/namespace> .
+@prefix foaf:  <http://xmlns.com/foaf/0.1/> .
+@prefix ucdlib: <http://digital.ucdavis.edu/schema#> .
+@prefix fast:  <http://id.worldcat.org/fast/> .
+@prefix lcna: <http://id.loc.gov/authorities/names/> .
+@prefix viaf: <http://viaf.org/viaf/sourceID/> .
+
+
+lcna:no2008108707 a :Organization ;
+    :name "University of California, Davis. General Library. Dept. of Special Collections" ;
+    .
+
+fast:1008232  schema:name  "Manuscripts--Catalogs" .
+
+fast:1175887  schema:name  "Wine--Marketing" .

@@ -1,0 +1,21 @@
+@prefix schema: <http://schema.org/> .
+@prefix fast:  <http://id.worldcat.org/fast/> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix ucdlib: <http://digital.ucdavis.edu/schema#> .
+@prefix wdt:   <http://www.wikidata.org/prop/direct/> .
+@prefix w:     <http://library.ucdavis.edu/wine-ontology#> .
+@prefix lcna:  <http://id.loc.gov/authorities/names/> .
+@prefix ldp:   <http://www.w3.org/ns/ldp#> .
+@prefix acl:   <http://www.w3.org/ns/auth/acl#> .
+
+<nG7eTNMs>
+        a                   schema:WebPage , ucdlib:Place ;
+        schema:description  "In the 1950s research scientists from the USDA and UC Davis, in response to severe virus infections in vineyards, formed the Foundation Plant Material Service (FPMS). These scientists develop methods for grape virus disease detection and disease elimination. A large collection of disease-tested wine, table, raisin and rootstock grape selections was created which became the foundation for the California Grapevine Registration & Certification (R&C) Program. The FPMS later changed its name to Foundation Plant Service (FPS) and continues its work on the current Foundation Vineyards of over 100 acres. Vines are inspected and retested regularly by FPS and California Department of Food and Agriculture (CDFA). #Connections" ;
+        schema:license      <http://rightsstatements.org/vocab/CNE/1.0/> ;
+        schema:name         "Foundation Plant Services" ;
+        schema:publisher    lcna:no2008108707 ;
+        schema:relatedLink  "#Image Credit" ;
+        schema:relatedLink  <https://fps.ucdavis.edu/grapebook/winebook.cfm?chap=FPSEstablished> , <http://fps.ucdavis.edu/> ;
+        schema:spatial      "38.534879, -121.790775" , "Davis, California" ;
+        schema:temporal     "1958/present" ;
+        schema:thumbnail    <nG7eTNMs/image.png> .

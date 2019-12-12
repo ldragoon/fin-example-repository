@@ -1,0 +1,14 @@
+@prefix schema: <http://schema.org/> .
+@prefix fast:  <http://id.worldcat.org/fast/> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix ucdlib: <http://digital.ucdavis.edu/schema#> .
+@prefix wdt:   <http://www.wikidata.org/prop/direct/> .
+@prefix w:     <http://library.ucdavis.edu/wine-ontology#> .
+@prefix lcna:  <http://id.loc.gov/authorities/names/> .
+@prefix ldp:   <http://www.w3.org/ns/ldp#> .
+@prefix acl:   <http://www.w3.org/ns/auth/acl#> .
+
+<hrwZr4pQ_3>
+        a                   schema:significantLink ;
+        schema:description  "The chardonnay population at Wente Vineyards, which came to be called the Wente Clone, derived from two sources, one of which was budwood taken from the Theodore Gier Vineyard in Pleasanton, which Wetmore brought from Meursault, France, in 1882." ;
+        schema:name         "provided" .

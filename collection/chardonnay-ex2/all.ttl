@@ -1,0 +1,846 @@
+@prefix schema: <http://schema.org/> .
+@prefix fast:  <http://id.worldcat.org/fast/> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix ucdlib: <http://digital.ucdavis.edu/schema#> .
+@prefix wdt:   <http://www.wikidata.org/prop/direct/> .
+@prefix w:     <http://library.ucdavis.edu/wine-ontology#> .
+@prefix ldp:  <http://www.w3.org/ns/ldp#> .
+@prefix acl: <http://www.w3.org/ns/auth/acl#>  .
+@prefix lcna: <http://id.loc.gov/authorities/names/> .
+
+<PidlX1mJ_5>  a          schema:significantLink ;
+        schema:description  <https://localwiki.org/oakland/Theodore_Gier> .
+
+<puQadTTo_4>  a          schema:significantLink ;
+        schema:description  "Harold Olmo selected promising material from the Martini planting of the Wente Clone, grown at Wente's Stanley Ranch Vineyard in Carneros, California. Through breeding, and heat treatment to eliminate viral infections, the team was able to raise the average yield from one half ton per acre in the 1950s to over five tons per acre. This improvement made chardonnay commercially viable in California." ;
+        schema:name         "cultivated" .
+
+<wypl7p1J_5>  a          schema:significantLink ;
+        schema:description  "The Chardonnay population at Wente Vineyards, which came to be called the Wente Clone, derived from two sources, one of which was material Carl Wente imported from the vine nursery of the wine school at the University of Montpellier in southern France around 1912." ;
+        schema:name         "cultivated" .
+
+<5oa8mPsk_4>  a   schema:significantLink ;
+        schema:name  "collaborated" .
+
+<ibjOU3Qz_1>  a   schema:significantLink ;
+        schema:name  "co-founded" .
+
+<hrwZr4pQ_3>  a          schema:significantLink ;
+        schema:description  "The chardonnay population at Wente Vineyards, which came to be called the Wente Clone, derived from two sources, one of which was budwood taken from the Theodore Gier Vineyard in Pleasanton, which Wetmore brought from Meursault, France, in 1882." ;
+        schema:name         "provided" .
+
+<SsiGNhgD_1>  a   schema:significantLink ;
+        schema:name  "tasted" .
+
+<ZZV840iO_1>  a          schema:significantLink ;
+        schema:description  "James Zellerbach hired Brad Webb to be Hanzell's winemaker in 1956." ;
+        schema:name         "winemaker" .
+
+<9U1n81i1_2>  a          schema:significantLink ;
+        schema:description  "The chardonnay population at Wente Vineyards, which came to be called the Wente Clone, derived from two sources, one of which was material Carl Wente imported from the vine nursery of the wine school at the University of Montpellier in southern France around 1912." ;
+        schema:name         "planted" .
+
+<CvTHg5Ea_2>  a          schema:significantLink ;
+        schema:description  "In 1963, Joe Heitz bottled and sold Zellerbach's '61 and '62 vintages of chardonnay at a price unheard of at the time for the wine, $9, elevating the variety's reputation as a premium wine." ;
+        schema:name         "founded" .
+
+<bViy4XbX_4>  a          schema:significantLink ;
+        schema:description  "Hanzell’s 1957 Chardonnay was one of the wines tasted at diplomat Morrill Cody’s dinner in 1960. Of the five participants, three of them mistook the California wine as being Corton Charlemagne 1955, a French Burgundy." ;
+        schema:name         "winemaker" .
+
+<65gmPKZY>  a            schema:WebPage , ucdlib:Person ;
+        schema:license      <http://rightsstatements.org/vocab/CNE/1.0/> ;
+        schema:name         "James (Jim) Barrett" ;
+        schema:publisher    <http://id.loc.gov/authorities/names/no2008108707> ;
+        schema:relatedLink  <https://montelena.com/winery/history> , <https://www.thedrinksbusiness.com/2013/03/chateau-montelena-owner-jim-barrett-dies/> , <https://www.winespectator.com/articles/chateau-montelena-owner-jim-barrett-dies-at-86-48165> ;
+        schema:temporal     "1926/2013" ;
+        schema:thumbnail    <65gmPKZY/jim-barrett.jpg> ;
+        <65gmPKZY_1>     <zBgXIHXc> .
+
+<puQadTTo_9>  a          schema:significantLink ;
+        schema:description  "The chardonnay population at Wente Vineyards, which came to be called the Wente Clone, derived from two sources, one of which was material Carl Wente imported from the vine nursery of the wine school at the University of Montpellier in southern France around 1912." ;
+        schema:name         "planted" .
+
+<Q9pXX12q_5>  a          schema:significantLink ;
+        schema:description  <https://www.sfgate.com/news/article/Louis-P-Martini-Napa-Valley-Winemaker-2989663.php> .
+
+<0MoT2Khu_2>  a   schema:significantLink ;
+        schema:name  "with" .
+
+<Fc9HLLaf>  a            ucdlib:Object , schema:WebPage ;
+        schema:description  "After Prohibition, Frank Schoonmaker, a New York merchant, was instrumental in the California wine industry's recovery after repeal. Schoonmaker founded Frank Schoonmaker Selections in 1936 and included California chardonnay in his portfolio. Schoonmaker, who was critical of the common practice of naming California wines after French winegrowing regions, labelled his selections under the founder's name, followed by variety, producer, and region.  While Schoonmaker was selling Wente chardonnay on the East Coast, Wente was also using varietal labelling for their wines distributed on the West Coast. Like Schoonmaker, Ernest Wente believed that the long-term success for the winery was rooted in consumer education, and that varietal labelling was one step in that process. In 1936 Wente was the first California winery to produce a wine labeled as chardonnay.  #Connections#Link to Learn More#Image Credit\nWente Vineyards" ;
+        schema:license      <http://rightsstatements.org/vocab/CNE/1.0/> ;
+        schema:name         "1936 Wente Chardonnay" ;
+        schema:publisher    <http://id.loc.gov/authorities/names/no2008108707> ;
+        schema:thumbnail    <Fc9HLLaf/Wente_Brothers_Bottle_1936-1.jpg> .
+
+<hPI526VA_1>  a          schema:significantLink ;
+        schema:description  "Fred and Eleanor McCrea found the property that would become Stony Hill Vineyard in the early 1940s. By 1943, they had made the rugged hillside spot on Spring Mountain their home." ;
+        schema:name         "co-founded" .
+
+<PidlX1mJ_4>  a          schema:significantLink ;
+        schema:description  <https://cdnc.ucr.edu/cgi-bin/cdnc?a=d&d=LH18960125.2.37&srpos=16&e=-------en--20--1-byDA-txt-txIN-%252522theodore+gier%252522-------1> ;
+        schema:name         "owned" .
+
+<puQadTTo_3>  a          schema:significantLink ;
+        schema:description  "With cuttings from the vine nursery at the University of Montpellier and chardonnay budwood from the Theodore Gier Vineyard in Pleasanton, which was planted using budwood obtained from Charles Wetmore who brought the budwood from Meursault in Burgundy around 1882, Ernest Wente began the 30- to 40-year process of selecting only vines with favorable traits and replanting them. Over time this chardonnay became known as the Wente clone (actually several clones) and was planted in many vineyards in California and beyond." ;
+        schema:name         "cultivated" .
+
+<wypl7p1J_4>  a          schema:significantLink ;
+        schema:description  "With cuttings from the vine nursery at the University of Montpellier and chardonnay budwood from the Theodore Gier Vineyard in Pleasanton, which was planted using budwood obtained from Charles Wetmore who brought the budwood from Meursault in Burgundy around 1882, Ernest Wente began the 30- to 40-year process of selecting only vines with favorable traits and replanting them. Over time this chardonnay became known as the Wente clone (actually several clones) and was planted in many vineyards in California and beyond." ;
+        schema:name         "founded" .
+
+<5oa8mPsk_3>  a          schema:significantLink ;
+        schema:description  "University of California viticulturalist, Dr. Harold P. Olmo collaborated with USDA-ARS plant pathologist Dr. Austin Goheen, to select and test promising grape clones. They applied a heat treatment Goheen had developed to eliminate the viruses that reduced grape yields." ;
+        schema:name         "improved" .
+
+<YA70wmPK_4>  a   schema:significantLink ;
+        schema:name  "married" .
+
+<RdTzzVHN>  a          ucdlib:Event , schema:WebPage ;
+        schema:license    <http://rightsstatements.org/vocab/CNE/1.0/> ;
+        schema:name       "1976 Judgment of Paris" ;
+        schema:publisher  <http://id.loc.gov/authorities/names/no2008108707> ;
+        schema:thumbnail  <RdTzzVHN/winecollage_1024.jpg> .
+
+<hrwZr4pQ_2>  a          schema:significantLink ;
+        schema:description  "In 1908, Ernest Wente obtained chardonnay cuttings from the Theodore Gier Vineyard in Pleasanton and planted them at the Wente Estate in Livermore. The Gier Vineyard was the primary source used by Ernest Wente to establish the Wente Livermore vineyard." ;
+        schema:name         "planted" .
+
+<YA70wmPK>  a            ucdlib:Person , schema:WebPage ;
+        schema:license      <http://rightsstatements.org/vocab/CNE/1.0/> ;
+        schema:name         "Fred McCrea" ;
+        schema:publisher    <http://id.loc.gov/authorities/names/no2008108707> ;
+        schema:relatedLink  <https://ohc-search.lib.berkeley.edu/catalog/MASTER_686> ;
+        schema:temporal     "born(?)/1977" ;
+        <YA70wmPK_1>     <hPI526VA> ;
+        <YA70wmPK_3>     <puQadTTo> ;
+        <YA70wmPK_4>     <ibjOU3Qz> ;
+        <hPI526VA_1>     <hPI526VA> .
+
+<hCeXR2zR_4>  a   schema:significantLink ;
+        schema:name  "participated" .
+
+<9U1n81i1_1>  a          schema:significantLink ;
+        schema:description  "The chardonnay population at Wente Vineyards, which came to be called the Wente Clone, derived from two sources, one of which was material Carl Wente imported from the vine nursery of the wine school at the University of Montpellier in southern France around 1912." ;
+        schema:name         "imported" .
+
+<McT003hC>  a            schema:WebPage , ucdlib:Object ;
+        schema:license      <http://rightsstatements.org/vocab/CNE/1.0/> ;
+        schema:name         "Pre-Prohibition White Wines" ;
+        schema:publisher    <http://id.loc.gov/authorities/names/no2008108707> ;
+        schema:relatedLink  <https://www.eater.com/2011/5/10/6681963/life-before-chardonnay-californias-lost-white-varieties> ;
+        schema:spatial      [
+        a schema:Place;
+        schema:latitude 37.896579;
+        schema:longitude -122.030050;
+        schema:name "Livermore, Napa, and Sonoma, California" ;
+        ];
+        schema:temporal     "1850/1920" ;
+        schema:thumbnail    <McT003hC/40455-bigview.jpg> .
+
+<CvTHg5Ea_1>  a          schema:significantLink ;
+        schema:description  "In 1961, Joe Heitz and his wife, Alice, bought an 8.5-acre vineyard from Leon Brandel named \"The One & Only.\" It was on this property that Joe and Alice founded Heitz Cellars." ;
+        schema:name         "purchased" .
+
+<puQadTTo_8>  a          schema:significantLink ;
+        schema:description  "In 1953, Stony Hill Vineyard provided James D. Zellerbach the chardonnay budwood that was used to plant Hanzell Vineyards.  Because the Wente brothers were widely respected for their efforts to perfect California chardonnay, Zellerbach sought out the Wente clone when planting his 1953 Ambassador's Vineyard. He continued Wente's practice of evaluating selection, gradually establishing vines perfectly adapted to the growing conditions of Sonoma. Today the vines are known as the Hanzell clone." ;
+        schema:name         "planted" .
+
+<bViy4XbX_3>  a          schema:significantLink ;
+        schema:description  "James Zellerbach hired Brad Webb to be Hanzell's winemaker in 1956. While at Hanzell, Webb pioneered a number of technologies in the cellar, including temperature-controlled stainless steel fermentors, controlled malolactic fermentations, and the use of inert gases. He was among the winemakers who pioneered the use of small French oak barrels for aging wines." ;
+        schema:name         "planted" .
+
+<BJqHUXnH>  a            ucdlib:Person , schema:WebPage ;
+        schema:license      <http://rightsstatements.org/vocab/CNE/1.0/> ;
+        schema:name         "James D. Zellerbach" ;
+        schema:publisher    <http://id.loc.gov/authorities/names/no2008108707> ;
+        schema:relatedLink  <https://en.wikipedia.org/wiki/Hanzell_Vineyards> ;
+    schema:spatial      [
+        a schema:Place ;
+        schema:latitude 37.783333 ;
+        schema:longitude -122.416667 ;
+        schema:name "San Francisco, California" ;
+        ] ;
+
+        schema:temporal     "1892/1963" ;
+        schema:thumbnail    <BJqHUXnH/image.png> ;
+        <BJqHUXnH_1>     <bViy4XbX> ;
+        <BJqHUXnH_2>     <ZZV840iO> ;
+        <ZZV840iO_2>     <ZZV840iO> ;
+        <bViy4XbX_1>     <bViy4XbX> .
+
+<wypl7p1J_9>  a          schema:significantLink ;
+        schema:description  "Karl Wente, Ernest Wente, Herman Wente, and Herman's wife in front of the Wente winery" .
+
+<Q9pXX12q_4>  a          schema:significantLink ;
+        schema:description  <https://digitalassets.lib.berkeley.edu/roho/ucb/text/martini_louis_m_and_louis_p__w.pdf> .
+
+<iuZ2tigv>  a            ucdlib:Person , schema:WebPage ;
+        schema:description  "Dr. Austin Goheen was a research plant pathologist with the USDA Agricultural Research Service (ARS).  Goheen became interested in  grape virus diseases while working at a USDA field station in Fresno in 1955. The next year, he began to focus on the control of such diseases in cooperation with the Department of Plant Pathology at UC Davis.   #Connections" ;
+        schema:license      <http://rightsstatements.org/vocab/CNE/1.0/> ;
+        schema:name         "Austin Goheen" ;
+        schema:publisher    <http://id.loc.gov/authorities/names/no2008108707> ;
+        schema:relatedLink  <http://iv.ucdavis.edu/files/24489.pdf> , <https://winefolly.com/update/the-roots-of-californias-heritage-vines/> , <https://fps.ucdavis.edu/grapebook/winebook.cfm?chap=FPSEstablished> ;
+    schema:spatial [
+        a schema:Place ;
+        schema:latitude 46.73 ;
+        schema:longitude -117.16 ;
+        schema:name "Washington State University (PhD conferred)" ;
+        ] ;
+
+        schema:temporal     "~1950 (PhD conferred)" ;
+        schema:thumbnail    <iuZ2tigv/Goheen_PP_portrait_cropped.jpg> .
+
+<0MoT2Khu_1>  a          schema:significantLink ;
+        schema:description  "Steven Spurrier and Patricia Gastaud-Gallagher taught at L’Academie du Vin, France's first private wine school." ;
+        schema:name         "organized" .
+
+<7qZDSE5E>  a          ucdlib:Person , schema:WebPage ;
+        schema:license    <http://rightsstatements.org/vocab/CNE/1.0/> ;
+        schema:name       "Ernest Wente" ;
+        schema:publisher  <http://id.loc.gov/authorities/names/no2008108707> ;
+        <YA70wmPK_2>   <YA70wmPK> ;
+        <puQadTTo_3>   <puQadTTo> .
+
+<PidlX1mJ_3>  a          schema:significantLink ;
+        schema:description  "In 1893 Theodore Gier purchased around 260 acres of land in the Livermore Valley on which he planted 125 varieties of grapes." ;
+        schema:name         "planted" .
+
+<wVEYqHFd_2>  a  schema:significantLink .
+
+<puQadTTo_2>  a          schema:significantLink ;
+        schema:description  "With cuttings from the vine nursery at the University of Montpellier and chardonnay budwood from the Theodore Gier Vineyard in Pleasanton, which was planted using budwood obtained from Charles Wetmore who brought the budwood from Meursault in Burgundy around 1882, Ernest Wente began the 30- to 40-year process of selecting only vines with favorable traits and replanting them. Over time this chardonnay became known as the Wente clone (actually several clones) and was planted in many vineyards in California and beyond." ;
+        schema:name         "from" .
+
+<wypl7p1J_3>  a          schema:significantLink ;
+        schema:description  "German immigrant Carl H. Wente founded Wente Vineyards in 1883." ;
+        schema:name         "released" .
+
+<5oa8mPsk_2>  a          schema:significantLink ;
+        schema:description  "Harold Olmo selected promising material from the Martini planting of the Wente Clone, grown at Wente's Stanley Ranch Vineyard in Carneros, California. Through breeding, and heat treatment to eliminate viral infections, the team was able to raise the average yield from one half ton per acre in the 1950s to over five tons per acre. This improvement made chardonnay commercially viable in California." ;
+        schema:name         "hired" .
+
+<YA70wmPK_3>  a          schema:significantLink ;
+        schema:description  "Fred McCrea and Eleanor Knox \"Charen\" Wheeler and were married in 1934 in Berkeley, California. They later founded Stony Hill Vineyards together." ;
+        schema:name         "planted" .
+
+<zBgXIHXc>  a          ucdlib:Place , schema:WebPage ;
+        schema:license    <http://rightsstatements.org/vocab/CNE/1.0/> ;
+        schema:name       "Chateau Montelena Winery" ;
+        schema:publisher  <http://id.loc.gov/authorities/names/no2008108707> ;
+        schema:thumbnail  <zBgXIHXc/Chateau_Montelena_Winery.gk.jpg> .
+
+<BJqHUXnH_2>  a   schema:significantLink ;
+        schema:name  "hired" .
+
+<hrwZr4pQ_1>  a          schema:significantLink ;
+        schema:description  "In 1882, Theodore Gier planted chardonnay on his Pleasanton vineyard, Gier Vineyard, using the budwood that Wetmore brought from Meursault." ;
+        schema:name         "owned" .
+
+<I3IabGsw_2>  a   schema:significantLink ;
+        schema:name  "recommended" .
+
+<OIX6pWBy_2>  a   schema:significantLink ;
+        schema:name  "released" .
+
+<hCeXR2zR_3>  a          schema:significantLink ;
+        schema:description  "Charles Wetmore was the Secretary of the California Viticultural Commission from its founding in 1880 until it disbanded in 1894." ;
+        schema:name         "provided" .
+
+<hPI526VA>  a            ucdlib:Place , schema:WebPage ;
+        schema:license      <http://rightsstatements.org/vocab/CNE/1.0/> ;
+        schema:name         "Stony Hill Vineyard" ;
+        schema:publisher    <http://id.loc.gov/authorities/names/no2008108707> ;
+        schema:relatedLink  "#Image Credit" ;
+        schema:relatedLink  <https://www.forbes.com/sites/katiebell/2013/07/06/swim-against-the-mainstream-drink-stony-hill-wines/#3aae66127349> , <https://napavalleyregister.com/wine/the-accidental-pioneers/article_bd90269c-879c-11e2-aab6-001a4bcf887a.html> , <https://robbreport.com/food-drink/spirits/stony-hill-and-triumph-terroir-over-time-243773/> , <https://www.stonyhillvineyard.com/About/Our-Story> , <https://ohc-search.lib.berkeley.edu/catalog/MASTER_686> ;
+        schema:temporal     "1948/present" ;
+        schema:thumbnail    <hPI526VA/800px-Winery_Doors_of_Stony_Hill_Vineyard.jpg> ;
+        <bViy4XbX_2>     <bViy4XbX> ;
+        <hPI526VA_3>     <bViy4XbX> ;
+        <hPI526VA_4>     <puQadTTo> ;
+        <puQadTTo_8>     <puQadTTo> .
+
+<PidlX1mJ>  a          schema:WebPage , ucdlib:Person ;
+        schema:license    <http://rightsstatements.org/vocab/CNE/1.0/> ;
+        schema:name       "Theodore Gier" ;
+        schema:publisher  <http://id.loc.gov/authorities/names/no2008108707> ;
+    schema:spatial [
+        a schema:Place ;
+        schema:latitude 52.3204 ;
+        schema:longitude 10.24326 ;
+        schema:name "Peine, Germany" ;
+        ] ;
+
+        schema:temporal   "1860/1931" ;
+        schema:thumbnail  <PidlX1mJ/image.png> ;
+        <PidlX1mJ_2>   <7qZDSE5E> ;
+        <PidlX1mJ_3>   <cquwBxNn> ;
+        <PidlX1mJ_4>   <hrwZr4pQ> ;
+        <hrwZr4pQ_1>   <hrwZr4pQ> .
+
+<bViy4XbX_2>  a          schema:significantLink ;
+        schema:description  "In 1953, Stony Hill Vineyard provided James D. Zellerbach the chardonnay budwood that was used to plant Hanzell Vineyards.  Because the Wente brothers were widely respected for their efforts to perfect California chardonnay, Zellerbach sought out the Wente clone when planting his 1953 Ambassador's Vineyard. He continued Wente's practice of evaluating selection, gradually establishing vines perfectly adapted to the growing conditions of Sonoma. Today the vines are known as the Hanzell clone." ;
+        schema:name         "provided" .
+
+<puQadTTo_7>  a          schema:significantLink ;
+        schema:description  "In 1946, Fred and Eleanor McCrea collected budwood from Wente's Livermore vineyard to plant the Stony Hill vineyard in the Spring Mountain District of Napa Valley. At the time, the decision to plant chardonnay was controversial, as there were only around 200 documented acres of chardonnay in California. Stony Hill may have been the first winery to plant a chardonnay vineyard after Prohibition, and the McCreas did so despite warnings from UC Davis that the variety was unlikely to succeed. UC Davis advised the couple to plant gewurztraminer, sémillon and pinot blanc to protect against the potential failure of the chardonnay." ;
+        schema:name         "planted" .
+
+<wypl7p1J_8>  a          schema:significantLink ;
+        schema:description  <https://www.youtube.com/watch?v=i5iXGOFQ0Y8> .
+
+<Q9pXX12q_3>  a          schema:significantLink ;
+        schema:description  <https://napavalleyregister.com/community/star/news/years-of-history-at-louis-m-martini-winery/article_f2ada8ab-d828-555f-aa50-e41a726d89ca.html> ;
+        schema:name         "with" .
+
+<wypl7p1J_10>  a  schema:significantLink .
+
+<fsOdxp3w_1>  a   schema:significantLink ;
+        schema:name  "founded" .
+
+<o9V24Tm4>  a          ucdlib:Place , schema:WebPage ;
+        schema:license    <http://rightsstatements.org/vocab/CNE/1.0/> ;
+        schema:name       "Heitz Cellar" ;
+        schema:publisher  <http://id.loc.gov/authorities/names/no2008108707> ;
+        schema:thumbnail  <o9V24Tm4/Heitz_Cellars_Logo.jpg> ;
+        <OIX6pWBy_2>   <OIX6pWBy> .
+
+<PidlX1mJ_2>  a          schema:significantLink ;
+        schema:description  "In 1882, Theodore Gier planted chardonnay on his Pleasanton vineyard, Gier Vineyard, using the budwood that Wetmore brought from Meursault." ;
+        schema:name         "provided" .
+
+<wVEYqHFd_1>  a          schema:significantLink ;
+        schema:description  "In 1948 and into the 1950s Louis P. Martini worked with UC Davis and with the Wente family on Wente clones of chardonnay planted in the Stanly Ranch Vineyard." ;
+        schema:name         "hired" .
+
+<puQadTTo_1>  a          schema:significantLink ;
+        schema:description  "Chardonnay budwood from Meursault found its way from Wetmore's Livermore vineyard to the Gier Vineyard in Pleasanton, and from there to the Wente Vineyards, where it was cultivated alongside chardonnay vines from Montpellier.  Through decades of selection, Wente's chardonnay vines came to be known as the Wente Clone, and adopted by other winemakers seeking to establish plantings of chardonnay in California." ;
+        schema:name         "from" .
+
+<wypl7p1J_2>  a          schema:significantLink ;
+        schema:description  "In 1936 Wente was the first California winery to produce a wine labeled as chardonnay." ;
+        schema:name         "provided" .
+
+<5oa8mPsk_1>  a          schema:significantLink ;
+        schema:description  "Dr. Harold Olmo was plant breeder on the faculty of the Viticulture and Enology Department at the University of California, Davis, from 1931 until his retirement in 1977.  Olmo continued his research in retirement, until shortly before his death." ;
+        schema:name         "developed" .
+
+<YA70wmPK_2>  a          schema:significantLink ;
+        schema:description  "In 1946, Fred and Eleanor McCrea collected budwood from Wente's Livermore vineyard to plant the Stony Hill vineyard in the Spring Mountain District of Napa Valley. At the time, the decision to plant chardonnay was controversial, as there were only around 200 documented acres of chardonnay in California. Stony Hill may have been the first winery to plant a chardonnay vineyard after Prohibition, and the McCreas did so despite warnings from UC Davis that the variety was unlikely to succeed. UC Davis advised the couple to plant gewurztraminer, sémillon and pinot blanc to protect against the potential failure of the chardonnay." ;
+        schema:name         "provided?]" .
+
+<puQadTTo_11>  a  schema:significantLink .
+
+<McT003hC_2>  a   schema:significantLink ;
+        schema:name  "reduced" .
+
+<cquwBxNn>  a            ucdlib:Object , schema:WebPage ;
+        schema:description  "Like other early members of the State Board of Viticulture Commissioners, Charles Wetmore looked to foreign markets and growing areas to inform his decisions about which wine grape varieties to plant in California. He imported budwood from Meursault, a small AVA on the southern coast of Burgundy, known for producing buttery, oaked, chardonnay. This line was passed among new vineyards, to become an integral component of the well-known Wente Clone.   #Connections#Link to Learn More#Image Credit" ;
+        schema:license      <http://rightsstatements.org/vocab/CNE/1.0/> ;
+        schema:name         "Meursault Budwood" ;
+        schema:publisher    <http://id.loc.gov/authorities/names/no2008108707> ;
+        schema:thumbnail    <cquwBxNn/Meursault_-_002.jpg> .
+
+<I3IabGsw>  a            ucdlib:Event , schema:WebPage ;
+        schema:license      <http://rightsstatements.org/vocab/CNE/1.0/> ;
+        schema:name         "Board of State Viticultural Commissioners" ;
+        schema:publisher    <http://id.loc.gov/authorities/names/no2008108707> ;
+        schema:relatedLink  <http://blog.tavbooks.com/?p=1634> , <https://en.wikipedia.org/wiki/Board_of_State_Viticultural_Commissioners> , <http://onlinebooks.library.upenn.edu/webbin/book/lookupname?key=California.%20Board%20of%20State%20Viticultural%20Commissioners> ;
+    schema:spatial [
+        a schema:Place ;
+        schema:latitude 38.293337 ;
+        schema:longitude -122.296761 ;
+        schema:name "San Francisco, California" ;
+        ] ;
+
+
+        schema:temporal     "1880/1894" ;
+        schema:thumbnail    <I3IabGsw/image.png> ;
+        <I3IabGsw_2>     <McT003hC> ;
+        <McT003hC_1>     <McT003hC> .
+
+<0MoT2Khu>  a            ucdlib:Person , schema:WebPage ;
+        schema:license      <http://rightsstatements.org/vocab/CNE/1.0/> ;
+        schema:name         "Patricia Gastaud-Gallagher" ;
+        schema:publisher    <http://id.loc.gov/authorities/names/no2008108707> ;
+        schema:relatedLink  <https://en.wikipedia.org/wiki/Patricia_Gallagher> , <https://www.sfchronicle.com/wine/article/The-hidden-figures-benind-the-Judgment-of-Paris-13333299.php> , <https://americanhistory.si.edu/blog/40th-anniversary-paris-tasting> ;
+        schema:temporal     "1951/Present" ;
+        schema:thumbnail    <0MoT2Khu/DqXaKE7WwAAfaWH.jpg> ;
+        <0MoT2Khu_1>     <RdTzzVHN> ;
+        <0MoT2Khu_2>     <8w89Z72S> .
+
+<wVEYqHFd>  a          ucdlib:Place , schema:WebPage ;
+        schema:license    <http://rightsstatements.org/vocab/CNE/1.0/> ;
+        schema:name       "Viticulture & Enology Department, UC Davis" ;
+        schema:publisher  <http://id.loc.gov/authorities/names/no2008108707> ;
+    schema:spatial [
+        a schema:Place ;
+        schema:latitude 38.54 ;
+        schema:longitude -121.75 ;
+        schema:name "Davis, California" ;
+        ] ;
+
+        schema:temporal   "September 1906/Present" ;
+        schema:thumbnail  <wVEYqHFd/vineyards-longform.jpg> ;
+        <5oa8mPsk_2>   <5oa8mPsk> ;
+        <wVEYqHFd_1>   <5oa8mPsk> .
+
+<puQadTTo>  a            ucdlib:Object , schema:WebPage ;
+        schema:license      <http://rightsstatements.org/vocab/CNE/1.0/> ;
+        schema:name         "Wente Clone" ;
+        schema:publisher    <http://id.loc.gov/authorities/names/no2008108707> ;
+        schema:relatedLink  "#Photo Credit" ;
+        schema:relatedLink  <https://pullthatcork.com/2017/wente-vineyards-chardonnay/> , <https://commons.wikimedia.org/wiki/File:Chardonnay_Grapes_at_Hanzell_Winery_-_Stierch.jpg> , <https://grapecollective.com/articles/how-the-wente-chardonnay-clone-became-americas-choice> ;
+    schema:spatial [
+        a schema:Place ;
+        schema:latitude 37.664235 ;
+        schema:longitude -121.725368 ;
+        schema:name "Livermore, California" ;
+        ] ;
+
+
+        schema:temporal     "1946" ;
+        schema:thumbnail    <puQadTTo/Chardonnay_Grapes_at_Hanzell_Winery_-_Stierch.jpg> ;
+        <puQadTTo_1>     <hrwZr4pQ> ;
+        <puQadTTo_2>     <cquwBxNn> .
+
+<BJqHUXnH_1>  a          schema:significantLink ;
+        schema:description  "James Zellerbach hired Brad Webb to be Hanzell's winemaker in 1956." ;
+        schema:name         "founded" .
+
+<I3IabGsw_1>  a          schema:significantLink ;
+        schema:description  "Grape varieties planted in California in the 19th century were largely based on recommendations made by the Board of State Viticultural Commissioners." ;
+        schema:name         "participated" .
+
+<9HL67beb>  a          ucdlib:Object , schema:WebPage ;
+        schema:license    <http://rightsstatements.org/vocab/CNE/1.0/> ;
+        schema:name       "FPS 04 Clone" ;
+        schema:publisher  <http://id.loc.gov/authorities/names/no2008108707> ;
+        schema:thumbnail  <9HL67beb/39512-bigview.jpg> .
+
+<OIX6pWBy_1>  a          schema:significantLink ;
+        schema:description  "In 1963 Joe Heitz, owner of Heitz Cellar, bottled and sold chardonnay at a price unheard of at the time for the wine, $9, elevating the variety's reputation as a premium wine." ;
+        schema:name         "sold" .
+
+<hCeXR2zR_2>  a          schema:significantLink ;
+        schema:description  "In 1882, Theodore Gier planted chardonnay on his Pleasanton vineyard, Gier Vineyard, using the budwood that Charles Wetmore brought from Meursault." ;
+        schema:name         "imported" .
+
+<TCWjfhFr_3>  a   schema:significantLink ;
+        schema:name  "imported" .
+
+<hPI526VA_4>  a   schema:significantLink ;
+        schema:name  "planted" .
+
+<PidlX1mJ_7>  a  schema:significantLink .
+
+<puQadTTo_6>  a          schema:significantLink ;
+        schema:description  "The Martini family's Stanley Ranch was among the vineyards whose chardonnay plantings were established from the Wente Vineyard, and continued the chain of improvement of the variety by hosting the selection work of Harold Olmo." ;
+        schema:name         "planted" .
+
+<bViy4XbX_1>  a          schema:significantLink ;
+        schema:description  "In 1953, Stony Hill Vineyard provided James D. Zellerbach the chardonnay budwood that was used to plant Hanzell Vineyards.  Because the Wente brothers were widely respected for their efforts to perfect California chardonnay, Zellerbach sought out the Wente clone when planting his 1953 Ambassador's Vineyard. He continued Wente's practice of evaluating selection, gradually establishing vines perfectly adapted to the growing conditions of Sonoma. Today the vines are known as the Hanzell clone." ;
+        schema:name         "founded" .
+
+<ZZV840iO>  a            ucdlib:Person , schema:WebPage ;
+        schema:license      <http://rightsstatements.org/vocab/CNE/1.0/> ;
+        schema:name         "Ralph Bradford \"Brad\" Webb" ;
+        schema:publisher    <http://id.loc.gov/authorities/names/no2008108707> ;
+        schema:relatedLink  <https://winesvinesanalytics.com/sections/printout_article.cfm?article=feature&content=70101> , <https://en.wikipedia.org/wiki/Hanzell_Vineyards> ;
+    schema:spatial [
+        a schema:Place ;
+        schema:latitude 38.313393 ;
+        schema:longitude -122.462502 ;
+        schema:name "Sonoma, CA" ;
+        ] ;
+
+
+        schema:temporal     "1922/1999" ;
+        schema:thumbnail    <ZZV840iO/image.png> ;
+        <ZZV840iO_1>     <bViy4XbX> ;
+        <bViy4XbX_4>     <bViy4XbX> .
+
+<wypl7p1J_7>  a          schema:significantLink ;
+        schema:description  <https://www.nytimes.com/1981/10/25/obituaries/ernest-a-wente-91-california-winemaker.html> .
+
+<Q9pXX12q_2>  a          schema:significantLink ;
+        schema:description  "In 1948 and into the 1950s Louis P. Martini worked with UC Davis and with the Wente family on Wente clones of chardonnay planted in the Stanly Ranch Vineyard." ;
+        schema:name         "planted" .
+
+<nG7eTNMs>  a            schema:WebPage , ucdlib:Place ;
+        schema:description  "In the 1950s research scientists from the USDA and UC Davis, in response to severe virus infections in vineyards, formed the Foundation Plant Material Service (FPMS). These scientists develop methods for grape virus disease detection and disease elimination. A large collection of disease-tested wine, table, raisin and rootstock grape selections was created which became the foundation for the California Grapevine Registration & Certification (R&C) Program. The FPMS later changed its name to Foundation Plant Service (FPS) and continues its work on the current Foundation Vineyards of over 100 acres. Vines are inspected and retested regularly by FPS and California Department of Food and Agriculture (CDFA). #Connections" ;
+        schema:license      <http://rightsstatements.org/vocab/CNE/1.0/> ;
+        schema:name         "Foundation Plant Services" ;
+        schema:publisher    <http://id.loc.gov/authorities/names/no2008108707> ;
+        schema:relatedLink  "#Image Credit" ;
+        schema:relatedLink  <https://fps.ucdavis.edu/grapebook/winebook.cfm?chap=FPSEstablished> , <http://fps.ucdavis.edu/> ;
+    schema:spatial [
+        a schema:Place ;
+        schema:latitude 38.534879 ;
+        schema:longitude -121.790775 ;
+        schema:name "Davis, California" ;
+        ] ;
+
+        schema:temporal     "1958/present" ;
+        schema:thumbnail    <nG7eTNMs/image.png> .
+
+<FMtQve3S_2>  a   schema:significantLink ;
+        schema:name  "reduced" .
+
+<8w89Z72S>  a          ucdlib:Person , schema:WebPage ;
+        schema:license    <http://rightsstatements.org/vocab/CNE/1.0/> ;
+        schema:name       "Steven Spurrier" ;
+        schema:publisher  <http://id.loc.gov/authorities/names/no2008108707> ;
+        schema:thumbnail  <8w89Z72S/StevenSpurrier_780_old_fitbox_1000x600.jpg> .
+
+<PidlX1mJ_1>  a          schema:significantLink ;
+        schema:description  "In 1908, Ernest Wente obtained chardonnay cuttings from the Theodore Gier Vineyard in Pleasanton, and planted them at the Wente Estate in Livermore. The Gier Vineyard was the primary source used by Ernest Wente to establish the Wente Livermore vineyard." ;
+        schema:name         "provided" .
+
+<hrwZr4pQ>  a            schema:WebPage , ucdlib:Place ;
+        schema:license      <http://rightsstatements.org/vocab/CNE/1.0/> ;
+        schema:name         "Gier Vineyard" ;
+        schema:publisher    <http://id.loc.gov/authorities/names/no2008108707> ;
+        schema:relatedLink  "#Image Credit" ;
+        schema:relatedLink  <http://www.waywardtendrils.com/pdfs/san_francisco.pdf> , <https://calisphere.org/item/655b6d0a25ec1ea8b14e2202feae2991/> , <https://napahistory.pastperfectonline.com/photo/FD11C6FB-84B0-49B6-A0F0-025682383680> , <https://napavalleyregister.com/wine/theodore-gier-and-the-sequoia-vineyard/article_b10e9b0d-723d-5a43-a3f1-c3be4949e5b0.html> ;
+    schema:spatial      [
+        a schema:Place ;
+        schema:name "Livermore, CA" ;
+        ] ;
+
+        schema:temporal     "1893" ;
+        schema:thumbnail    <hrwZr4pQ/card00608_fr.jpg> ;
+        <hrwZr4pQ_2>     <cquwBxNn> ;
+        <hrwZr4pQ_3>     <7qZDSE5E> .
+
+<FMtQve3S>  a            schema:WebPage , ucdlib:Event ;
+        schema:license      <http://rightsstatements.org/vocab/CNE/1.0/> ;
+        schema:name         "Prohibition" ;
+        schema:publisher    <http://id.loc.gov/authorities/names/no2008108707> ;
+        schema:relatedLink  <https://www.amazon.com/When-Rivers-Ran-Red-Americas/dp/0230605745> ;
+    schema:spatial      [
+        a schema:Place ;
+        schema:name "United States of America" ;
+        ] ;
+
+        schema:temporal     "1919/1933" ;
+        schema:thumbnail    <FMtQve3S/800px-Raid_at_elk_lake.jpg> ;
+        <FMtQve3S_2>     <McT003hC> ;
+        <McT003hC_2>     <McT003hC> .
+
+<wypl7p1J_1>  a          schema:significantLink ;
+        schema:description  "Wente's chardonnay vineyard was planted with budwood from the Cresta Blanca vineyard." ;
+        schema:name         "survived" .
+
+<YA70wmPK_1>  a          schema:significantLink ;
+        schema:description  "In 1946, Fred and Eleanor McCrea collected budwood from Wente's Livermore vineyard to plant the Stony Hill vineyard in the Spring Mountain District of Napa Valley. At the time, the decision to plant chardonnay was controversial, as there were only around 200 documented acres of chardonnay in California. Stony Hill may have been the first winery to plant a chardonnay vineyard after Prohibition, and the McCreas did so despite warnings from UC Davis that the variety was unlikely to succeed. UC Davis advised the couple to plant gewurztraminer, sémillon and pinot blanc to protect against the potential failure of the chardonnay." ;
+        schema:name         "co-founded" .
+
+<puQadTTo_10>  a         schema:significantLink ;
+        schema:description  "Selection and heat treatment of the Wente Clone material at UC Davis produced elite clones, FPS 04 and 05, whose dependable yields finally made chardonnay commercially viable in California." ;
+        schema:name         "became" .
+
+<McT003hC_1>  a          schema:significantLink ;
+        schema:description  "Before Prohibition, California's most popular white wines were made from grapes like Green Hungarian, Burger, Sylvaner, Tokay, and Riesling. Chardonnay, now virtually synonymous with California white wine, was grown in such small amounts that it was rarely recorded as a distinct variety." ;
+        schema:name         "recommended" .
+
+<hCeXR2zR>  a            ucdlib:Person , schema:WebPage ;
+        schema:license      <http://rightsstatements.org/vocab/CNE/1.0/> ;
+        schema:name         "Charles Wetmore" ;
+        schema:publisher    <http://id.loc.gov/authorities/names/no2008108707> ;
+        schema:relatedLink  <https://en.wikipedia.org/wiki/Charles_Wetmore_(winemaker)> ;
+    schema:spatial [
+        a schema:Place ;
+        schema:latitude 43.673479 ;
+        schema:longitude -70.310400 ;
+        schema:name "Portland, Maine" ;
+        ] ;
+
+        schema:temporal     "1847/1894" ;
+        schema:thumbnail    <hCeXR2zR/image.png> ;
+        <I3IabGsw_1>     <I3IabGsw> ;
+        <PidlX1mJ_1>     <PidlX1mJ> ;
+        <hCeXR2zR_1>     <Ib1NpQvT> ;
+        <hCeXR2zR_2>     <cquwBxNn> ;
+        <hCeXR2zR_3>     <PidlX1mJ> ;
+        <hCeXR2zR_4>     <I3IabGsw> .
+
+<bViy4XbX_6>  a   schema:significantLink ;
+        schema:name  "purchased" .
+
+<wypl7p1J>  a          schema:WebPage , ucdlib:Place ;
+        schema:license    <http://rightsstatements.org/vocab/CNE/1.0/> ;
+        schema:name       "Wente Vineyards" ;
+        schema:publisher  <http://id.loc.gov/authorities/names/no2008108707> ;
+    schema:spatial [
+        a schema:Place ;
+        schema:latitude 37.664235 ;
+        schema:longitude -121.725368 ;
+        schema:name "Livermore, California" ;
+        ] ;
+
+
+        schema:temporal   "1883/Present" ;
+        schema:thumbnail  <wypl7p1J/6PrInlsQ.jpg> ;
+        <9U1n81i1_2>   <9U1n81i1> ;
+        <FMtQve3S_1>   <FMtQve3S> ;
+        <puQadTTo_4>   <puQadTTo> ;
+        <wypl7p1J_1>   <FMtQve3S> ;
+        <wypl7p1J_3>   <Fc9HLLaf> ;
+        <wypl7p1J_5>   <puQadTTo> ;
+        <wypl7p1J_6>   <9U1n81i1> .
+
+<Q9pXX12q_7>  a  schema:significantLink .
+
+<hCeXR2zR_1>  a          schema:significantLink ;
+        schema:description  "In 1882, Charles Wetmore, then the Chief Executive Officer of the California State Board of Viticultural Commissioners, carried chardonnay budwood from Meursault to Livermore, California, to plant his Cresta Blanca vineyard and distributed the material to local growers." ;
+        schema:name         "founded" .
+
+<TCWjfhFr_2>  a          schema:significantLink ;
+        schema:description  "In 1912 Carl Wente obtained Chardonnay cuttings from the University of Montpellier's F Richter Nursery." ;
+        schema:name         "founded" .
+
+<Q9pXX12q>  a          ucdlib:Person , schema:WebPage ;
+        schema:license    <http://rightsstatements.org/vocab/CNE/1.0/> ;
+        schema:name       "Louis P. Martini" ;
+        schema:publisher  <http://id.loc.gov/authorities/names/no2008108707> ;
+    schema:spatial [
+        a schema:Place ;
+        schema:latitude 37.681944 ;
+        schema:longitude -121.768056 ;
+        schema:name "Livermore, California" ;
+        ] ;
+
+        schema:temporal   "1918/1998" ;
+        schema:thumbnail  <Q9pXX12q/image.png> ;
+        <Q9pXX12q_1>   <6wM6jTwp> ;
+        <Q9pXX12q_2>   <puQadTTo> ;
+        <Q9pXX12q_3>   <wVEYqHFd> ;
+        <Q9pXX12q_7>   <https://wineserver.ucdavis.edu/giving/scholarhips-endowments/louis-p-martini-endowed-chair-fund> ;
+        <puQadTTo_7>   <puQadTTo> .
+
+<Ib1NpQvT>  a          ucdlib:Place , schema:WebPage ;
+        schema:license    <http://rightsstatements.org/vocab/CNE/1.0/> ;
+        schema:name       "Cresta Blanca Winery" ;
+        schema:publisher  <http://id.loc.gov/authorities/names/no2008108707> ;
+        schema:thumbnail  <Ib1NpQvT/cresta_blanca_plaque.jpg> ;
+        <wypl7p1J_2>   <wypl7p1J> .
+
+<SsiGNhgD>  a            ucdlib:Event , schema:WebPage ;
+        schema:license      <http://rightsstatements.org/vocab/CNE/1.0/> ;
+        schema:name         "Diplomat's Dinner" ;
+        schema:publisher    <http://id.loc.gov/authorities/names/no2008108707> ;
+        schema:relatedLink  <https://en.wikipedia.org/wiki/Morrill_Cody> ;
+    schema:spatial [
+        a schema:Place ;
+        schema:latitude 41.883333 ;
+        schema:longitude 12.5 ;
+        schema:name "Rome, Italy" ;
+        ] ;
+
+
+        schema:temporal     "September 26, 1960" ;
+        schema:thumbnail    <SsiGNhgD/diplodin.jpg> ;
+        <SsiGNhgD_1>     <bViy4XbX> ;
+        <bViy4XbX_5>     <bViy4XbX> .
+
+<hPI526VA_3>  a          schema:significantLink ;
+        schema:description  "In 1946, Fred and Eleanor McCrea collected budwood from Wente's Livermore vineyard to plant the Stony Hill vineyard in the Spring Mountain District of Napa Valley. At the time, the decision to plant chardonnay was controversial, as there were only around 200 documented acres of chardonnay in California. Stony Hill may have been the first winery to plant a chardonnay vineyard after Prohibition, and the McCreas did so despite warnings from UC Davis that the variety was unlikely to succeed. UC Davis advised the couple to plant gewurztraminer, sémillon and pinot blanc to protect against the potential failure of the chardonnay." ;
+        schema:name         "provided" .
+
+<PidlX1mJ_6>  a          schema:significantLink ;
+        schema:description  <https://www.gliding-eagle.com/star/wine/hess-collection/en-us> .
+
+<puQadTTo_5>  a          schema:significantLink ;
+        schema:description  "The Martini family's Stanley Ranch was among the vineyards whose chardonnay plantings were established from the Wente Vineyard, and continued the chain of improvement of the variety by hosting the selection work of Harold Olmo." ;
+        schema:name         "improved" .
+
+<wypl7p1J_6>  a          schema:significantLink ;
+        schema:description  <https://wentevineyards.com/> ;
+        schema:name         "planted" .
+
+<Q9pXX12q_1>  a          schema:significantLink ;
+        schema:description  "The Martini family's Stanley Ranch was among the vineyards whose chardonnay plantings were established from the Wente Vineyard, and continued the chain of improvement of the variety by hosting the selection work of Harold Olmo." ;
+        schema:name         "owned" .
+
+<fsOdxp3w>  a            ucdlib:Person , schema:WebPage ;
+        schema:license      <http://rightsstatements.org/vocab/CNE/1.0/> ;
+        schema:name         "Warren Winiarski" ;
+        schema:publisher    <http://id.loc.gov/authorities/names/no2008108707> ;
+        schema:relatedLink  <https://www.californiamuseum.org/inductee/warren-winiarski> ;
+    schema:spatial [
+        a schema:Place ;
+        schema:latitude 41.855428 ;
+        schema:longitude -87.681018 ;
+        schema:name "Chicago, Illinois" ;
+        ] ;
+
+
+        schema:temporal     "1928/present" ;
+        schema:thumbnail    <fsOdxp3w/5c5c9b6786cc0.image.jpg> ;
+        <fsOdxp3w_1>     <wQgoqbSV> .
+
+<FMtQve3S_1>  a          schema:significantLink ;
+        schema:description  "Before Prohibition, California's most popular white wines were made from grapes like Green Hungarian, Burger, Sylvaner, Tokay, and Riesling. Chardonnay, now virtually synonymous with California white wine, was grown in such small amounts that it was rarely recorded as a distinct variety." ;
+        schema:name         "survived" .
+
+<OIX6pWBy>  a            ucdlib:Object , schema:WebPage ;
+        schema:license      <http://rightsstatements.org/vocab/CNE/1.0/> ;
+        schema:name         "Heitz Cellar Chardonnay" ;
+        schema:publisher    <http://id.loc.gov/authorities/names/no2008108707> ;
+        schema:relatedLink  "#Image Credit" ;
+        schema:relatedLink  <https://digitalassets.lib.berkeley.edu/roho/ucb/text/heitz_joseph__w.pdf> , <https://robbreport.com/food-drink/wine/page-turns-heitz-cellar-eg18-2815094/> ;
+    schema:spatial [
+        a schema:Place ;
+        schema:latitude 38.490770 ;
+        schema:longitude -122.450793 ;
+        schema:name "St. Helena, California" ;
+        ] ;
+
+
+        schema:temporal     "1963" ;
+        schema:thumbnail    <OIX6pWBy/10260472.jpg> .
+
+<ibjOU3Qz_2>  a  schema:significantLink .
+
+<hrwZr4pQ_4>  a  schema:significantLink .
+
+<6wM6jTwp>  a          ucdlib:Place , schema:WebPage ;
+        schema:license    <http://rightsstatements.org/vocab/CNE/1.0/> ;
+        schema:name       "Stanly Ranch Vineyards" ;
+        schema:publisher  <http://id.loc.gov/authorities/names/no2008108707> ;
+        schema:thumbnail  <6wM6jTwp/download-1.jpg> ;
+        <puQadTTo_6>   <puQadTTo> .
+
+<ZZV840iO_2>  a   schema:significantLink ;
+        schema:name  "hired" .
+
+<9U1n81i1_3>  a   schema:significantLink ;
+        schema:name  "became" .
+
+<65gmPKZY_1>  a   schema:significantLink ;
+        schema:name  "owned" .
+
+<5oa8mPsk>  a            schema:WebPage , ucdlib:Person ;
+        schema:license      <http://rightsstatements.org/vocab/CNE/1.0/> ;
+        schema:name         "Harold Olmo" ;
+        schema:publisher    <http://id.loc.gov/authorities/names/no2008108707> ;
+        schema:relatedLink  "#Image Credit" ;
+        schema:relatedLink  <https://search.library.ucdavis.edu/permalink/f/f5oast/01UCD_ALMA21238926140003126> , <https://www.nytimes.com/2006/07/12/us/12olmo.html> , <http://iv.ucdavis.edu/files/24489.pdf> , <https://www.ucdavis.edu/news/harold-olmo-pioneering-wine-grape-scientist-and-other-obituaries/> , <https://ohc-search.lib.berkeley.edu/catalog/MASTER_292> ;
+    schema:spatial [
+        a schema:Place ;
+        schema:latitude 37.760000 ;
+        schema:longitude -122.420000 ;
+        schema:name "San Francisco, California" ;
+        ] ;
+
+        schema:temporal     "1906/2006" ;
+        schema:thumbnail    <5oa8mPsk/image.png> ;
+        <5oa8mPsk_1>     <9HL67beb> ;
+        <5oa8mPsk_3>     <puQadTTo> ;
+        <5oa8mPsk_4>     <iuZ2tigv> ;
+        <puQadTTo_5>     <puQadTTo> .
+
+<CvTHg5Ea_3>  a   schema:significantLink ;
+        schema:name  "sold" .
+
+<ibjOU3Qz>  a            schema:WebPage , ucdlib:Person ;
+        schema:license      <http://rightsstatements.org/vocab/CNE/1.0/> ;
+        schema:name         "Eleanor McCrea" ;
+        schema:publisher    <http://id.loc.gov/authorities/names/no2008108707> ;
+        schema:relatedLink  <https://ohc-search.lib.berkeley.edu/catalog/MASTER_686> ;
+        schema:temporal     "1907/1991" ;
+        schema:thumbnail    <ibjOU3Qz/square_history.jpg> ;
+        <hPI526VA_2>     <hPI526VA> ;
+        <ibjOU3Qz_1>     <hPI526VA> .
+
+<wQgoqbSV>  a          ucdlib:Place , schema:WebPage ;
+        schema:license    <http://rightsstatements.org/vocab/CNE/1.0/> ;
+        schema:name       "Stag's Leap Wine Cellars" ;
+        schema:publisher  <http://id.loc.gov/authorities/names/no2008108707> ;
+        schema:thumbnail  <wQgoqbSV/Stags_leap_logo.jpg> .
+
+<bViy4XbX_5>  a          schema:significantLink ;
+        schema:description  "Heitz purchased, bottled, and sold Hanzell's '61 and '62 vintages of chardonnay and pinot noir after James Zellerbach died." ;
+        schema:name         "tasted" .
+
+<9U1n81i1>  a            ucdlib:Object , schema:WebPage ;
+        schema:license      <http://rightsstatements.org/vocab/CNE/1.0/> ;
+        schema:name         "Montpellier's F Richter Nursery Budwood" ;
+        schema:publisher    <http://id.loc.gov/authorities/names/no2008108707> ;
+        schema:relatedLink  <http://iv.ucdavis.edu/files/24489.pdf> , <https://babel.hathitrust.org/cgi/pt?id=uc1.31175004070648&view=1up&seq=10> , <http://pdf.oac.cdlib.org/pdf/ucdavis/spcoll/o041_cuvh.pdf> ;
+    schema:spatial [
+        a schema:Place ;
+        schema:latitude 43.606326 ;
+        schema:longitude 3.885110 ;
+        schema:name "Montpellier, France" ;
+        ] ;
+
+        schema:temporal     "circa 1912" ;
+        schema:thumbnail    <9U1n81i1/College_at_Montpellier.png> ;
+        <9U1n81i1_3>     <puQadTTo> ;
+        <puQadTTo_10>    <puQadTTo> .
+
+<Q9pXX12q_6>  a  schema:significantLink .
+
+<TCWjfhFr_1>  a          schema:significantLink ;
+        schema:description  "German immigrant Carl H. Wente founded Wente Vineyards in 1883." ;
+        schema:name         "fathered" .
+
+<bViy4XbX>  a            schema:WebPage , ucdlib:Place ;
+        schema:license      <http://rightsstatements.org/vocab/CNE/1.0/> ;
+        schema:name         "Hanzell Vineyards" ;
+        schema:publisher    <http://id.loc.gov/authorities/names/no2008108707> ;
+        schema:relatedLink  <https://en.wikipedia.org/wiki/Hanzell_Vineyards> , <https://www.nytimes.com/1984/02/29/garden/wine-talk-019542.html> , <https://www.nytimes.com/2006/09/13/dining/13pour.html> ;
+    schema:spatial [
+        a schema:Place ;
+        schema:latitude 38.31334 ;
+        schema:longitude -122.46241 ;
+        schema:name "Sonoma, California" ;
+        ] ;
+
+
+        schema:temporal     "1953/present" ;
+        schema:thumbnail    <bViy4XbX/image.png> ;
+        <bViy4XbX_3>     <puQadTTo> ;
+        <puQadTTo_9>     <puQadTTo> .
+
+<TCWjfhFr>  a            ucdlib:Person , schema:WebPage ;
+        schema:license      <http://rightsstatements.org/vocab/CNE/1.0/> ;
+        schema:name         "Carl H. Wente" ;
+        schema:publisher    <http://id.loc.gov/authorities/names/no2008108707> ;
+        schema:relatedLink  "#Image Credit" ;
+        schema:relatedLink  <https://americanhistory.si.edu/collections/search/object/nmah_1464815> , <https://en.wikipedia.org/wiki/Wente_Vineyards> ;
+    schema:spatial [
+        a schema:Place ;
+        schema:latitude 52.376384 ;
+        schema:longitude 9.802665 ;
+        schema:name "Hanover, Germany" ;
+        ] ;
+
+
+        schema:temporal     "1851/1934" ;
+        <9U1n81i1_1>     <9U1n81i1> ;
+        <TCWjfhFr_1>     <7qZDSE5E> ;
+        <TCWjfhFr_2>     <wypl7p1J> ;
+        <TCWjfhFr_3>     <9U1n81i1> ;
+        <wypl7p1J_4>     <wypl7p1J> .
+
+<CvTHg5Ea>  a            schema:WebPage , ucdlib:Person ;
+        schema:license      <http://rightsstatements.org/vocab/CNE/1.0/> ;
+        schema:name         "Joseph \"Joe\" Heitz" ;
+        schema:publisher    <http://id.loc.gov/authorities/names/no2008108707> ;
+        schema:relatedLink  "#Image Credit" ;
+        schema:relatedLink  <https://www.nytimes.com/1984/02/29/garden/wine-talk-019542.html> , <https://www.nytimes.com/2000/12/23/us/joseph-heitz-81-a-standout-in-california-winemaking.html> , <https://en.wikipedia.org/wiki/Heitz_Wine_Cellars> ;
+        schema:temporal     "1919/2000" ;
+        schema:thumbnail    <CvTHg5Ea/image.png> ;
+        <CvTHg5Ea_1>     <bViy4XbX> ;
+        <CvTHg5Ea_2>     <o9V24Tm4> ;
+        <CvTHg5Ea_3>     <OIX6pWBy> ;
+        <OIX6pWBy_1>     <OIX6pWBy> ;
+        <bViy4XbX_6>     <bViy4XbX> .
+
+<hPI526VA_2>  a          schema:significantLink ;
+        schema:description  "In 1953, Stony Hill Vineyard provided James D. Zellerbach the chardonnay budwood that was used to plant Hanzell Vineyards.  Because the Wente brothers were widely respected for their efforts to perfect California chardonnay, Zellerbach sought out the Wente clone when planting his 1953 Ambassador's Vineyard. He continued Wente's practice of evaluating selection, gradually establishing vines perfectly adapted to the growing conditions of Sonoma. Today the vines are known as the Hanzell clone." ;
+        schema:name         "co-founded" .

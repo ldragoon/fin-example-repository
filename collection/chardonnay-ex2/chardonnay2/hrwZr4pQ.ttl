@@ -1,0 +1,24 @@
+@prefix schema: <http://schema.org/> .
+@prefix fast:  <http://id.worldcat.org/fast/> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix ucdlib: <http://digital.ucdavis.edu/schema#> .
+@prefix wdt:   <http://www.wikidata.org/prop/direct/> .
+@prefix w:     <http://library.ucdavis.edu/wine-ontology#> .
+@prefix lcna:  <http://id.loc.gov/authorities/names/> .
+@prefix ldp:   <http://www.w3.org/ns/ldp#> .
+@prefix acl:   <http://www.w3.org/ns/auth/acl#> .
+
+<hrwZr4pQ>
+        a                   ucdlib:Place , schema:WebPage ;
+        <hrwZr4pQ_2>
+                <cquwBxNn> ;
+        <hrwZr4pQ_3>
+                <7qZDSE5E> ;
+        schema:license      <http://rightsstatements.org/vocab/CNE/1.0/> ;
+        schema:name         "Gier Vineyard" ;
+        schema:publisher    lcna:no2008108707 ;
+        schema:relatedLink  "#Image Credit" ;
+        schema:relatedLink  <https://napavalleyregister.com/wine/theodore-gier-and-the-sequoia-vineyard/article_b10e9b0d-723d-5a43-a3f1-c3be4949e5b0.html> , <http://www.waywardtendrils.com/pdfs/san_francisco.pdf> , <https://calisphere.org/item/655b6d0a25ec1ea8b14e2202feae2991/> , <https://napahistory.pastperfectonline.com/photo/FD11C6FB-84B0-49B6-A0F0-025682383680> ;
+        schema:spatial      "Livermore, CA" ;
+        schema:temporal     "1893" ;
+        schema:thumbnail    <hrwZr4pQ/card00608_fr.jpg> .

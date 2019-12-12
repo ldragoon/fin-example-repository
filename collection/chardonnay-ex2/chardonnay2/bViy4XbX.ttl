@@ -1,0 +1,23 @@
+@prefix schema: <http://schema.org/> .
+@prefix fast:  <http://id.worldcat.org/fast/> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix ucdlib: <http://digital.ucdavis.edu/schema#> .
+@prefix wdt:   <http://www.wikidata.org/prop/direct/> .
+@prefix w:     <http://library.ucdavis.edu/wine-ontology#> .
+@prefix lcna:  <http://id.loc.gov/authorities/names/> .
+@prefix ldp:   <http://www.w3.org/ns/ldp#> .
+@prefix acl:   <http://www.w3.org/ns/auth/acl#> .
+
+<bViy4XbX>
+        a                   schema:WebPage , ucdlib:Place ;
+        <bViy4XbX_3>
+                <puQadTTo> ;
+        <puQadTTo_9>
+                <puQadTTo> ;
+        schema:license      <http://rightsstatements.org/vocab/CNE/1.0/> ;
+        schema:name         "Hanzell Vineyards" ;
+        schema:publisher    lcna:no2008108707 ;
+        schema:relatedLink  <https://en.wikipedia.org/wiki/Hanzell_Vineyards> , <https://www.nytimes.com/2006/09/13/dining/13pour.html> , <https://www.nytimes.com/1984/02/29/garden/wine-talk-019542.html> ;
+        schema:spatial      "Sonoma, California" , "38.31334, -122.46241" ;
+        schema:temporal     "1953/present" ;
+        schema:thumbnail    <bViy4XbX/image.png> .

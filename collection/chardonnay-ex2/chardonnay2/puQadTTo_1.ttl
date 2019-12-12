@@ -1,0 +1,14 @@
+@prefix schema: <http://schema.org/> .
+@prefix fast:  <http://id.worldcat.org/fast/> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix ucdlib: <http://digital.ucdavis.edu/schema#> .
+@prefix wdt:   <http://www.wikidata.org/prop/direct/> .
+@prefix w:     <http://library.ucdavis.edu/wine-ontology#> .
+@prefix lcna:  <http://id.loc.gov/authorities/names/> .
+@prefix ldp:   <http://www.w3.org/ns/ldp#> .
+@prefix acl:   <http://www.w3.org/ns/auth/acl#> .
+
+<puQadTTo_1>
+        a                   schema:significantLink ;
+        schema:description  "Chardonnay budwood from Meursault found its way from Wetmore's Livermore vineyard to the Gier Vineyard in Pleasanton, and from there to the Wente Vineyards, where it was cultivated alongside chardonnay vines from Montpellier.  Through decades of selection, Wente's chardonnay vines came to be known as the Wente Clone, and adopted by other winemakers seeking to establish plantings of chardonnay in California." ;
+        schema:name         "from" .

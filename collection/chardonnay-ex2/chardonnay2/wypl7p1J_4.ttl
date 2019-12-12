@@ -1,0 +1,14 @@
+@prefix schema: <http://schema.org/> .
+@prefix fast:  <http://id.worldcat.org/fast/> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix ucdlib: <http://digital.ucdavis.edu/schema#> .
+@prefix wdt:   <http://www.wikidata.org/prop/direct/> .
+@prefix w:     <http://library.ucdavis.edu/wine-ontology#> .
+@prefix lcna:  <http://id.loc.gov/authorities/names/> .
+@prefix ldp:   <http://www.w3.org/ns/ldp#> .
+@prefix acl:   <http://www.w3.org/ns/auth/acl#> .
+
+<wypl7p1J_4>
+        a                   schema:significantLink ;
+        schema:description  "With cuttings from the vine nursery at the University of Montpellier and chardonnay budwood from the Theodore Gier Vineyard in Pleasanton, which was planted using budwood obtained from Charles Wetmore who brought the budwood from Meursault in Burgundy around 1882, Ernest Wente began the 30- to 40-year process of selecting only vines with favorable traits and replanting them. Over time this chardonnay became known as the Wente clone (actually several clones) and was planted in many vineyards in California and beyond." ;
+        schema:name         "founded" .

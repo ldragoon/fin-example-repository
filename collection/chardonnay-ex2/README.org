@@ -1,0 +1,38 @@
+There are a number of problems with our original plan for our moment.
+Primarily, putting all the moment data into the top level really slows down the
+DAMS. Later, we need to file a report about that, but for now we are going to
+modify the behavior of
+
+#+BEGIN_SRC bash
+sparql=/home/quinn/apache-jena-3.9.0/bin/sparql
+f=all.ttl
+u=file://$(pwd);
+p='prefix schema: <http://schema.org/> prefix ucdlib: <http://digital.ucdavis.edu/schema#>'
+pages=$($sparql --results=csv --data=$f --query=- <<<"$p select ?s WHERE {?s a  schema:WebPage.}" | tail -n+2)
+for i in ${pages}; do
+  n=$(echo $i | sed -e 's|.*/\(.*\).|\1|');
+  $sparql --data=$f --query=- <<<"DESCRIBE <$n>" |\
+    sed -e "s|${u}/\?\(${f}\)\?\(\.ttl\)\?\#\?||g" | tee chardonnay/${n}.ttl
+done
+#+END_SRC
+
+#+RESULTS:
+
+
+And the significant links:
+
+
+#+BEGIN_SRC bash
+sparql=/home/quinn/apache-jena-3.9.0/bin/sparql
+f=all.ttl
+u=file://$(pwd);
+p='prefix schema: <http://schema.org/> prefix ucdlib: <http://digital.ucdavis.edu/schema#>'
+pages=$($sparql --results=csv --data=$f --query=- <<<"$p select ?s WHERE {?s a  schema:significantLink .}" | tail -n+2)
+for i in ${pages}; do
+  n=$(echo $i | sed -e 's|.*/\(.*\).|\1|');
+  $sparql --data=$f --query=- <<<"DESCRIBE <$n>" |\
+    sed -e "s|${u}/\?\(${f}\)\?\(\.ttl\)\?\#\?||g" | tee chardonnay/${n}.ttl
+done
+#+END_SRC
+
+#+RESULTS:

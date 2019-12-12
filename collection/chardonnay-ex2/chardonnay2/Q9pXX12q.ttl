@@ -1,0 +1,28 @@
+@prefix schema: <http://schema.org/> .
+@prefix fast:  <http://id.worldcat.org/fast/> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix ucdlib: <http://digital.ucdavis.edu/schema#> .
+@prefix wdt:   <http://www.wikidata.org/prop/direct/> .
+@prefix w:     <http://library.ucdavis.edu/wine-ontology#> .
+@prefix lcna:  <http://id.loc.gov/authorities/names/> .
+@prefix ldp:   <http://www.w3.org/ns/ldp#> .
+@prefix acl:   <http://www.w3.org/ns/auth/acl#> .
+
+<Q9pXX12q>
+        a                 schema:WebPage , ucdlib:Person ;
+        <Q9pXX12q_1>
+                <6wM6jTwp> ;
+        <Q9pXX12q_2>
+                <puQadTTo> ;
+        <Q9pXX12q_3>
+                <wVEYqHFd> ;
+        <Q9pXX12q_7>
+                <https://wineserver.ucdavis.edu/giving/scholarhips-endowments/louis-p-martini-endowed-chair-fund> ;
+        <puQadTTo_7>
+                <puQadTTo> ;
+        schema:license    <http://rightsstatements.org/vocab/CNE/1.0/> ;
+        schema:name       "Louis P. Martini" ;
+        schema:publisher  lcna:no2008108707 ;
+        schema:spatial    "337.681944, -121.768056" , "Livermore, California" ;
+        schema:temporal   "1918/1998" ;
+        schema:thumbnail  <Q9pXX12q/image.png> .

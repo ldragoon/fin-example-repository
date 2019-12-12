@@ -1,0 +1,23 @@
+@prefix schema: <http://schema.org/> .
+@prefix fast:  <http://id.worldcat.org/fast/> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix ucdlib: <http://digital.ucdavis.edu/schema#> .
+@prefix wdt:   <http://www.wikidata.org/prop/direct/> .
+@prefix w:     <http://library.ucdavis.edu/wine-ontology#> .
+@prefix lcna:  <http://id.loc.gov/authorities/names/> .
+@prefix ldp:   <http://www.w3.org/ns/ldp#> .
+@prefix acl:   <http://www.w3.org/ns/auth/acl#> .
+
+<ZZV840iO>
+        a                   ucdlib:Person , schema:WebPage ;
+        <ZZV840iO_1>
+                <bViy4XbX> ;
+        <bViy4XbX_4>
+                <bViy4XbX> ;
+        schema:license      <http://rightsstatements.org/vocab/CNE/1.0/> ;
+        schema:name         "Ralph Bradford \"Brad\" Webb" ;
+        schema:publisher    lcna:no2008108707 ;
+        schema:relatedLink  <https://winesvinesanalytics.com/sections/printout_article.cfm?article=feature&content=70101> , <https://en.wikipedia.org/wiki/Hanzell_Vineyards> ;
+        schema:spatial      "38.313393, -122.462502" , "Sonoma, CA" ;
+        schema:temporal     "1922/1999" ;
+        schema:thumbnail    <ZZV840iO/image.png> .

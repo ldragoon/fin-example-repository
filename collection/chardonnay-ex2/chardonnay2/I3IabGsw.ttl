@@ -1,0 +1,23 @@
+@prefix schema: <http://schema.org/> .
+@prefix fast:  <http://id.worldcat.org/fast/> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix ucdlib: <http://digital.ucdavis.edu/schema#> .
+@prefix wdt:   <http://www.wikidata.org/prop/direct/> .
+@prefix w:     <http://library.ucdavis.edu/wine-ontology#> .
+@prefix lcna:  <http://id.loc.gov/authorities/names/> .
+@prefix ldp:   <http://www.w3.org/ns/ldp#> .
+@prefix acl:   <http://www.w3.org/ns/auth/acl#> .
+
+<I3IabGsw>
+        a                   schema:WebPage , ucdlib:Event ;
+        <I3IabGsw_2>
+                <McT003hC> ;
+        <McT003hC_1>
+                <McT003hC> ;
+        schema:license      <http://rightsstatements.org/vocab/CNE/1.0/> ;
+        schema:name         "Board of State Viticultural Commissioners" ;
+        schema:publisher    lcna:no2008108707 ;
+        schema:relatedLink  <http://onlinebooks.library.upenn.edu/webbin/book/lookupname?key=California.%20Board%20of%20State%20Viticultural%20Commissioners> , <https://en.wikipedia.org/wiki/Board_of_State_Viticultural_Commissioners> , <http://blog.tavbooks.com/?p=1634> ;
+        schema:spatial      "38.293337, -122.296761" , "San Francisco, California" ;
+        schema:temporal     "1880/1894" ;
+        schema:thumbnail    <I3IabGsw/image.png> .

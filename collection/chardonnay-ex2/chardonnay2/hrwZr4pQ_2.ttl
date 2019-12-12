@@ -1,0 +1,14 @@
+@prefix schema: <http://schema.org/> .
+@prefix fast:  <http://id.worldcat.org/fast/> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix ucdlib: <http://digital.ucdavis.edu/schema#> .
+@prefix wdt:   <http://www.wikidata.org/prop/direct/> .
+@prefix w:     <http://library.ucdavis.edu/wine-ontology#> .
+@prefix lcna:  <http://id.loc.gov/authorities/names/> .
+@prefix ldp:   <http://www.w3.org/ns/ldp#> .
+@prefix acl:   <http://www.w3.org/ns/auth/acl#> .
+
+<hrwZr4pQ_2>
+        a                   schema:significantLink ;
+        schema:description  "In 1908, Ernest Wente obtained chardonnay cuttings from the Theodore Gier Vineyard in Pleasanton and planted them at the Wente Estate in Livermore. The Gier Vineyard was the primary source used by Ernest Wente to establish the Wente Livermore vineyard." ;
+        schema:name         "planted" .

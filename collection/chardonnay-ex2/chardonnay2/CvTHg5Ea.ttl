@@ -1,0 +1,29 @@
+@prefix schema: <http://schema.org/> .
+@prefix fast:  <http://id.worldcat.org/fast/> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix ucdlib: <http://digital.ucdavis.edu/schema#> .
+@prefix wdt:   <http://www.wikidata.org/prop/direct/> .
+@prefix w:     <http://library.ucdavis.edu/wine-ontology#> .
+@prefix lcna:  <http://id.loc.gov/authorities/names/> .
+@prefix ldp:   <http://www.w3.org/ns/ldp#> .
+@prefix acl:   <http://www.w3.org/ns/auth/acl#> .
+
+<CvTHg5Ea>
+        a                   ucdlib:Person , schema:WebPage ;
+        <CvTHg5Ea_1>
+                <bViy4XbX> ;
+        <CvTHg5Ea_2>
+                <o9V24Tm4> ;
+        <CvTHg5Ea_3>
+                <OIX6pWBy> ;
+        <OIX6pWBy_1>
+                <OIX6pWBy> ;
+        <bViy4XbX_6>
+                <bViy4XbX> ;
+        schema:license      <http://rightsstatements.org/vocab/CNE/1.0/> ;
+        schema:name         "Joseph \"Joe\" Heitz" ;
+        schema:publisher    lcna:no2008108707 ;
+        schema:relatedLink  "#Image Credit" ;
+        schema:relatedLink  <https://en.wikipedia.org/wiki/Heitz_Wine_Cellars> , <https://www.nytimes.com/1984/02/29/garden/wine-talk-019542.html> , <https://www.nytimes.com/2000/12/23/us/joseph-heitz-81-a-standout-in-california-winemaking.html> ;
+        schema:temporal     "1919/2000" ;
+        schema:thumbnail    <CvTHg5Ea/image.png> .

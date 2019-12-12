@@ -1,0 +1,20 @@
+@prefix schema: <http://schema.org/> .
+@prefix fast:  <http://id.worldcat.org/fast/> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix ucdlib: <http://digital.ucdavis.edu/schema#> .
+@prefix wdt:   <http://www.wikidata.org/prop/direct/> .
+@prefix w:     <http://library.ucdavis.edu/wine-ontology#> .
+@prefix lcna:  <http://id.loc.gov/authorities/names/> .
+@prefix ldp:   <http://www.w3.org/ns/ldp#> .
+@prefix acl:   <http://www.w3.org/ns/auth/acl#> .
+
+<65gmPKZY>
+        a                   schema:WebPage , ucdlib:Person ;
+        <65gmPKZY_1>
+                <zBgXIHXc> ;
+        schema:license      <http://rightsstatements.org/vocab/CNE/1.0/> ;
+        schema:name         "James (Jim) Barrett" ;
+        schema:publisher    lcna:no2008108707 ;
+        schema:relatedLink  <https://montelena.com/winery/history> , <https://www.winespectator.com/articles/chateau-montelena-owner-jim-barrett-dies-at-86-48165> , <https://www.thedrinksbusiness.com/2013/03/chateau-montelena-owner-jim-barrett-dies/> ;
+        schema:temporal     "1926/2013" ;
+        schema:thumbnail    <65gmPKZY/jim-barrett.jpg> .

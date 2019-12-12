@@ -1,0 +1,21 @@
+@prefix schema: <http://schema.org/> .
+@prefix fast:  <http://id.worldcat.org/fast/> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix ucdlib: <http://digital.ucdavis.edu/schema#> .
+@prefix wdt:   <http://www.wikidata.org/prop/direct/> .
+@prefix w:     <http://library.ucdavis.edu/wine-ontology#> .
+@prefix lcna:  <http://id.loc.gov/authorities/names/> .
+@prefix ldp:   <http://www.w3.org/ns/ldp#> .
+@prefix acl:   <http://www.w3.org/ns/auth/acl#> .
+
+<fsOdxp3w>
+        a                   schema:WebPage , ucdlib:Person ;
+        <fsOdxp3w_1>
+                <wQgoqbSV> ;
+        schema:license      <http://rightsstatements.org/vocab/CNE/1.0/> ;
+        schema:name         "Warren Winiarski" ;
+        schema:publisher    lcna:no2008108707 ;
+        schema:relatedLink  <https://www.californiamuseum.org/inductee/warren-winiarski> ;
+        schema:spatial      "41.855428, -87.681018" , "Chicago, Illinois" ;
+        schema:temporal     "1928/present" ;
+        schema:thumbnail    <fsOdxp3w/5c5c9b6786cc0.image.jpg> .
