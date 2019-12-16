@@ -9,7 +9,7 @@
 @prefix acl: <http://www.w3.org/ns/auth/acl#>  .
 @prefix lcna: <http://id.loc.gov/authorities/names/> .
 
-<>
+<chardonnay.json>
     rdf:type             schema:MediaObject ;
     ebucore:hasMimeType  "application/ld+json"^^<http://www.w3.org/2001/XMLSchema#string> ;
     ebucore:filename     "chardonnay.json"^^<http://www.w3.org/2001/XMLSchema#string> ;
