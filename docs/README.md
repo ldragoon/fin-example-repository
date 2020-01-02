@@ -16,3 +16,7 @@
 
 1. Open a terminal
 2. Run `bundle exec jekyll serve`
+
+### Extras
+
+[Command Line Usage](https://jekyllrb.com/docs/usage/)
