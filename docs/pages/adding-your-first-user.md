@@ -4,7 +4,7 @@ title: Adding Your First User
 permalink: /adding-your-first-user/
 ---
 
-### Basic-Auth
+## Basic-Auth
 
 Our container setup separates the authentication step from the Fedora and
 other services.  The services rely on valid JWT tokens being sent along with
