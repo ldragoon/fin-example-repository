@@ -5,6 +5,7 @@ permalink: /configuration/
 ---
 
 The first step is to clone the repository, using:
+
 ```bash
 git clone https://github.com/UCDavisLibrary/fin-example-repository.git
 cd fin-example-repository          # change directory to your cloned location
@@ -68,7 +69,7 @@ docker-compose -f fin-example.yml up -d
 ```
 
 At this point, you should be able to navigate the where you set `FIN_URL`, eg
-http://localhost:3000/ and you should see an empty repository.
+`http://localhost:3000/` and you should see an empty repository.
 
 Going back to your docker configuration, at this point you should be able to
 examine the process that you are running, the logs, and other standard
@@ -79,6 +80,6 @@ host of others.
 
 Throughout these examples, we will also show direct access to the underlying LDP
 as well. The default base for access to the LDP is /fcrepo/rest, so try
-accessing http://localhost:3000/fcrepo/rest . This should fail, since by default
+accessing `http://localhost:3000/fcrepo/rest`. This should fail, since by default
 the public is not granted access to the data.  Since we want to read and write
 data to this repository, let's next create a new user for the system.

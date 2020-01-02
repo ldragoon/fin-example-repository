@@ -10,6 +10,7 @@ ouradd first entry into the repository.
 ``` bash
 fin http put -H prefer:return=minimal -H "Content-Type:text/turtle" -@ server.ttl -P h /
 ```
+
 This adds the `server.ttl` to the metadata of our root repository.  We can
 verify that in two ways, first using the command-line tool.
 
@@ -17,11 +18,10 @@ verify that in two ways, first using the command-line tool.
 fin http get -P b /
 ```
 
-We can also verify in the browser, http://localhost:3000/fcrepo/rest open the
+We can also verify in the browser, `http://localhost:3000/fcrepo/rest` open the
 properties bar and verify we've updated the metadata.  The root metadata also
-controls the information on the server.  Revisit, http://localhost:3000/ you can
+controls the information on the server.  Revisit, `http://localhost:3000/` you can
 see that the description of the repository has changed.
-
 
 ***Pro tip** The `fin` cli has lots if specialized tools for accessing a fedora
 server, but there is nothing special in the calls that are sent to fedora, they

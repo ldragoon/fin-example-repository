@@ -5,7 +5,7 @@ permalink: /accessing-the-ldp-server/
 ---
 
 Now that we have elevated privileges, let's revisit the root to the LDP services,
-http://localhost:3000/fcrepo/rest .  Now we should have access to this location.
+`http://localhost:3000/fcrepo/rest`.  Now we should have access to this location.
 There isn't anything here, but at least we can see that now.  Users familiar
 with Fedora will note that this is the standard fedora interface when accessed
 via the browser.
@@ -16,7 +16,7 @@ In many of the examples following, we will also be using the command-line tool
 The first time you use `fin`, you need to point to the server that you want to
 interact with.  Run the command `fin shell`.  This will put you into an
 interactive mode.  It will also prompt for a fedora endpoint.  Use the value to
-match your FIN_URL, in our example http://localhost:3000.
+match your FIN_URL, in our example `http://localhost:3000`.
 
 Next, just as for the browser, we need to get a valid token for our command-line
 server.  Within the fin shell try `login`.  This should launch a service to
