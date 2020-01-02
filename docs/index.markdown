@@ -5,8 +5,6 @@
 layout: home
 ---
 
-# Table of Contents
-
 - [Installation](installation)
 - [Prerequisites](prerequisites)
 - [Configuration](configuration)
