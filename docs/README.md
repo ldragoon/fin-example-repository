@@ -1,6 +1,8 @@
-# jekyll-test-site
+# Jekyll Github Pages Site
 
 ## Documentation
+
+[Github Pages](https://help.github.com/en/github/working-with-github-pages)
 
 [Jekyll](https://jekyllrb.com/)
 
