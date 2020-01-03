@@ -6,25 +6,18 @@ permalink: /examples/ex1-pets/
 
 ## Table of Contents
 
-1. [Example 1 - Collaborator Pets](#org09309de)
-  1.  [Object Structure](#org2ad71b7)
-  2.  [Administrative Privleges](#org09009e1)
-  3.  [Make a new Collection](#org376d22c)
-  4.  [Collection Access Control](#org15e1dc4)
-  5.  [Check the .fin/config.yml File](#orgadfd184)
-  5.  [Add Example Data](#orgadfd185)
-2. [Graphs](#orgfd006fc)
-3. [Amended metadata representation](#org642851f)
-
-:header-args:    :exports both :eval no-export :cache yes
-
-<a id="org09309de"></a>
-
-## Example 1 - Collaborator Pets
+1. [Object Structure](#org2ad71b7)
+2. [Administrative Privleges](#org09009e1)
+3. [Make a new Collection](#org376d22c)
+4. [Collection Access Control](#org15e1dc4)
+5. [Check the .fin/config.yml File](#orgadfd184)
+6. [Add Example Data](#orgadfd185)
+7. [Graphs](#orgfd006fc)
+8. [Amended metadata representation](#org642851f)
 
 Our collaborator pets collection is the most basic type of collection that can
 be added into the DAMS. This example contains a simple set of digital images
-with a small amount of data about the pets. Each pet, eg. [ashley.jpg](./ashley.jpg) is included
+with a small amount of data about the pets. Each pet, eg. [ashley.jpg](https://github.com/UCDavisLibrary/fin-example-repository/blob/master/collection/ex1-pets/ex1-pets/pets/ashley.jpg) is included
 in their own image file, and each image file has some associated metadata in a
 `.ttl` sidecar, eg. [ashley.jpeg.ttl](./ashley.jpeg.ttl). The metadata is in `text/turtle` format [text/turtle documentation](https://www.w3.org/TeamSubmission/turtle/).
 The [index.ttl](./index.ttl) file includes information about the collection as a whole.
@@ -34,7 +27,6 @@ This collection can all be created with the [import.sh](./import.sh) script, and
 going through that script line-by-line to describe the general steps for
 creating new collections.  Before we do that though, we first need to describe
 the object structure in our <https://fedora.info/spec/>.
-
 
 <a id="org2ad71b7"></a>
 
@@ -51,14 +43,13 @@ faceted in our DAMS include <https://schema.org/name>, <https://schema.org/about
 <https://schema.org/alternativeHeadline>,<https://schema.org/license>,<https://schema.org/creator>,
 <https://schema.org/datePublished>
 
-![img](./docs/generic_diagram.png)
+![img](https://github.com/UCDavisLibrary/fin-example-repository/blob/master/collection/ex1-pets/docs/generic_diagram.png)
 
 Now, for our example, each individual pet is an item within our collection.  The
 following diagram replaces the generic objects with some of the actual objects
 in our collection.
 
-![img](./docs/diagram.png)
-
+![img](https://github.com/UCDavisLibrary/fin-example-repository/blob/master/collection/ex1-pets/docs/diagram.png)
 
 <a id="org09009e1"></a>
 
@@ -71,7 +62,6 @@ instructions.  You can verify this with the following command, which access the
 root location, and verifies you can write to this location.
 
     fin http get -P b / | grep fedora:writable
-
 
 <a id="org376d22c"></a>
 
@@ -116,7 +106,6 @@ repository. After this step, you should be able to navigate to
 example1-pets collection. You may need to login to your account via
 <http://localhost:3000/auth/basic/login.html> to give your browser access.
 
-
 <a id="org15e1dc4"></a>
 
 ## Collection Access Control
@@ -126,7 +115,6 @@ available for anyone.
 
     fin collection acl user add example_1-pets foaf:Agent r
 
-
 <a id="orgadfd184"></a>
 
 ## Check the .fin/config.yml File
@@ -134,13 +122,13 @@ available for anyone.
 Navigate to `fin-example-repository/collection/ex1-pets/.fin`. You should see a file named `config.yml`. Open it. Make sure that the listed host is pointing to the correct location. If you're working locally, you'd probably like to set it for your local work environment.
 
 Example
-```  
+```bash 
   source:  
-    host: http://192.168.99.100:3000/    
-    base: /fcrepo/rest    
+    host: http://192.168.99.100:3000/
+    base: /fcrepo/rest
     collection: ex1-pets
 ```
- 
+
 <a id="orgadfd185"></a>
 
 ## Add Example Data
@@ -169,13 +157,11 @@ Open a Terminal and cd to `fin-example-repository/collection/ex1-pets`. Then run
      
 After the command runs, you should be able to refresh your local UC Davis Library Digital Collections instance and click on the Collaborator Pets image block.  You should now see your cute animal picture.
 
-
 <a id="orgfd006fc"></a>
 
 # Graphs
 
 One problem that is currently not completely solved
-
 
 <a id="org642851f"></a>
 
