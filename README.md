@@ -173,7 +173,7 @@ Our container setup separates the authentication step from the Fedora and
 other services.  The services rely on valid JWT tokens being sent along with
 requests to the system.  The Authentication services are what creates these
 tokens.  In production, you will most certainly want to use a centralized
-authentication mechanism, see [CAS Authentication](#CAS-Authentication) in the [Advanced Configuration](#Advanced-Configuration) section to see an example of this type of setup.  However, for
+authentication mechanism, see [CAS Authentication](#cas-authentication) in the [Advanced Configuration](#advanced-configuration) section to see an example of this type of setup.  However, for
 testing, we have included a Basic Authentication service that can be used
 without any external setup.  You should really only use this service for
 testing.
@@ -337,11 +337,11 @@ this `http --session=admin http://localhost:3000/fcrepo/rest`.*
 
 <a id="advanced-configuration"></a>
 
-# Advanced Configuration
+## Advanced Configuration
 
 <a id="run-server-on-default-ports"></a>
 
-## Run Server on Default Ports
+### Run Server on Default Ports
 
 If you want to run this on the default port, the user running this example will
 need permission to connect to that protected port. In our setup, we often have
