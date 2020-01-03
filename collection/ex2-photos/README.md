@@ -1,14 +1,4 @@
 
-# Table of Contents
-
-1.  [Example 2 - Photographs](#org91bc5ed)
-    1.  [Object Structure](#org8fac22c)
-
-:header-args:    :exports both :eval no-export :cache yes
-
-
-<a id="org91bc5ed"></a>
-
 # Example 2 - Photographs
 
 This example, drawn from our Eastman collection, contains digitized versions of
@@ -20,9 +10,6 @@ In this case we have have metadata that describes the physical item, and
 associated with this item we have digital representations of the item.  In the
 local filesystem, each item corresponds to a directory, and the binaries are
 files within that item.
-
-
-<a id="org8fac22c"></a>
 
 ## Object Structure
 
