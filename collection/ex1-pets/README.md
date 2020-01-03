@@ -4,15 +4,12 @@
 1.  [Example 1 - Collaborator Pets](#org09309de)
     1.  [Object Structure](#org2ad71b7)
     2.  [Administrative Privleges](#org09009e1)
-    3.  [Make a new Collection](#org376d22c)
+    3.  [Make a New Collection](#org376d22c)
     4.  [Collection Access Control](#org15e1dc4)
-    5.  [Check the .fin/config.yml File](#orgadfd184)
+    5.  [Check .fin/config.yml File](#orgadfd184)
     5.  [Add Example Data](#orgadfd185)
 2.  [Graphs](#orgfd006fc)
 3.  [Amended metadata representation](#org642851f)
-
-:header-args:    :exports both :eval no-export :cache yes
-
 
 <a id="org09309de"></a>
 
@@ -71,7 +68,7 @@ root location, and verifies you can write to this location.
 
 <a id="org376d22c"></a>
 
-## Make a new Collection
+## Make a New Collection
 
 Let&rsquo;s start with the collection description.  That&rsquo;s stored in the \`index.ttl\`
 file.  This file describes the collection. \`index.ttl\` is a pretty easy file to
@@ -125,7 +122,7 @@ available for anyone.
 
 <a id="orgadfd184"></a>
 
-## Check the .fin/config.yml File
+## Check .fin/config.yml File
 
 Navigate to `fin-example-repository/collection/ex1-pets/.fin`. You should see a file named `config.yml`. Open it. Make sure that the listed host is pointing to the correct location. If you're working locally, you'd probably like to set it for your local work environment.
 
