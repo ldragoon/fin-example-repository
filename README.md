@@ -1,3 +1,6 @@
+---
+layout: page
+---
 
 # Fin Example Repositories
 
@@ -32,7 +35,7 @@ in the Issues. You may find help there as well.
   - [Run Server on Default Ports](#Run-Server-on-Default-Ports)
 - [Example Collections](#Example-Collections)
 
-#  Installation
+## Installation
 
 Follow the steps below you should be able to get your own server up and
 running relatively quickly.  From there, you can investigate some of the example
@@ -356,7 +359,7 @@ to this setup when you move to a production setup.
 </IfModule>
 ```
 
-# Example Collections
+## Example Collections
 
 From here, we can look at some of the example collections in this project and
 see how data can be added and maintained in our repository.
