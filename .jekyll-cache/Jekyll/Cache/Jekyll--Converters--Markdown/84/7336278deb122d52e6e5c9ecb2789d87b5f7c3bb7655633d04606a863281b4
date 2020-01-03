@@ -1,0 +1,83 @@
+I"<p>The first step is to clone the repository, using:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/UCDavisLibrary/fin-example-repository.git
+<span class="nb">cd </span>fin-example-repository          <span class="c"># change directory to your cloned location</span>
+</code></pre></div></div>
+
+<p>This will create a local copy of some example data and configurations for
+testing the server. Looking around these files, you’ll see some configuration
+files, some data and some metadata files mostly located within the collection
+directory</p>
+
+<p>The first thing we need to do is setup some environment variables for our first
+setup. Look at the <code class="highlighter-rouge">fin-example.env</code> file. The file will look something like the file
+below:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># server.env</span>
+<span class="nv">FIN_URL</span><span class="o">=</span>http://localhost:3000
+<span class="nv">FIN_ALLOW_ORIGINS</span><span class="o">=</span>mylibrary.org,localhost
+<span class="nv">JWT_SECRET</span><span class="o">=</span>lax
+<span class="nv">JWT_ISSUER</span><span class="o">=</span>mylibrary.org
+<span class="nv">JWT_TTL</span><span class="o">=</span>36000
+<span class="nv">JWT_VERBOSE</span><span class="o">=</span>1
+</code></pre></div></div>
+
+<ul>
+  <li>
+    <p><code class="highlighter-rouge">FIN_URL</code>  describes where the server will start.  By default we’ll start it
+ on a localhost with a development port.  If would like to see your server
+ from other locations, modify this to a publicly accessible location.  See the
+ section below for running on default ports.</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">FIN_ALLOW_ORIGINS</code> describes what domains can access your system.</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">JWT_SECRET</code> is a secret used between servers to verify authentication. The
+<code class="highlighter-rouge">JWT_SECRET</code> is used to sign jwt tokens. Computers with this secret can
+very easily create tokens that would be accepted by the system, so it’s <strong>very
+important</strong> to protect this secret in production environments.</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">JWT_ISSUER</code> describes the service that issued the jwt token. While, it is checked by
+the servers, is not a source of security.</p>
+  </li>
+</ul>
+
+<p>If you are happy with this configuration, let’s go ahead and startup you system.
+We are using docker-compose to startup the services described in our <code class="highlighter-rouge">fin.yml</code>
+file.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker-compose <span class="nt">-f</span> fin-example.yml up <span class="nt">-d</span>
+</code></pre></div></div>
+
+<p><em>Docker pros will notice we are avoiding using the standard location for the
+<code class="highlighter-rouge">docker-compose.yml</code> file, and in addition we explicitly identify the
+environment file in our setup. This is just to make it more clear what files are
+being used.</em></p>
+
+<p>This will take some time the first time, as multiple docker containers are
+pulled to your computer from docker hub.  The next time you run this, it will go
+much faster.  You can try that now, but turning your setup off and on.  It
+should startup much faster.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker-compose <span class="nt">-f</span> fin-example.yml down
+docker-compose <span class="nt">-f</span> fin-example.yml up <span class="nt">-d</span>
+</code></pre></div></div>
+
+<p>At this point, you should be able to navigate the where you set <code class="highlighter-rouge">FIN_URL</code>, eg
+<code class="highlighter-rouge">http://localhost:3000/</code> and you should see an empty repository.</p>
+
+<p>Going back to your docker configuration, at this point you should be able to
+examine the process that you are running, the logs, and other standard
+docker-compose commands.  For example, if you look at all the containers you’ve
+started with <code class="highlighter-rouge">docker-compose -f fin-example.yml ps</code>, you will see that there are
+a number of services started, including a fedora instance, an IIIF server, and a
+host of others.</p>
+
+<p>Throughout these examples, we will also show direct access to the underlying LDP
+as well. The default base for access to the LDP is /fcrepo/rest, so try
+accessing <code class="highlighter-rouge">http://localhost:3000/fcrepo/rest</code>. This should fail, since by default
+the public is not granted access to the data.  Since we want to read and write
+data to this repository, let’s next create a new user for the system.</p>
+:ET

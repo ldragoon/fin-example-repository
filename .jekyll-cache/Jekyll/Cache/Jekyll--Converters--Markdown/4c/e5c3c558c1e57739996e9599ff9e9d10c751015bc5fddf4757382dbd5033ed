@@ -1,0 +1,88 @@
+I"I<h2 id="basic-auth">Basic-Auth</h2>
+
+<p>Our container setup separates the authentication step from the Fedora and
+other services.  The services rely on valid JWT tokens being sent along with
+requests to the system.  The Authentication services are what creates these
+tokens.  In production, you will most certainly want to use a centralized
+authentication mechanism, see <a href="#CAS-Authentication">CAS Authentication</a> in the <a href="../advanced-configuration">Advanced Configuration</a> section to see an example of this type of setup.  However, for
+testing, we have included a Basic Authentication service that can be used
+without any external setup.  You should really only use this service for
+testing.</p>
+
+<p>Earlier, we looked at some of the container processes we were running with
+<code class="highlighter-rouge">docker-compose -f fin-example.yml ps</code>. One process there, is there is the
+basic-auth service.  In addition, by default we allow anyone to <a href="https://itcatalog.ucdavis.edu/service/central-authentication-service-cas">create a new
+user account</a>. Navigate to that
+location and create a new user.  The email address allows for password resets.
+Once you’ve created your account, you can login to the server, and then from the
+home page, you can verify that you are logged in via the lower right hand side
+of the page.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  docker-compose <span class="nt">-f</span> fin-example.yml <span class="nb">exec </span>basic-auth node service/cli create-user <span class="nt">-u</span> quinn <span class="nt">-p</span> laxlax <span class="nt">-e</span> quinn@example.org
+</code></pre></div></div>
+
+<p>Now, we are going to give the user we’ve just created special administrative
+privileges for our repository.  This cannot be done via the website, but can be
+done with a command in your docker setup.  Assuming the user you’ve added, and
+who will be your admin is <code class="highlighter-rouge">superman</code>, run the command below:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker-compose <span class="nt">-f</span> fin-example.yml <span class="nb">exec </span>server node app/cli admin add-admin <span class="nt">-u</span> quinn@local
+</code></pre></div></div>
+
+<p>This command adds the user <code class="highlighter-rouge">superman@local</code> into the group of administrators for
+the repository.   Every user in our Basic-Auth setup is given the <code class="highlighter-rouge">@local</code>
+suffix to differentiate them from other authentication systems.  Now in your
+browser, logout and back in (using the links in the lower right), to give
+yourself these new privileges.</p>
+
+<p><em><strong>Pro Tip</strong> if you understand the development setup of your browser, you will
+see that this process has added a Cookie <code class="highlighter-rouge">fin-jwt</code> that encapsulates this
+information.  For example, you could copy that jwt token and decode it, for
+example by visiting <a href="https://jwt.io/">jwt.io</a>. You will see the values encoded
+in the token.  You can even verify the signature if you include the <code class="highlighter-rouge">JWT_SECRET</code>
+you’ve set in your configuration.  This should show you how easy it is to create
+tokens if you know that <code class="highlighter-rouge">JWT_SECRET</code>, keep it hidden keep it safe!</em></p>
+
+<p><a id="CAS-Authentication"></a></p>
+
+<h2 id="cas-authentication">CAS Authentication</h2>
+
+<p>The examples above includes a Basic Authentication service, but even in
+development, we often don’t use this service. Instead, we have an authentication
+service using the CAS service used on our UC Davis campus. When using this
+service, the authentication of the users is sent to the central CAS
+authentication server, and if the user authenticates, the service will mint a
+token for this users.  There aren’t too many differences in the overall setup.
+First, open the fin-example.yml file, remove the Basic-Authentication Service, and add the CAS service.</p>
+
+<div class="language-diff highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gd">--- fin-example.yml	2018-03-01 17:05:14.964623572 -0800
+</span><span class="gi">+++ fin-example-cas.yml	2018-03-01 17:05:26.192623341 -0800
+</span><span class="p">@@ -103,10 +103,10 @@</span>
+       - server
+
+   ###
+<span class="gd">-  # Basic Username/Password AuthenticationService
+</span><span class="gi">+  # CAS AuthenticationService
+</span>   ###
+<span class="gd">-  basic-auth:
+-    image: ucdlib/fin-basic-auth:master
+</span><span class="gi">+  cas:
++    image: ucdlib/fin-cas-service:master
+</span>     env_file:
+       - fin-example.env
+     depends_on:
+</code></pre></div></div>
+
+<p>Then, when we create admins we make sure to use the <code class="highlighter-rouge">@ucdavis.edu</code> suffix for
+these users, as in:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker-compose <span class="nt">-f</span> fin-example.yml <span class="nb">exec </span>server node app/cli admin add-admin <span class="nt">-u</span> quinn@ucdavis.edu
+</code></pre></div></div>
+
+<p>More information is available in the fin-server
+<a href="https://github.com/UCDavisLibrary/fin-server/blob/master/docs/authentication-service/README.md">authentication-service</a>.
+Implementors of alternative authentication schemes can look at the <a href="https://github.com/UCDavisLibrary/fin-server/tree/master/services/cas">CAS
+Service</a>
+for a good example of how this can be implemented for new authentication
+services.</p>
+:ET

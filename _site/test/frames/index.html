@@ -1,0 +1,14 @@
+<h1 id="jsonld---frames">JSONLD - Frames</h1>
+
+<p>These tests are meant to show the utility of using JSON-LD Frames as a method to
+create application specific JSON files. The examples shown here identify a
+simple example that will take a particular Eastman file, and create a JSON file
+more suitable for indexing by elastic search.</p>
+
+<p>This requires the jsonld application.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">id</span><span class="o">=</span>B-10006
+fin <span class="nb">cd </span>collection/eastman-example/members
+fin http <span class="nb">head</span> <span class="nt">-P</span> b <span class="k">${</span><span class="nv">id</span><span class="k">}</span>/fcr:metadata <span class="o">&gt;</span> <span class="nv">$id</span>.json
+jsonld frame <span class="nt">--explicit</span><span class="o">=</span><span class="nb">true</span> <span class="nt">--frame</span><span class="o">=</span>es_frame.json <span class="nv">$id</span>.json <span class="o">&gt;</span> <span class="k">${</span><span class="nv">id</span><span class="k">}</span>_es.json
+</code></pre></div></div>

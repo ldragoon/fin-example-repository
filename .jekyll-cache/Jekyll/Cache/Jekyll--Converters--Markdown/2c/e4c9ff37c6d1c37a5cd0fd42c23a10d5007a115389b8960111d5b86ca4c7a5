@@ -1,0 +1,21 @@
+I"J<p>First, we’ll need to clone this repository. This is a good way to get your
+example data downloaded, and it is also a good starting point to fork this
+repository, later when you want to save site specific preferences. So, we’ll
+need have have <code class="highlighter-rouge">git</code> on your development machine. If you’re new to git, you my
+follow the installation instructions in this <a href="https://git-scm.com/">GIT Book</a>,
+or perhaps try github’s <a href="https://desktop.github.com/">desktop</a> application if
+you are using windows. The examples below, will use <code class="highlighter-rouge">git</code>’s command line
+features.</p>
+
+<p>The server is implemented as suite of docker containers, so in order to run this
+example, you need to have <code class="highlighter-rouge">docker</code> and <code class="highlighter-rouge">docker-compose</code> installed on our system.
+Follow the <a href="https://docs.docker.com/compose/install/">installation notes</a> from
+docker, if you are new to docker.  <strong>Note</strong>, if you are new to docker,
+understand that you will need to learn about this system.  Some of the example
+configuration below, will be unclear, and it will be difficult to modify the
+examples below for your setup unless  you understand this environment.</p>
+
+<p>Finally, we will be running a nodejs based tool <code class="highlighter-rouge">fin-cli</code> to work with our
+repository. After installing <a href="https://nodejs.org/en/download/">nodejs</a>, you can
+install this tool with <code class="highlighter-rouge">npm install -g @ucd-lib/fin-cli</code>.</p>
+:ET

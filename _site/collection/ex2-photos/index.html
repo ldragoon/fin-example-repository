@@ -1,0 +1,58 @@
+
+<h1 id="table-of-contents">Table of Contents</h1>
+
+<ol>
+  <li><a href="#org91bc5ed">Example 2 - Photographs</a>
+    <ol>
+      <li><a href="#org8fac22c">Object Structure</a></li>
+    </ol>
+  </li>
+</ol>
+
+<p>:header-args:    :exports both :eval no-export :cache yes</p>
+
+<p><a id="org91bc5ed"></a></p>
+
+<h1 id="example-2---photographs">Example 2 - Photographs</h1>
+
+<p>This example, drawn from our Eastman collection, contains digitized versions of
+some historical photographs.  In this case, the items in the collection
+represent physical items – the photographs –, and we are displaying digital
+versions of these photographs for our users.</p>
+
+<p>In this case we have have metadata that describes the physical item, and
+associated with this item we have digital representations of the item.  In the
+local filesystem, each item corresponds to a directory, and the binaries are
+files within that item.</p>
+
+<p><a id="org8fac22c"></a></p>
+
+<h2 id="object-structure">Object Structure</h2>
+
+<p>We continue to use <a href="https://schema.org/">Schema.org</a> to organize these items. To that end, we use
+another predicate of a <a href="https://schema.org/CreativeWork">schema:CreativeWork</a>, the <a href="https://schema.org/associatedMedia">https://schema.org/associatedMedia</a>. This
+allows one to add <a href="https://schema.org/MediaObject">https://schema.org/MediaObject</a>(s) to a work.  These ppk</p>
+
+<p><img src="/fin-example-repository/collection/ex2-photos/docs/generic_diagram.png" alt="img" /></p>
+
+<p>In the photo example, each photo is an item in the collection. Each photo has a
+digital file that represents the photograph. There is metadata associated with
+both the photograph, and the digital representation. The next diagram replaces
+the generic objects with some of the actual items. The
+corresponding metadata files are <ex2-photos.ttl>,
+&lt;ex2-photos/photos.ttl&gt;,
+&lt;ex2-photos/photos/tf0199n5zx.ttl&gt;.  The binary files located in locations like
+&lt;ex2-photos/photos/tf0199n5zx/full.tif&gt;, with it&rsquo;s metadata in
+&lt;ex2-photos/photos/tf0199n5zx/full.tif.ttl&gt;.</ex2-photos.ttl></p>
+
+<p><img src="/fin-example-repository/collection/ex2-photos/docs/diagram.png" alt="img" /></p>
+
+<p>Not that in our local filesystem, we use directories to store non-binary
+containers.  Any binary or directory has an associated metadata file, we store
+locally as <code class="highlighter-rouge">{filename}.ttl</code>.  These are the data that are included for any
+container on the LDP.</p>
+
+<p>Files that are in a directory will be contained by that corresponding container
+on the LDP, but no other associations are automatic.  It’s the <code class="highlighter-rouge">:associatedMedia
+&lt;tf0199n5zx/full.tif&gt;</code> predicates associated with the photographs that describe
+this relationship.</p>

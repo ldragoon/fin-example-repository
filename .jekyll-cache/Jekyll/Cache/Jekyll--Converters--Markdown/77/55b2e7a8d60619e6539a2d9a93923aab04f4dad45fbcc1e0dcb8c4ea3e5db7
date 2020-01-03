@@ -1,0 +1,12 @@
+I"¹<h1 id="production-dams">Production DAMS</h1>
+
+<p>This is an example of what a more production environment might look like.
+This is quite similar to the example setup in the parent directory, with some
+important modifications.</p>
+
+<ul>
+  <li>Weâ€™ve elimintated any local users.  In our case, we use the UCD Kerberos service to generate our tokens.</li>
+  <li>We no longer store the environment files in our public reposistory.</li>
+</ul>
+
+:ET
