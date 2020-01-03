@@ -1,18 +1,4 @@
 
-# Table of Contents
-
-1.  [Example 1 - Collaborator Pets](#org09309de)
-    1.  [Object Structure](#org2ad71b7)
-    2.  [Administrative Privleges](#org09009e1)
-    3.  [Make a New Collection](#org376d22c)
-    4.  [Collection Access Control](#org15e1dc4)
-    5.  [Check .fin/config.yml File](#orgadfd184)
-    5.  [Add Example Data](#orgadfd185)
-2.  [Graphs](#orgfd006fc)
-3.  [Amended metadata representation](#org642851f)
-
-<a id="org09309de"></a>
-
 # Example 1 - Collaborator Pets
 
 Our collaborator pets collection is the most basic type of collection that can
@@ -28,6 +14,16 @@ going through that script line-by-line to describe the general steps for
 creating new collections.  Before we do that though, we first need to describe
 the object structure in our <https://fedora.info/spec/>.
 
+## Table of Contents
+
+1.  [Object Structure](#org2ad71b7)
+2.  [Administrative Privleges](#org09009e1)
+3.  [Make a New Collection](#org376d22c)
+4.  [Collection Access Control](#org15e1dc4)
+5.  [Check .fin/config.yml File](#orgadfd184)
+6.  [Add Example Data](#orgadfd185)
+7.  [Graphs](#orgfd006fc)
+8.  [Amended metadata representation](#org642851f)
 
 <a id="org2ad71b7"></a>
 
