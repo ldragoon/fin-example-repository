@@ -20,9 +20,9 @@ There are also a number of
 [FAQS](https://github.com/UCDavisLibrary/fin-example-repository/issues?utf8=%E2%9C%93&q=is%3Aissue+label%3AFAQ)
 in the Issues. You may find help there as well.
 
-- [Installation](#Installation)
-- [Prerequisites](#Prerequisites)
-- [Configuration](#Configuration)
+- [Installation](#installation)
+- [Prerequisites](#prerequisites)
+- [Configuration](#configuration)
 - [Adding Your First User](#Adding-Your-First-User)
   - [Basic-Auth](#Basic-Auth)
   - [CAS Authentication](#CAS-Authentication)
@@ -31,6 +31,8 @@ in the Issues. You may find help there as well.
 - [Advanced Configuration](#Advanced-Configuration)
   - [Run Server on Default Ports](#Run-Server-on-Default-Ports)
 - [Example Collections](#Example-Collections)
+
+<a id="installation"></a>
 
 ## Installation
 
@@ -50,7 +52,9 @@ The first step is to get your example server up and running. This setup uses
 docker and a suite of docker containers to run the system.  After installation
 you will have an test server up and running, and ready to add collections.
 
-## Prerequisites
+<a id="prerequisites"></a>
+
+### Prerequisites
 
 First, we'll need to clone this repository. This is a good way to get your
 example data downloaded, and it is also a good starting point to fork this
@@ -73,7 +77,9 @@ Finally, we will be running a nodejs based tool `fin-cli` to work with our
 repository. After installing [nodejs](https://nodejs.org/en/download/), you can
 install this tool with `npm install -g @ucd-lib/fin-cli`.
 
-## Configuration
+<a id="configuration"></a>
+
+### Configuration
 
 The first step is to clone the repository, using:
 
