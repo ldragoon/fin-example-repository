@@ -29,10 +29,9 @@ in the Issues. You may find help there as well.
   - [CAS Authentication](#CAS-Authentication)
 - [Accessing the LDP Server](#Accessing-the-LDP-Server)
 - [Adding Data to the Repository](#Adding-Data-to-the-Repository)
-- [Next Steps](#Next-Steps)
 - [Advanced Configuration](#Advanced-Configuration)
-  - [Running the server on default ports](#Running-the-Server-on-Default-Ports)
-  - [CAS Authentication](#CAS-Authentication)
+  - [Run Server on Default Ports](#Run-Server-on-Default-Ports)
+- [Example Collections](#Example-Collections)
 
 #  Installation
 
@@ -205,6 +204,49 @@ in the token.  You can even verify the signature if you include the `JWT_SECRET`
 you've set in your configuration.  This should show you how easy it is to create
 tokens if you know that `JWT_SECRET`, keep it hidden keep it safe!*
 
+### CAS Authentication
+
+The examples above includes a Basic Authentication service, but even in
+development, we often don't use this service. Instead, we have an authentication
+service using the CAS service used on our UC Davis campus. When using this
+service, the authentication of the users is sent to the central CAS
+authentication server, and if the user authenticates, the service will mint a
+token for this users.  There aren't too many differences in the overall setup.
+First, open the fin-example.yml file, remove the Basic-Authentication Service, and add the CAS service.
+
+``` diff
+--- fin-example.yml	2018-03-01 17:05:14.964623572 -0800
++++ fin-example-cas.yml	2018-03-01 17:05:26.192623341 -0800
+@@ -103,10 +103,10 @@
+       - server
+
+   ###
+-  # Basic Username/Password AuthenticationService
++  # CAS AuthenticationService
+   ###
+-  basic-auth:
+-    image: ucdlib/fin-basic-auth:master
++  cas:
++    image: ucdlib/fin-cas-service:master
+     env_file:
+       - fin-example.env
+     depends_on:
+```
+
+Then, when we create admins we make sure to use the `@ucdavis.edu` suffix for
+these users, as in:
+
+``` bash
+docker-compose -f fin-example.yml exec server node app/cli admin add-admin -u quinn@ucdavis.edu
+```
+
+More information is available in the fin-server
+[authentication-service](https://github.com/UCDavisLibrary/fin-server/blob/master/docs/authentication-service/README.md).
+Implementors of alternative authentication schemes can look at the [CAS
+Service](https://github.com/UCDavisLibrary/fin-server/tree/master/services/cas)
+for a good example of how this can be implemented for new authentication
+services.
+
 ## Accessing the LDP Server
 
 Now that we have elevated privileges, let's revisit the root to the LDP services,
@@ -276,26 +318,9 @@ the following command `http --print=h --session=admin http://localhost:3000
 token to the `admin` session. Later on, we can access fedora with httpie like
 this `http --session=admin http://localhost:3000/fcrepo/rest`.*
 
-
-# Next Steps
-From here, we can look at some of the example collections in this project and
-see how data can be added and maintained in our repository.
-
-- [Example 1](collection/ex1-pets) This is the most
-  simple example of adding data into the repository.  The data is born digital,
-  and the organization of the data and the metadata is very basic.
-
-- [Example 2](collection/ex2-photos) This example explains how
-  to document physical objects, in this case historical photos, and their
-  associated digital representations.
-
-- [Example 3](collection/ex_sherry_lehmann) Here, we show how you
-might organize objects that have multiple digital encodings, in this case where
-each catalog has a complete PDF file, but we also have each page as an image.
-
 # Advanced Configuration
 
-## Running the Server on Default Ports
+## Run Server on Default Ports
 
 If you want to run this on the default port, the user running this example will
 need permission to connect to that protected port. In our setup, we often have
@@ -330,45 +355,18 @@ to this setup when you move to a production setup.
 </IfModule>
 ```
 
-## CAS Authentication
+# Example Collections
+From here, we can look at some of the example collections in this project and
+see how data can be added and maintained in our repository.
 
-The examples above includes a Basic Authentication service, but even in
-development, we often don't use this service. Instead, we have an authentication
-service using the CAS service used on our UC Davis campus. When using this
-service, the authentication of the users is sent to the central CAS
-authentication server, and if the user authenticates, the service will mint a
-token for this users.  There aren't too many differences in the overall setup.
-First, open the fin-example.yml file, remove the Basic-Authentication Service, and add the CAS service.
+- [Example 1](collection/ex1-pets) This is the most
+  simple example of adding data into the repository.  The data is born digital,
+  and the organization of the data and the metadata is very basic.
 
-``` diff
---- fin-example.yml	2018-03-01 17:05:14.964623572 -0800
-+++ fin-example-cas.yml	2018-03-01 17:05:26.192623341 -0800
-@@ -103,10 +103,10 @@
-       - server
+- [Example 2](collection/ex2-photos) This example explains how
+  to document physical objects, in this case historical photos, and their
+  associated digital representations.
 
-   ###
--  # Basic Username/Password AuthenticationService
-+  # CAS AuthenticationService
-   ###
--  basic-auth:
--    image: ucdlib/fin-basic-auth:master
-+  cas:
-+    image: ucdlib/fin-cas-service:master
-     env_file:
-       - fin-example.env
-     depends_on:
-```
-
-Then, when we create admins we make sure to use the `@ucdavis.edu` suffix for
-these users, as in:
-
-``` bash
-docker-compose -f fin-example.yml exec server node app/cli admin add-admin -u quinn@ucdavis.edu
-```
-
-More information is available in the fin-server
-[authentication-service](https://github.com/UCDavisLibrary/fin-server/blob/master/docs/authentication-service/README.md).
-Implementors of alternative authentication schemes can look at the [CAS
-Service](https://github.com/UCDavisLibrary/fin-server/tree/master/services/cas)
-for a good example of how this can be implemented for new authentication
-services.
+- [Example 3](collection/ex_sherry_lehmann) Here, we show how you
+might organize objects that have multiple digital encodings, in this case where
+each catalog has a complete PDF file, but we also have each page as an image.
