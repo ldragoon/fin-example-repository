@@ -23,14 +23,14 @@ in the Issues. You may find help there as well.
 - [Installation](#installation)
 - [Prerequisites](#prerequisites)
 - [Configuration](#configuration)
-- [Adding Your First User](#Adding-Your-First-User)
-  - [Basic-Auth](#Basic-Auth)
-  - [CAS Authentication](#CAS-Authentication)
-- [Accessing the LDP Server](#Accessing-the-LDP-Server)
-- [Adding Data to the Repository](#Adding-Data-to-the-Repository)
-- [Advanced Configuration](#Advanced-Configuration)
-  - [Run Server on Default Ports](#Run-Server-on-Default-Ports)
-- [Example Collections](#Example-Collections)
+- [Adding Your First User](#adding-your-first-user)
+  - [Basic-Auth](#basic-auth)
+  - [CAS Authentication](#cas-athentication)
+- [Accessing the LDP Server](#accessing-the-ldp-server)
+- [Adding Data to the Repository](#adding-data-to-the-repository)
+- [Advanced Configuration](#advanced-configuration)
+  - [Run Server on Default Ports](#run-server-on-default-ports)
+- [Example Collections](#example-collections)
 
 <a id="installation"></a>
 
@@ -161,7 +161,11 @@ accessing `http://localhost:3000/fcrepo/rest`. This should fail, since by defaul
 the public is not granted access to the data.  Since we want to read and write
 data to this repository, let's next create a new user for the system.
 
+<a id="adding-your-first-user"></a>
+
 ## Adding Your First User
+
+<a id="basic-auth"></a>
 
 ### Basic-Auth
 
@@ -210,6 +214,8 @@ in the token.  You can even verify the signature if you include the `JWT_SECRET`
 you've set in your configuration.  This should show you how easy it is to create
 tokens if you know that `JWT_SECRET`, keep it hidden keep it safe!*
 
+<a id="cas-authentication"></a>
+
 ### CAS Authentication
 
 The examples above includes a Basic Authentication service, but even in
@@ -253,6 +259,8 @@ Service](https://github.com/UCDavisLibrary/fin-server/tree/master/services/cas)
 for a good example of how this can be implemented for new authentication
 services.
 
+<a id="accessing-the-ldp-server"></a>
+
 ## Accessing the LDP Server
 
 Now that we have elevated privileges, let's revisit the root to the LDP services,
@@ -290,6 +298,8 @@ repository.
 fin http get -P b /
 ```
 
+<a id="adding-data-to-the-repository"></a>
+
 ## Adding Data to the Repository
 
 Now that we have our repository and we have administrative access, let's make
@@ -325,7 +335,11 @@ the following command `http --print=h --session=admin http://localhost:3000
 token to the `admin` session. Later on, we can access fedora with httpie like
 this `http --session=admin http://localhost:3000/fcrepo/rest`.*
 
+<a id="advanced-configuration"></a>
+
 # Advanced Configuration
+
+<a id="run-server-on-default-ports"></a>
 
 ## Run Server on Default Ports
 
@@ -361,6 +375,8 @@ to this setup when you move to a production setup.
 </VirtualHost>
 </IfModule>
 ```
+
+<a id="example-collections"></a>
 
 ## Example Collections
 
