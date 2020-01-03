@@ -372,12 +372,3 @@ Implementors of alternative authentication schemes can look at the [CAS
 Service](https://github.com/UCDavisLibrary/fin-server/tree/master/services/cas)
 for a good example of how this can be implemented for new authentication
 services.
-
-## Jekyll
-
-[Jekyll](https://jekyllrb.com/)
-
-### To Start Jekyll
-
-1. Open a terminal
-2. Run `bundle exec jekyll serve`
