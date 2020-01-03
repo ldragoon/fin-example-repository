@@ -16,7 +16,6 @@ collection has it's own README that documents some of the features of our DAMS.
 There are a few examples that should probably be done in order, [Pets] and
 [Photos]. After that, the examples can be looked at in pretty much any order.
 
-
 There are also a number of
 [FAQS](https://github.com/UCDavisLibrary/fin-example-repository/issues?utf8=%E2%9C%93&q=is%3Aissue+label%3AFAQ)
 in the Issues. You may find help there as well.
@@ -77,9 +76,10 @@ install this tool with `npm install -g @ucd-lib/fin-cli`.
 ## Configuration
 
 The first step is to clone the repository, using:
-```bash
-git clone https://github.com/UCDavisLibrary/fin-example-repository.git
-cd fin-example-repository          # change directory to your cloned location
+
+``` bash
+  git clone https://github.com/UCDavisLibrary/fin-example-repository.git
+  cd fin-example-repository          # change directory to your cloned location
 ```
 
 This will create a local copy of some example data and configurations for
@@ -140,7 +140,7 @@ docker-compose -f fin-example.yml up -d
 ```
 
 At this point, you should be able to navigate the where you set `FIN_URL`, eg
-http://localhost:3000/ and you should see an empty repository.
+`http://localhost:3000/` and you should see an empty repository.
 
 Going back to your docker configuration, at this point you should be able to
 examine the process that you are running, the logs, and other standard
@@ -151,7 +151,7 @@ host of others.
 
 Throughout these examples, we will also show direct access to the underlying LDP
 as well. The default base for access to the LDP is /fcrepo/rest, so try
-accessing http://localhost:3000/fcrepo/rest . This should fail, since by default
+accessing `http://localhost:3000/fcrepo/rest`. This should fail, since by default
 the public is not granted access to the data.  Since we want to read and write
 data to this repository, let's next create a new user for the system.
 
@@ -250,7 +250,7 @@ services.
 ## Accessing the LDP Server
 
 Now that we have elevated privileges, let's revisit the root to the LDP services,
-http://localhost:3000/fcrepo/rest .  Now we should have access to this location.
+`http://localhost:3000/fcrepo/rest`.  Now we should have access to this location.
 There isn't anything here, but at least we can see that now.  Users familiar
 with Fedora will note that this is the standard fedora interface when accessed
 via the browser.
@@ -261,7 +261,7 @@ In many of the examples following, we will also be using the command-line tool
 The first time you use `fin`, you need to point to the server that you want to
 interact with.  Run the command `fin shell`.  This will put you into an
 interactive mode.  It will also prompt for a fedora endpoint.  Use the value to
-match your FIN_URL, in our example http://localhost:3000.
+match your FIN_URL, in our example `http://localhost:3000`.
 
 Next, just as for the browser, we need to get a valid token for our command-line
 server.  Within the fin shell try `login`.  This should launch a service to
@@ -285,12 +285,14 @@ fin http get -P b /
 ```
 
 ## Adding Data to the Repository
+
 Now that we have our repository and we have administrative access, let's make
 our first entry into the repository.
 
 ``` bash
 fin http put -H prefer:return=minimal -H "Content-Type:text/turtle" -@ server.ttl -P h /
 ```
+
 This adds the `server.ttl` to the metadata of our root repository.  We can
 verify that in two ways, first using the command-line tool.
 
@@ -298,11 +300,10 @@ verify that in two ways, first using the command-line tool.
 fin http get -P b /
 ```
 
-We can also verify in the browser, http://localhost:3000/fcrepo/rest open the
+We can also verify in the browser, `http://localhost:3000/fcrepo/rest` open the
 properties bar and verify we've updated the metadata.  The root metadata also
-controls the information on the server.  Revisit, http://localhost:3000/ you can
+controls the information on the server.  Revisit, `http://localhost:3000/` you can
 see that the description of the repository has changed.
-
 
 ***Pro tip** The `fin` cli has lots if specialized tools for accessing a fedora
 server, but there is nothing special in the calls that are sent to fedora, they
@@ -356,6 +357,7 @@ to this setup when you move to a production setup.
 ```
 
 # Example Collections
+
 From here, we can look at some of the example collections in this project and
 see how data can be added and maintained in our repository.
 
