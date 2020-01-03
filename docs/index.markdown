@@ -7,10 +7,10 @@ title: Table of Contents
 ---
 
 - [Installation](https://github.com/UCDavisLibrary/fin-example-repository#Installation)
-- [Prerequisites](prerequisites)
-- [Configuration](configuration)
-- [Adding Your First User](adding-your-first-user)
-- [Accessing the LDP Server](accessing-the-ldp-server)
-- [Adding Data to the Repository](adding-data)
-- [Advanced Configuration](advanced-configuration)
-- [Example Collections](example-collections)
+- [Prerequisites](https://github.com/UCDavisLibrary/fin-example-repository#Prerequisites)
+- [Configuration](https://github.com/UCDavisLibrary/fin-example-repository#Configuration)
+- [Adding Your First User](https://github.com/UCDavisLibrary/fin-example-repository#Adding-Your-First-User)
+- [Accessing the LDP Server](https://github.com/UCDavisLibrary/fin-example-repository#Accessing-the-LDP-Server)
+- [Adding Data to the Repository](https://github.com/UCDavisLibrary/fin-example-repository#Adding-Data-to-the-Repository)
+- [Advanced Configuration](https://github.com/UCDavisLibrary/fin-example-repository#Advanced-Configuration)
+- [Example Collections](https://github.com/UCDavisLibrary/fin-example-repository#Next-Steps)
