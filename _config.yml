@@ -38,11 +38,14 @@ github_username:  jekyll
 # Build settings
 theme: minima
 
+# https://github.com/benbalter/jekyll-relative-links
 # https://github.com/benbalter/jekyll-readme-index
+# https://github.com/benbalter/jekyll-titles-from-headings
 plugins:
   - jekyll-feed
   - jekyll-relative-links
   - jekyll-readme-index
+  - jekyll-titles-from-headings
 relative_links:
   enabled: true
   collections: true
@@ -52,6 +55,10 @@ readme_index:
   with_frontmatter: false
 include:
   - README.md
+titles_from_headings:
+  enabled: true
+  strip_title: true
+  collections: false
 
 # Exclude from processing.
 # The following items will not be processed, by default.
