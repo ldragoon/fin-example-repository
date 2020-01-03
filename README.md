@@ -30,7 +30,7 @@ in the Issues. You may find help there as well.
 - [Accessing the LDP Server](#Accessing-the-LDP-Server)
 - [Adding Data to the Repository](#Adding-Data-to-the-Repository)
 - [Advanced Configuration](#Advanced-Configuration)
-  - [Running the server on default ports](#Running-the-Server-on-Default-Ports)
+  - [Run Server on Default Ports](#Run-Server-on-Default-Ports)
 - [Example Collections](#Example-Collections)
 
 #  Installation
@@ -320,7 +320,7 @@ this `http --session=admin http://localhost:3000/fcrepo/rest`.*
 
 # Advanced Configuration
 
-## Running the Server on Default Ports
+## Run Server on Default Ports
 
 If you want to run this on the default port, the user running this example will
 need permission to connect to that protected port. In our setup, we often have
