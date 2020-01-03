@@ -31,7 +31,6 @@ in the Issues. You may find help there as well.
 - [Adding Data to the Repository](#Adding-Data-to-the-Repository)
 - [Advanced Configuration](#Advanced-Configuration)
   - [Running the server on default ports](#Running-the-Server-on-Default-Ports)
-  - [CAS Authentication](#CAS-Authentication)
 - [Example Collections](#Example-Collections)
 
 #  Installation
@@ -205,6 +204,49 @@ in the token.  You can even verify the signature if you include the `JWT_SECRET`
 you've set in your configuration.  This should show you how easy it is to create
 tokens if you know that `JWT_SECRET`, keep it hidden keep it safe!*
 
+### CAS Authentication
+
+The examples above includes a Basic Authentication service, but even in
+development, we often don't use this service. Instead, we have an authentication
+service using the CAS service used on our UC Davis campus. When using this
+service, the authentication of the users is sent to the central CAS
+authentication server, and if the user authenticates, the service will mint a
+token for this users.  There aren't too many differences in the overall setup.
+First, open the fin-example.yml file, remove the Basic-Authentication Service, and add the CAS service.
+
+``` diff
+--- fin-example.yml	2018-03-01 17:05:14.964623572 -0800
++++ fin-example-cas.yml	2018-03-01 17:05:26.192623341 -0800
+@@ -103,10 +103,10 @@
+       - server
+
+   ###
+-  # Basic Username/Password AuthenticationService
++  # CAS AuthenticationService
+   ###
+-  basic-auth:
+-    image: ucdlib/fin-basic-auth:master
++  cas:
++    image: ucdlib/fin-cas-service:master
+     env_file:
+       - fin-example.env
+     depends_on:
+```
+
+Then, when we create admins we make sure to use the `@ucdavis.edu` suffix for
+these users, as in:
+
+``` bash
+docker-compose -f fin-example.yml exec server node app/cli admin add-admin -u quinn@ucdavis.edu
+```
+
+More information is available in the fin-server
+[authentication-service](https://github.com/UCDavisLibrary/fin-server/blob/master/docs/authentication-service/README.md).
+Implementors of alternative authentication schemes can look at the [CAS
+Service](https://github.com/UCDavisLibrary/fin-server/tree/master/services/cas)
+for a good example of how this can be implemented for new authentication
+services.
+
 ## Accessing the LDP Server
 
 Now that we have elevated privileges, let's revisit the root to the LDP services,
@@ -312,49 +354,6 @@ to this setup when you move to a production setup.
 </VirtualHost>
 </IfModule>
 ```
-
-## CAS Authentication
-
-The examples above includes a Basic Authentication service, but even in
-development, we often don't use this service. Instead, we have an authentication
-service using the CAS service used on our UC Davis campus. When using this
-service, the authentication of the users is sent to the central CAS
-authentication server, and if the user authenticates, the service will mint a
-token for this users.  There aren't too many differences in the overall setup.
-First, open the fin-example.yml file, remove the Basic-Authentication Service, and add the CAS service.
-
-``` diff
---- fin-example.yml	2018-03-01 17:05:14.964623572 -0800
-+++ fin-example-cas.yml	2018-03-01 17:05:26.192623341 -0800
-@@ -103,10 +103,10 @@
-       - server
-
-   ###
--  # Basic Username/Password AuthenticationService
-+  # CAS AuthenticationService
-   ###
--  basic-auth:
--    image: ucdlib/fin-basic-auth:master
-+  cas:
-+    image: ucdlib/fin-cas-service:master
-     env_file:
-       - fin-example.env
-     depends_on:
-```
-
-Then, when we create admins we make sure to use the `@ucdavis.edu` suffix for
-these users, as in:
-
-``` bash
-docker-compose -f fin-example.yml exec server node app/cli admin add-admin -u quinn@ucdavis.edu
-```
-
-More information is available in the fin-server
-[authentication-service](https://github.com/UCDavisLibrary/fin-server/blob/master/docs/authentication-service/README.md).
-Implementors of alternative authentication schemes can look at the [CAS
-Service](https://github.com/UCDavisLibrary/fin-server/tree/master/services/cas)
-for a good example of how this can be implemented for new authentication
-services.
 
 # Example Collections
 From here, we can look at some of the example collections in this project and
