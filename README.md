@@ -215,8 +215,8 @@ token for this users.  There aren't too many differences in the overall setup.
 First, open the fin-example.yml file, remove the Basic-Authentication Service, and add the CAS service.
 
 ``` diff
---- fin-example.yml	2018-03-01 17:05:14.964623572 -0800
-+++ fin-example-cas.yml	2018-03-01 17:05:26.192623341 -0800
+--- fin-example.yml 2018-03-01 17:05:14.964623572 -0800
++++ fin-example-cas.yml 2018-03-01 17:05:26.192623341 -0800
 @@ -103,10 +103,10 @@
        - server
 
