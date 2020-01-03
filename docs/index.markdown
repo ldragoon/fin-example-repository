@@ -12,5 +12,5 @@ title: Table of Contents
 - [Adding Your First User](adding-your-first-user)
 - [Accessing the LDP Server](accessing-the-ldp-server)
 - [Adding Data to the Repository](adding-data)
-- [Next Steps](next-steps)
 - [Advanced Configuration](advanced-configuration)
+- [Example Collections](example-collections)
