@@ -6,7 +6,7 @@ layout: home
 title: Table of Contents
 ---
 
-- [Installation](installation)
+- [Installation](https://github.com/UCDavisLibrary/fin-example-repository#Installation)
 - [Prerequisites](prerequisites)
 - [Configuration](configuration)
 - [Adding Your First User](adding-your-first-user)
