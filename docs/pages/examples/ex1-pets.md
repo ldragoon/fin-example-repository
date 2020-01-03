@@ -20,10 +20,10 @@ be added into the DAMS. This example contains a simple set of digital images
 with a small amount of data about the pets. Each pet, eg. [ashley.jpg](https://github.com/UCDavisLibrary/fin-example-repository/blob/master/collection/ex1-pets/ex1-pets/pets/ashley.jpg) is included
 in their own image file, and each image file has some associated metadata in a
 `.ttl` sidecar, eg. [ashley.jpeg.ttl](https://github.com/UCDavisLibrary/fin-example-repository/blob/master/collection/ex1-pets/ex1-pets/pets/ashley.jpg.ttl). The metadata is in `text/turtle` format [text/turtle documentation](https://www.w3.org/TeamSubmission/turtle/).
-The [index.ttl](./index.ttl) file includes information about the collection as a whole.
-Finally, we have an additional [graph.hdt](./graph.hdt) file is explained in more detail below.
+The [ex-pets.ttl](https://github.com/UCDavisLibrary/fin-example-repository/blob/master/collection/ex1-pets/ex1-pets.ttl) file includes information about the collection as a whole.
+Finally, we have an additional [graph.hdt](https://github.com/UCDavisLibrary/fin-example-repository/blob/master/collection/ex-amerine-menus/graph.hdt) file is explained in more detail below.
 
-This collection can all be created with the [import.sh](./import.sh) script, and we will be
+This collection can all be created with the [import.sh](https://github.com/UCDavisLibrary/fin-example-repository/blob/master/import.sh) script, and we will be
 going through that script line-by-line to describe the general steps for
 creating new collections.  Before we do that though, we first need to describe
 the object structure in our <https://fedora.info/spec/>.
@@ -36,14 +36,12 @@ Whereever possible, we use [Schema.org](https://schema.org/) to organize our col
 To that end, Every collection is defined as a <https://schema.org/Collection> and every item in a
 collection is a <https://schema.org/CreativeWork>. The items of a collection are defined
 with the property <https://schema.org/hasPart>.  This is fundamental organization of a
-collection. This [Generic Diagram](./docs/generic_diagram.png), describes that relationship.  Since
-<https://schema.org/Collection> are themselves <https://schema.org/CreativeWork> then all properties of
-those apply.  Some of the properties that are indexed and in some cases
-faceted in our DAMS include <https://schema.org/name>, <https://schema.org/about>, <https://schema.org/keywords>,
-<https://schema.org/alternativeHeadline>,<https://schema.org/license>,<https://schema.org/creator>,
-<https://schema.org/datePublished>
+collection.  This generic diagram describes that relationship:
 
 ![img](https://raw.githubusercontent.com/UCDavisLibrary/fin-example-repository/master/collection/ex1-pets/docs/generic_diagram.png)
+
+Since <https://schema.org/Collection> are themselves <https://schema.org/CreativeWork> then all properties of
+those apply.  Some of the properties that are indexed and in some cases faceted in our DAMS include <https://schema.org/name>, <https://schema.org/about>, <https://schema.org/keywords>, <https://schema.org/alternativeHeadline>, <https://schema.org/license>,<https://schema.org/creator>, <https://schema.org/datePublished>
 
 Now, for our example, each individual pet is an item within our collection.  The
 following diagram replaces the generic objects with some of the actual objects
@@ -67,8 +65,8 @@ root location, and verifies you can write to this location.
 
 ## Make a new Collection
 
-Let&rsquo;s start with the collection description.  That&rsquo;s stored in the \`index.ttl\`
-file.  This file describes the collection. \`index.ttl\` is a pretty easy file to
+Let&rsquo;s start with the collection description.  That&rsquo;s stored in the \`ex1-pets.ttl\`
+file in the ex1-pets root directory.  This file describes the collection. \`ex1-pets.ttl\` is a pretty easy file to
 understand, you&rsquo;ll see a name, and description and some keywords.  If you&rsquo;re
 savy with your linked data, you will see that by default we like to use
 schema.org for our descriptions.  This is not a requirement for the server, but
@@ -89,7 +87,7 @@ data.
       schema:description "This collection includes pictures of pets that are owned by our collaborators.  This is meant to be something of the most basic collection that can be added as a DAMs." ;
       schema:identifier "ark:/pets/awesome".
 
-fin has some special commands to create and administrate collections.  Let&rsquo;s
+fin has some special commands to create and administrate collections. Let&rsquo;s
 go ahead and create our new collection.
 
 `fin collection create example_1-pets index.ttl`
@@ -102,9 +100,9 @@ organizes standard locations for things like groups for this collection. Also,
 with the addition of the metadata in our index.ttl file, it also describes the
 contents of this collection, which is then used in the default Interface for the
 repository. After this step, you should be able to navigate to
-<http://localhost:3000/fcrepo/rest/collection>, and see your newly created
+`http://localhost:3000/fcrepo/rest/collection`, and see your newly created
 example1-pets collection. You may need to login to your account via
-<http://localhost:3000/auth/basic/login.html> to give your browser access.
+`http://localhost:3000/auth/basic/login.html` to give your browser access.
 
 <a id="org15e1dc4"></a>
 
@@ -121,14 +119,12 @@ available for anyone.
 
 Navigate to `fin-example-repository/collection/ex1-pets/.fin`. You should see a file named `config.yml`. Open it. Make sure that the listed host is pointing to the correct location. If you're working locally, you'd probably like to set it for your local work environment.
 
-Example
+### Example
 
-```bash
-  source:  
-    host: http://192.168.99.100:3000/
-    base: /fcrepo/rest
-    collection: ex1-pets
-```
+    source:  
+      host: <http://192.168.99.100:3000/>
+      base: /fcrepo/rest
+      collection: ex1-pets
 
 <a id="orgadfd185"></a>
 

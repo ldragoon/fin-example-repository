@@ -10,7 +10,7 @@ Our container setup separates the authentication step from the Fedora and
 other services.  The services rely on valid JWT tokens being sent along with
 requests to the system.  The Authentication services are what creates these
 tokens.  In production, you will most certainly want to use a centralized
-authentication mechanism, see [CAS Authentication](#CAS-Authentication) in the [Advanced Configuration](#Advanced-Configuration) section to see an example of this type of setup.  However, for
+authentication mechanism, see [CAS Authentication](#CAS-Authentication) in the [Advanced Configuration](../advanced-configuration) section to see an example of this type of setup.  However, for
 testing, we have included a Basic Authentication service that can be used
 without any external setup.  You should really only use this service for
 testing.
@@ -18,14 +18,14 @@ testing.
 Earlier, we looked at some of the container processes we were running with
 `docker-compose -f fin-example.yml ps`. One process there, is there is the
 basic-auth service.  In addition, by default we allow anyone to [create a new
-user account](http://localhost:3000/auth/basic/create.html). Navigate to that
+user account](https://itcatalog.ucdavis.edu/service/central-authentication-service-cas). Navigate to that
 location and create a new user.  The email address allows for password resets.
 Once you've created your account, you can login to the server, and then from the
 home page, you can verify that you are logged in via the lower right hand side
 of the page.
 
 ``` bash
-docker-compose -f fin-example.yml exec basic-auth node service/cli create-user -u quinn -p laxlax -e quinn@example.org
+  docker-compose -f fin-example.yml exec basic-auth node service/cli create-user -u quinn -p laxlax -e quinn@example.org
 ```
 
 Now, we are going to give the user we've just created special administrative
@@ -50,6 +50,8 @@ example by visiting [jwt.io](https://jwt.io/). You will see the values encoded
 in the token.  You can even verify the signature if you include the `JWT_SECRET`
 you've set in your configuration.  This should show you how easy it is to create
 tokens if you know that `JWT_SECRET`, keep it hidden keep it safe!*
+
+<a id="CAS-Authentication"></a>
 
 ## CAS Authentication
 
