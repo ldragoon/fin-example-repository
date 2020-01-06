@@ -1,0 +1,253 @@
+<html lang="en">
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Example 1 - Collaborator Pets | Fin Example Repository Documentation</title>
+<meta name="generator" content="Jekyll v3.8.5" />
+<meta property="og:title" content="Example 1 - Collaborator Pets" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description." />
+<meta property="og:description" content="Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description." />
+<link rel="canonical" href="http://localhost:4000/fin-example-repository/collection/ex1-pets/" />
+<meta property="og:url" content="http://localhost:4000/fin-example-repository/collection/ex1-pets/" />
+<meta property="og:site_name" content="Fin Example Repository Documentation" />
+<script type="application/ld+json">
+{"@type":"WebPage","headline":"Example 1 - Collaborator Pets","url":"http://localhost:4000/fin-example-repository/collection/ex1-pets/","description":"Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<title>Example 1 - Collaborator Pets</title>
+    <link rel="stylesheet" href="/fin-example-repository/assets/main.css">
+    <link rel="stylesheet" href="/fin-example-repository/assets/css/styles.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/fin-example-repository/feed.xml" title="Fin Example Repository Documentation" /></head>
+  <body><header class="site-header" role="banner">
+  <div class="wrapper"><a class="site-title" rel="author" href="/fin-example-repository/">Fin Example Repository Documentation</a>
+
+    <!--<nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/fin-example-repository/about/">About</a><a class="page-link" href="/fin-example-repository/README.html">Fin Example Repositories</a><a class="page-link" href="/fin-example-repository/collection/README.html">Example Collections</a><a class="page-link" href="/fin-example-repository/collection/ex1-pets/README.html">Example 1 - Collaborator Pets</a><a class="page-link" href="/fin-example-repository/collection/ex2-photos/README.html">Example 2 - Photographs</a><a class="page-link" href="/fin-example-repository/collection/ex_sherry_lehmann/README.html">Example - Sherry Lehmann</a><a class="page-link" href="/fin-example-repository/jekyll.html">Jekyll Github Pages Site</a><a class="page-link" href="/fin-example-repository/production/README.html">Production DAMS</a><a class="page-link" href="/fin-example-repository/test/frames/README.html">JSONLD - Frames</a><a class="page-link" href="/fin-example-repository/test/jwt/README.html">JWT</a><a class="page-link" href="/fin-example-repository/README.html">Fin Example Repositories</a><a class="page-link" href="/fin-example-repository/collection/README.html">Example Collections</a><a class="page-link" href="/fin-example-repository/collection/ex1-pets/README.html">Example 1 - Collaborator Pets</a><a class="page-link" href="/fin-example-repository/collection/ex2-photos/README.html">Example 2 - Photographs</a><a class="page-link" href="/fin-example-repository/collection/ex_sherry_lehmann/README.html">Example - Sherry Lehmann</a><a class="page-link" href="/fin-example-repository/production/README.html">Production DAMS</a><a class="page-link" href="/fin-example-repository/test/frames/README.html">JSONLD - Frames</a><a class="page-link" href="/fin-example-repository/test/jwt/README.html">JWT</a></div>
+      </nav>-->
+  </div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">Example 1 - Collaborator Pets</h1>
+  </header>
+
+  <div class="post-content">
+    <p>Our collaborator pets collection is the most basic type of collection that can
+be added into the DAMS. This example contains a simple set of digital images
+with a small amount of data about the pets. Each pet, eg. <a href="./ashley.jpg">ashley.jpg</a> is included
+in their own image file, and each image file has some associated metadata in a
+<code class="language-plaintext highlighter-rouge">.ttl</code> sidecar, eg. <a href="./ashley.jpeg.ttl">ashley.jpeg.ttl</a>. The metadata is in <code class="language-plaintext highlighter-rouge">text/turtle</code> format <a href="https://www.w3.org/TeamSubmission/turtle/">text/turtle documentation</a>.
+The <a href="./index.ttl">index.ttl</a> file includes information about the collection as a whole.
+Finally, we have an additional <a href="./graph.hdt">graph.hdt</a> file is explained in more detail below.</p>
+
+<p>This collection can all be created with the <a href="./import.sh">import.sh</a> script, and we will be
+going through that script line-by-line to describe the general steps for
+creating new collections.  Before we do that though, we first need to describe
+the object structure in our <a href="https://fedora.info/spec/">https://fedora.info/spec/</a>.</p>
+
+<h2 id="table-of-contents">Table of Contents</h2>
+
+<ol>
+  <li><a href="#org2ad71b7">Object Structure</a></li>
+  <li><a href="#org09009e1">Administrative Privleges</a></li>
+  <li><a href="#org376d22c">Make a New Collection</a></li>
+  <li><a href="#org15e1dc4">Collection Access Control</a></li>
+  <li><a href="#orgadfd184">Check .fin/config.yml File</a></li>
+  <li><a href="#orgadfd185">Add Example Data</a></li>
+  <li><a href="#orgfd006fc">Graphs</a></li>
+  <li><a href="#org642851f">Amended metadata representation</a></li>
+</ol>
+
+<p><a id="org2ad71b7"></a></p>
+
+<h2 id="object-structure">Object Structure</h2>
+
+<p>Whereever possible, we use <a href="https://schema.org/">Schema.org</a> to organize our collections and items.
+To that end, Every collection is defined as a <a href="https://schema.org/Collection">https://schema.org/Collection</a> and every item in a
+collection is a <a href="https://schema.org/CreativeWork">https://schema.org/CreativeWork</a>. The items of a collection are defined
+with the property <a href="https://schema.org/hasPart">https://schema.org/hasPart</a>.  This is fundamental organization of a
+collection. This <a href="/fin-example-repository/collection/ex1-pets/docs/generic_diagram.png">Generic Diagram</a>, describes that relationship.  Since
+<a href="https://schema.org/Collection">https://schema.org/Collection</a> are themselves <a href="https://schema.org/CreativeWork">https://schema.org/CreativeWork</a> then all properties of
+those apply.  Some of the properties that are indexed and in some cases
+faceted in our DAMS include <a href="https://schema.org/name">https://schema.org/name</a>, <a href="https://schema.org/about">https://schema.org/about</a>, <a href="https://schema.org/keywords">https://schema.org/keywords</a>,
+<a href="https://schema.org/alternativeHeadline">https://schema.org/alternativeHeadline</a>,<a href="https://schema.org/license">https://schema.org/license</a>,<a href="https://schema.org/creator">https://schema.org/creator</a>,
+<a href="https://schema.org/datePublished">https://schema.org/datePublished</a></p>
+
+<p><img src="/fin-example-repository/collection/ex1-pets/docs/generic_diagram.png" alt="img" /></p>
+
+<p>Now, for our example, each individual pet is an item within our collection.  The
+following diagram replaces the generic objects with some of the actual objects
+in our collection.</p>
+
+<p><img src="/fin-example-repository/collection/ex1-pets/docs/diagram.png" alt="img" /></p>
+
+<p><a id="org09009e1"></a></p>
+
+<h2 id="administrative-privileges">Administrative Privileges</h2>
+
+<p>If you have gone through the installation steps, this is good place to come as
+your next step.  The steps below assume that you are currently logged in to your
+fin server, as an admin.  How to do this is explained in the installation
+instructions.  You can verify this with the following command, which access the
+root location, and verifies you can write to this location.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>fin http get -P b / | grep fedora:writable
+</code></pre></div></div>
+
+<p><a id="org376d22c"></a></p>
+
+<h2 id="make-a-new-collection">Make a New Collection</h2>
+
+<p>Let’s start with the collection description.  That’s stored in the `index.ttl`
+file.  This file describes the collection. `index.ttl` is a pretty easy file to
+understand, you’ll see a name, and description and some keywords.  If you’re
+savy with your linked data, you will see that by default we like to use
+schema.org for our descriptions.  This is not a requirement for the server, but
+lots of the DAMS setup expects to use this schema when indexing collections and
+data.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>@prefix schema: &lt;http://schema.org/&gt; .
+@prefix rdf:  &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .
+@prefix ldp:  &lt;http://www.w3.org/ns/ldp#&gt; .
+
+&lt;&gt;
+  a ldp:BasicContainer, schema:Collection;
+  schema:name "Collaborator Pets";
+  schema:keywords "Pets", "Cats", "Dogs";
+  schema:license &lt;http://rightsstatements.org/vocab/InC-NC/1.0/&gt;;
+  schema:creator "Quinn Hart";
+  schema:datePublished "2018"^^&lt;http://www.w3.org/2001/XMLSchema#date&gt;  ;
+  schema:description "This collection includes pictures of pets that are owned by our collaborators.  This is meant to be something of the most basic collection that can be added as a DAMs." ;
+  schema:identifier "ark:/pets/awesome".
+</code></pre></div></div>
+
+<p>fin has some special commands to create and administrate collections.  Let’s
+go ahead and create our new collection.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>fin collection create example_1-pets index.ttl
+
+New collection created at: /collection/example_1-pets
+</code></pre></div></div>
+
+<p>This command creates a new container in our system, for the new collection, but
+it does more than that. It sets up some default access control conditions, and
+organizes standard locations for things like groups for this collection. Also,
+with the addition of the metadata in our index.ttl file, it also describes the
+contents of this collection, which is then used in the default Interface for the
+repository. After this step, you should be able to navigate to
+<a href="http://localhost:3000/fcrepo/rest/collection">http://localhost:3000/fcrepo/rest/collection</a>, and see your newly created
+example1-pets collection. You may need to login to your account via
+<a href="http://localhost:3000/auth/basic/login.html">http://localhost:3000/auth/basic/login.html</a> to give your browser access.</p>
+
+<p><a id="org15e1dc4"></a></p>
+
+<h2 id="collection-access-control">Collection Access Control</h2>
+
+<p>By default new collections are not publicly available.  Let’s make this
+available for anyone.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>fin collection acl user add example_1-pets foaf:Agent r
+</code></pre></div></div>
+
+<p><a id="orgadfd184"></a></p>
+
+<h2 id="check-finconfigyml-file">Check .fin/config.yml File</h2>
+
+<p>Navigate to <code class="language-plaintext highlighter-rouge">fin-example-repository/collection/ex1-pets/.fin</code>. You should see a file named <code class="language-plaintext highlighter-rouge">config.yml</code>. Open it. Make sure that the listed host is pointing to the correct location. If you’re working locally, you’d probably like to set it for your local work environment.</p>
+
+<p>Example</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  source:  
+    host: http://192.168.99.100:3000/    
+    base: /fcrepo/rest    
+    collection: ex1-pets
+</code></pre></div></div>
+
+<p><a id="orgadfd185"></a></p>
+
+<h2 id="add-example-data">Add Example Data</h2>
+
+<p>Now we want to add an additional image with its associated <code class="language-plaintext highlighter-rouge">.ttl</code> sidecar.</p>
+
+<ol>
+  <li>Select an appropriately adorable jpg of one of your pets. In the event you don’t have a pet, any cute animal picture will suffice.</li>
+  <li>Navigate to <code class="language-plaintext highlighter-rouge">fin-example-repository/collection/ex1-pets/ex1-pets/pets</code>.</li>
+  <li>Copy your selected jpg into this directory.</li>
+  <li>
+    <p>Create a copy of one of the existing <code class="language-plaintext highlighter-rouge">name.jpg.ttl</code> files and update the file name to match the image you’ve chosen.</p>
+
+    <p>Example</p>
+
+    <p><code class="language-plaintext highlighter-rouge">adorable_dog.jpg &gt; adorable_dog.jpg.ttl</code></p>
+  </li>
+  <li>Update the information in your new <code class="language-plaintext highlighter-rouge">.ttl</code> sidecar file to personalize it and make it accurately reflect your chosen image.</li>
+</ol>
+
+<p>You’re ready to update your local copy of the DAMS Collaborator Pets Collection.
+Open a Terminal and cd to <code class="language-plaintext highlighter-rouge">fin-example-repository/collection/ex1-pets</code>. Then run the following command:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>fin io import [name of directory to upload] [root directory location]
+</code></pre></div></div>
+
+<p>Example</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> fin io import ex1-pets .
+</code></pre></div></div>
+
+<p>After the command runs, you should be able to refresh your local UC Davis Library Digital Collections instance and click on the Collaborator Pets image block.  You should now see your cute animal picture.</p>
+
+<p><a id="orgfd006fc"></a></p>
+
+<h1 id="graphs">Graphs</h1>
+
+<p>One problem that is currently not completely solved</p>
+
+<p><a id="org642851f"></a></p>
+
+<h1 id="amended-metadata-representation">Amended metadata representation</h1>
+
+<p>TODO: Fill in.</p>
+
+  </div>
+
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/fin-example-repository/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Fin Example Repository Documentation</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Fin Example Repository Documentation</li><li><a class="u-email" href="mailto:library@ucdavis.edu">library@ucdavis.edu</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/jekyll"><svg class="svg-icon"><use xlink:href="/fin-example-repository/assets/minima-social-icons.svg#github"></use></svg> <span class="username">jekyll</span></a></li><li><a href="https://www.twitter.com/jekyllrb"><svg class="svg-icon"><use xlink:href="/fin-example-repository/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">jekyllrb</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+</html>
