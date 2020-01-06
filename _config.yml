@@ -21,7 +21,13 @@
 # Configuration
 source: .
 destination: jekyll_dst
+includes_dir: jekyll_src/_includes
 layouts_dir: jekyll_src/_layouts
+
+# Sass/SCSS
+sass:
+  sass_dir: jekyll_src/_sass
+  style: compressed
 
 #
 # Site settings
@@ -53,8 +59,6 @@ readme_index:
   enabled: true
   remove_originals: false
   with_frontmatter: false
-include:
-  - README.md
 titles_from_headings:
   enabled: true
   strip_title: true
@@ -68,13 +72,14 @@ titles_from_headings:
 # Excluded items can be processed by explicitly listing the directories or
 # their entries' file path in the `include:` list.
 #
+# TODO: can't figure out how to exclude the pngs in the dirs and override w/include to include the pngs in docs dirs
+# Documentation indicates include items should override exclude items
+# Reported bug: https://github.com/jekyll/jekyll/issues/4791
 exclude:
   - .sass-cache/
   - .jekyll-cache/
-  - conf/
-  - collection/*akefile #only way I could figure out to correctly exclude the makefiles
   - collection/*.jpg
-  - collection/*.png
+  - conf/
   - gemfiles/
   - Gemfile
   - Gemfile.lock
@@ -87,6 +92,7 @@ exclude:
   - vendor/gems/
   - vendor/ruby/
   - user/
+  - '*akefile' #only way I could figure out to correctly exclude the Makefiles
   - '*.sh'
   - '*.env'
   - '*.ttl'
@@ -97,3 +103,6 @@ exclude:
   - '*.org'
   - '*.hdt'
   - '*.txt'
+
+include:
+  - 'docs/*.png'
