@@ -29,6 +29,12 @@ sass:
   sass_dir: jekyll_src/_sass
   style: compressed
 
+assets:
+  dirname: assets
+  baseurl: jekyll_src/assets
+  sources:
+    - jekyll_src/assets
+
 #
 # Site settings
 # These are used to personalize your new site. If you look in the HTML files,
