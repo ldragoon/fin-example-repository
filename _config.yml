@@ -21,6 +21,7 @@
 # Configuration
 source: .
 destination: jekyll_dst
+layouts_dir: jekyll_src/_layouts
 
 #
 # Site settings
@@ -70,11 +71,29 @@ titles_from_headings:
 exclude:
   - .sass-cache/
   - .jekyll-cache/
+  - conf/
+  - collection/*akefile #only way I could figure out to correctly exclude the makefiles
+  - collection/*.jpg
+  - collection/*.png
   - gemfiles/
   - Gemfile
   - Gemfile.lock
+  - LICENSE
   - node_modules/
+  - production/
+  - test/
   - vendor/bundle/
   - vendor/cache/
   - vendor/gems/
   - vendor/ruby/
+  - user/
+  - '*.sh'
+  - '*.env'
+  - '*.ttl'
+  - '*.yml'
+  - '*.pdf'
+  - '*.json'
+  - '*.tif'
+  - '*.org'
+  - '*.hdt'
+  - '*.txt'
