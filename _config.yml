@@ -1,0 +1,103 @@
+# Notes:
+# https://adam.garrett-harris.com/how-to-easily-embed-youtube-videos-in-jekyll-sites-without-a-plugin/
+# https://thoughtbot.com/blog/external-posts-in-jekyll
+# https://github.com/planetjekyll/awesome-jekyll-plugins/blob/master/README.md
+# https://github.com/octalmage/github-readme
+
+# Welcome to Jekyll!
+#
+# This config file is meant for settings that affect your whole blog, values
+# which you are expected to set up once and rarely edit after that. If you find
+# yourself editing this file very often, consider using Jekyll's data files
+# feature for the data you need to update frequently.
+#
+# For technical reasons, this file is *NOT* reloaded automatically when you use
+# 'bundle exec jekyll serve'. If you change this file, please restart the server process.
+#
+# If you need help with YAML syntax, here are some quick references for you:
+# https://learn-the-web.algonquindesign.ca/topics/markdown-yaml-cheat-sheet/#yaml
+# https://learnxinyminutes.com/docs/yaml/
+#
+# Configuration
+source: .
+destination: jekyll_dst
+includes_dir: jekyll_src/_includes
+layouts_dir: jekyll_src/_layouts
+
+#
+# Site settings
+# These are used to personalize your new site. If you look in the HTML files,
+# you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
+# You can create any custom variable you would like, and they will be accessible
+# in the templates via {{ site.myvariable }}.
+title: Fin Example Repository Documentation
+email: library@ucdavis.edu
+description: >- # this means to ignore newlines until "baseurl:"
+  Write an awesome description for your new site here. You can edit this
+  line in _config.yml. It will appear in your document head meta (for
+  Google search results) and in your feed.xml site description.
+baseurl: "/fin-example-repository-jekyll" # the subpath of your site, e.g. /blog
+url: "https://ldragoon.github.io" # the base hostname & protocol for your site, e.g. http://example.com
+twitter_username: jekyllrb
+github_username:  jekyll
+
+# Build settings
+theme: minima
+
+# https://github.com/benbalter/jekyll-readme-index
+# https://github.com/benbalter/jekyll-titles-from-headings
+plugins:
+  - jekyll-feed
+  - jekyll-readme-index
+  - jekyll-titles-from-headings
+readme_index:
+  enabled: true
+  remove_originals: false
+  with_frontmatter: false
+titles_from_headings:
+  enabled: true
+  strip_title: true
+  collections: false
+
+# Exclude from processing.
+# The following items will not be processed, by default.
+# Any item listed under the `exclude:` key here will be automatically added to
+# the internal "default list".
+#
+# Excluded items can be processed by explicitly listing the directories or
+# their entries' file path in the `include:` list.
+#
+# TODO: can't figure out how to exclude the pngs in the dirs and override w/include to include the pngs in docs dirs
+# Documentation indicates include items should override exclude items
+# Reported bug: https://github.com/jekyll/jekyll/issues/4791
+exclude:
+  - .sass-cache/
+  - .jekyll-cache/
+  - collection/*.jpg
+  - conf/
+  - gemfiles/
+  - Gemfile
+  - Gemfile.lock
+  - LICENSE
+  - node_modules/
+  - production/
+  - test/
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+  - user/
+  - '*akefile' #only way I could figure out to correctly exclude the Makefiles
+  - '*.sh'
+  - '*.env'
+  - '*.ttl'
+  - '*.yml'
+  - '*.pdf'
+  - '*.json'
+  - '*.tif'
+  - '*.org'
+  - '*.hdt'
+  - '*.txt'
+
+include:
+  - 'docs/*.png'
