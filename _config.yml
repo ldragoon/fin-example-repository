@@ -19,10 +19,10 @@
 # https://learnxinyminutes.com/docs/yaml/
 #
 # Configuration
-source: .
-destination: jekyll_dst
-includes_dir: jekyll_src/_includes
-layouts_dir: jekyll_src/_layouts
+#source: .
+#destination: jekyll_dst
+#includes_dir: jekyll_src/_includes
+#layouts_dir: jekyll_src/_layouts
 
 #
 # Site settings
@@ -73,31 +73,12 @@ titles_from_headings:
 exclude:
   - .sass-cache/
   - .jekyll-cache/
-  - collection/*.jpg
-  - conf/
   - gemfiles/
   - Gemfile
   - Gemfile.lock
   - LICENSE
   - node_modules/
-  - production/
-  - test/
   - vendor/bundle/
   - vendor/cache/
   - vendor/gems/
   - vendor/ruby/
-  - user/
-  - '*akefile' #only way I could figure out to correctly exclude the Makefiles
-  - '*.sh'
-  - '*.env'
-  - '*.ttl'
-  - '*.yml'
-  - '*.pdf'
-  - '*.json'
-  - '*.tif'
-  - '*.org'
-  - '*.hdt'
-  - '*.txt'
-
-include:
-  - 'docs/*.png'
